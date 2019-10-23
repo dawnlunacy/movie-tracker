@@ -30,7 +30,7 @@ class App extends Component {
           <header>
             <Nav />
           </header>
-          <MoviesContainer />
+          <MoviesContainer movies={this.state.movies}/>
           <UserForm />
         </div>
       </Router>
