@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import Nav from '../containers/Nav/Nav';
+import UserForm from '../containers/UserForm/UserForm';
 import './App.css';
 
 
@@ -14,6 +15,7 @@ function App() {
           <Nav />
         </header>
         <MoviesContainer />
+        <UserForm />
       </div>
     </Router>
   );
