@@ -58,6 +58,7 @@ class UserForm extends Component {
                 />
                 <button onClick={(e) => this.submitForm(e)}> Create Profile </button>
             </form>
+            //note this submit style is different than the redux lesson
         )
     }
 }
