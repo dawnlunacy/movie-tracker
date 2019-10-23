@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { fetchData } from './utils/apiCall';
 import logo from './logo.svg';
 import './App.css';
 
 
-function App() {
+class App extends Component {
+
+  componentDidMount = async () =>  {
+    const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
+    console.log(movies.results)
+  }
+
+render() {
   return (
     <Router>
     <div className="App">
@@ -26,6 +33,7 @@ function App() {
     </div>
     </Router>
   );
+}
 }
 
 export default App;
