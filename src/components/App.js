@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import Nav from '../containers/Nav/Nav';
-// import UserForm from '../containers/UserForm/UserForm';
+import UserForm from '../containers/UserForm/UserForm';
 import { fetchData } from '../utils/apiCall';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
@@ -24,7 +24,7 @@ class App extends Component {
             <Nav />
           </header>
           <MoviesContainer />
-          {/* <UserForm /> */}
+          <UserForm />
         </div>
       </Router>
     );
