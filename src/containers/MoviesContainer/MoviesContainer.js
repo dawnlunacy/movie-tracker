@@ -7,6 +7,7 @@ const MoviesContainer = ({ movies }) => {
   const moviesToDisplay = movies.map(movie => {
     const { id, title, poster, rating, overview } = movie
     return <Movie 
+      key = {id}
       id = {id}
       title = {title}
       poster = {poster}
