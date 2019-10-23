@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer'
-import logo from './logo.svg';
 import './App.css';
 
 
