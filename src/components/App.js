@@ -15,7 +15,6 @@ class App extends Component {
 
   componentDidMount = async () =>  {
     const { getMovies } = this.props
-    console.log('in cpm--->', this.props)
     const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
     const cleanMovies = filteredMovieData(movies.results)
     getMovies(cleanMovies)
