@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const Movie = ({ id, title, poster, rating, overview }) => {
   return (
-    <section className="movie">
+    <section className="movie grow">
       <div className="movie-img">
       </div>
       <h3 className="movie-h3">{title}</h3>

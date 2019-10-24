@@ -16,3 +16,7 @@
   color: #000000;
   padding: 20px;
 }
+
+.grow { transition: all .2s ease-in-out; }
+
+.grow:hover { transform: scale(1.1); }
