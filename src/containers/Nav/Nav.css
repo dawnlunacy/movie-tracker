@@ -1,9 +1,17 @@
 .nav {
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 50px;
+  width: 100%;
 }
 
 .nav-p {
-  margin: 0 50px 25px 50px;
+  font-size: 1rem;
+  letter-spacing: 5px;
+  margin: 50px 25px 25px 25px;
+}
+
+.nav-user-options {
+  display: flex;
 }

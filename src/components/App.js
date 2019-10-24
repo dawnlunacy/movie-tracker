@@ -11,7 +11,6 @@ import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
 
-
 class App extends Component {
 
   componentDidMount = async () =>  {
@@ -26,12 +25,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <img src={logo} alt="Logo" className="App-img"/>
-          <header>
+          <header className="App-header">
             <Nav />
+            <img src={logo} alt="Logo" className="nav-img"/>
           </header>
           <MoviesContainer movies={movies} />
-          <UserForm />
+
         </div>
       </Router>
     );

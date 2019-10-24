@@ -5,9 +5,11 @@ import './Nav.css'
 const Nav = () => {
     return(
         <nav className="nav">
-            <p className="nav-p">Favorites</p>
-            <p className="nav-p">Login</p>
-            <p className="nav-p">Sign Up</p>
+            <p className="nav-p">FAVORITES</p>
+            <div className="nav-user-options">
+              <p className="nav-p">LOGIN</p>
+              <p className="nav-p">SIGN UP</p>
+            </div>
         </nav>
     )
 }
