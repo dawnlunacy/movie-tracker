@@ -21,6 +21,7 @@ class App extends Component {
     const cleanMovies = filteredMovieData(movies.results)
     this.setState({ movies: cleanMovies })
   }
+
   render() {
     console.log('in render---->', this.state.movies)
     return (
