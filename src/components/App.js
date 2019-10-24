@@ -9,6 +9,7 @@ import { getMovies } from '../actions';
 import { fetchData } from '../utils/apiCall';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
+import logo from '../images/MovieTracker_font_wave.png';
 
 
 class App extends Component {
@@ -25,11 +26,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <h1>Movie Tracker</h1>
+          <img src={logo} alt="Logo" className="App-img"/>
           <header>
             <Nav />
           </header>
-          <MoviesContainer movies={movies}/>
+          <MoviesContainer movies={movies} />
           <UserForm />
         </div>
       </Router>

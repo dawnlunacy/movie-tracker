@@ -1,5 +1,21 @@
+.scroll-wrapper {
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(-90deg) translateX(-100vh);
+    transform-origin: top left;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    top: 500px;
+}
+
 .movies-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 50px;
+    width: fit-content;
+    transform: rotate(90deg) translateY(-105vh);
+    transform-origin: top left;
+
 }

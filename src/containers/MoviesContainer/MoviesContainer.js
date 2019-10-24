@@ -16,9 +16,11 @@ const MoviesContainer = ({ movies }) => {
     />
   })
   return (
-    <main className="movies-container">
-      {moviesToDisplay}
-    </main>
+    <div className="scroll-wrapper">
+      <main className="movies-container">
+        {moviesToDisplay}
+      </main>
+    </div>
   )
 }
 
