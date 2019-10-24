@@ -27,7 +27,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Nav />
-            <img src={logo} alt="Logo" className="nav-img"/>
+            <img src={logo} alt="Logo" className="App-img"/>
           </header>
           <MoviesContainer movies={movies} />
         </div>

@@ -18,8 +18,9 @@
   color: #09d3ac;
 }
 
-.nav-img {
+.App-img {
   margin: 25px;
   position: absolute;
+  top: 30px;
   width: 300px;
 }
