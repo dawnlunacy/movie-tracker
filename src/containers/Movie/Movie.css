@@ -1,0 +1,22 @@
+.movie {
+  background: #DADADA;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  margin: 20px;
+  width: 300px;
+}
+
+.movie-img {
+  background-color: #FFFFFF;
+  height: 400px;
+}
+
+.movie-h3 {
+  color: #000000;
+  padding: 20px;
+}
+
+.grow { transition: all .2s ease-in-out; }
+
+.grow:hover { transform: scale(1.1); }

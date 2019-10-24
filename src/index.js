@@ -9,8 +9,6 @@ import './index.css';
 import App from './components/App';
 const store = createStore(rootReducer, composeWithDevTools());
 
-
-
 ReactDOM.render(
   <Router>
     <Provider store={store}>

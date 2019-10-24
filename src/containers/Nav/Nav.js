@@ -4,8 +4,12 @@ import './Nav.css'
 
 const Nav = () => {
     return(
-        <nav>
-            Testing Nav
+        <nav className="nav">
+            <p className="nav-p">FAVORITES</p>
+            <div className="nav-user-options">
+              <p className="nav-p">LOGIN</p>
+              <p className="nav-p">SIGN UP</p>
+            </div>
         </nav>
     )
 }
