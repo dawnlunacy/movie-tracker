@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+// import { BrowserRouter as Router, Route} from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import Nav from '../containers/Nav/Nav';
 import UserForm from '../containers/UserForm/UserForm';
@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     const { movies } = this.props
     return (
-      <Router>
+      // <Router>
         <div>
           <h1>Movie Tracker</h1>
           <header>
@@ -32,7 +32,7 @@ class App extends Component {
           <MoviesContainer movies={movies}/>
           <UserForm />
         </div>
-      </Router>
+      // </Router>
     );
   }
 }
