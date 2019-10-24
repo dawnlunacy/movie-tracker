@@ -30,6 +30,7 @@ class App extends Component {
 
   render() {
     const { movies, errorMessage } = this.props
+    
     return (
       <Router>
         <div>
