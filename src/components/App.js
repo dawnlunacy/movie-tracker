@@ -33,13 +33,15 @@ class App extends Component {
 
     return (
         <div className="App">
-        <Route path="/" render={ () => <Nav /> } />
+        <Route path="/" render={ () => 
+          <>
           <header className="App-header">
             <Nav />
             <img src={logo} alt="Logo" className="App-img"/>
-          </header>
-          <Route exact path="/" render={ () => <MoviesContainer movies={movies} />} />
-          <MoviesContainer errorMessage={errorMessage} movies={movies} />
+          </header> 
+            <MoviesContainer errorMessage={errorMessage} movies={movies} />
+        </>
+        } />
         </div>
     );
   }
