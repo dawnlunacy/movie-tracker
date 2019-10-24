@@ -6,7 +6,7 @@ import './MoviesContainer.css'
 const MoviesContainer = ({ movies }) => {
   const moviesToDisplay = movies.map(movie => {
     const { id, title, poster, rating, overview } = movie
-    return <Movie 
+    return <Movie
       key = {id}
       id = {id}
       title = {title}
@@ -16,7 +16,7 @@ const MoviesContainer = ({ movies }) => {
     />
   })
   return (
-    <main>
+    <main className="movies-container">
       {moviesToDisplay}
     </main>
   )

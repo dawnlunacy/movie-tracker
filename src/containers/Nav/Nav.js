@@ -4,8 +4,10 @@ import './Nav.css'
 
 const Nav = () => {
     return(
-        <nav>
-            Testing Nav
+        <nav className="nav">
+            <p className="nav-p">Favorites</p>
+            <p className="nav-p">Login</p>
+            <p className="nav-p">Sign Up</p>
         </nav>
     )
 }

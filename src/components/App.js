@@ -24,7 +24,7 @@ class App extends Component {
     const { movies } = this.props
     return (
       <Router>
-        <div>
+        <div className="App">
           <h1>Movie Tracker</h1>
           <header>
             <Nav />

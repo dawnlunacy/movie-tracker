@@ -1,0 +1,9 @@
+.nav {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-p {
+  margin: 0px 50px 0px 50px;
+}

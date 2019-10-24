@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 
 const Movie = ({ id, title, poster, rating, overview }) => {
   return (
-    <section>
+    <section className="movie">
       <h3>{title}</h3>
       <p>{rating}</p>
       <p>{overview}</p>
-
     </section>
   )
 }
