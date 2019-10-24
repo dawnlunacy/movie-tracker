@@ -1,7 +1,12 @@
 .movie {
-  background: #FFFFFF;
+  background: #DADADA;
   color: #000000;
   margin: 20px;
-  padding: 20px;
+  padding: 20px 0 20px 0;
   width: 300px;
+}
+
+.movie-img {
+  background-color: #FFFFFF;
+  height: 400px;
 }

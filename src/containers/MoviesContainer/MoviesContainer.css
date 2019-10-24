@@ -1,3 +1,9 @@
+/* .movies-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+} */
+
 .scroll-wrapper {
     width: 100vh;
     height: 100vw;
@@ -6,7 +12,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     position: absolute;
-    top: 500px;
+    top: 250px;
 }
 
 .movies-container {
