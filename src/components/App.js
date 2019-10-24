@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import Nav from '../containers/Nav/Nav';
 import UserForm from '../containers/UserForm/UserForm';
@@ -26,7 +26,7 @@ class App extends Component {
         <div>
           <h1>Movie Tracker</h1>
           <header>
-            <Nav />
+            <Route path="/" render={ () => <Nav /> } />
           </header>
           <main>
             <Route exact path="/" render={ () => <MoviesContainer movies={movies} />} />
