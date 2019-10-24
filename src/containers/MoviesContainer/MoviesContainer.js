@@ -3,7 +3,7 @@ import Movie from '../Movie/Movie';
 import { connect } from 'react-redux';
 import './MoviesContainer.css'
 
-const MoviesContainer = ({ movies }) => {
+const MoviesContainer = ({ movies, errorMessage }) => {
   const moviesToDisplay = movies.map(movie => {
     const { id, title, poster, rating, overview } = movie
     return <Movie 
@@ -15,11 +15,18 @@ const MoviesContainer = ({ movies }) => {
       overview = {overview}
     />
   })
+
   return (
     <main>
+      {errorMessage && <p>{errorMessage}</p>}
       {moviesToDisplay}
     </main>
   )
 }
 
-export default MoviesContainer;
+const mapStateToProps = state => ({
+  errorMessage: state.errorMessage
+});
+
+export default connect(mapStateToProps, null)(MoviesContainer);
+
