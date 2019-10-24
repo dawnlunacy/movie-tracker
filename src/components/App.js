@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { Route} from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import Nav from '../containers/Nav/Nav';
 import UserForm from '../containers/UserForm/UserForm';
@@ -23,16 +23,17 @@ class App extends Component {
   render() {
     const { movies } = this.props
     return (
-      // <Router>
         <div>
           <h1>Movie Tracker</h1>
           <header>
             <Nav />
           </header>
-          <MoviesContainer movies={movies}/>
-          <UserForm />
+          <main>
+            <Route exact path="/" render={ () => <MoviesContainer movies={movies} />} />
+            <UserForm />
+          </main>
+          
         </div>
-      // </Router>
     );
   }
 }
