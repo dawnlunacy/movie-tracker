@@ -4,17 +4,18 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer } from './reducers'
-import { HashRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 import './index.css';
 import App from './components/App';
 const store = createStore(rootReducer, composeWithDevTools());
 
-ReactDOM.render(
+const router = (
   <Router>
     <Provider store={store}>
       <App />
     </Provider>
-  </Router>,
-  document.getElementById('root')
-);
+  </Router>
+)
+ReactDOM.render(router, document.getElementById('root'));
+
 
