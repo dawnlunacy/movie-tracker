@@ -6,7 +6,7 @@ import './MoviesContainer.css'
 const MoviesContainer = ({ movies, errorMessage }) => {
   const moviesToDisplay = movies.map(movie => {
     const { id, title, poster, rating, overview } = movie
-    return <Movie 
+    return <Movie
       key = {id}
       id = {id}
       title = {title}
@@ -17,10 +17,12 @@ const MoviesContainer = ({ movies, errorMessage }) => {
   })
 
   return (
-    <main>
-      {errorMessage && <p>{errorMessage}</p>}
-      {moviesToDisplay}
-    </main>
+    <div className="scroll-wrapper">
+      <main className="movies-container">
+        {errorMessage && <p>{errorMessage}</p>}
+        {moviesToDisplay}
+      </main>
+    </div>
   )
 }
 
@@ -29,4 +31,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, null)(MoviesContainer);
-

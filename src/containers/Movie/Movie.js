@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 
 const Movie = ({ id, title, poster, rating, overview }) => {
   return (
-    <section>
-      <h3>{title}</h3>
-      <p>{rating}</p>
-      <p>{overview}</p>
-
+    <section className="movie grow">
+      <div className="movie-img">
+      </div>
+      <h3 className="movie-h3">{title}</h3>
     </section>
   )
 }
 
 export default Movie;
+
+// <p>{rating}</p>
+// <p>{overview}</p>

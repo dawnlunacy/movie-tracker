@@ -9,7 +9,7 @@ import { getMovies, handleError, isLoading } from '../actions';
 import { fetchData } from '../utils/apiCall';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
-
+import logo from '../images/MovieTracker_font_wave.png';
 
 class App extends Component {
 
@@ -30,15 +30,15 @@ class App extends Component {
 
   render() {
     const { movies, errorMessage } = this.props
-    
+
     return (
       <Router>
-        <div>
-          <h1>Movie Tracker</h1>
-          <header>
+        <div className="App">
+          <header className="App-header">
             <Nav />
+            <img src={logo} alt="Logo" className="App-img"/>
           </header>
-          <UserForm />
+        
           <MoviesContainer errorMessage={errorMessage} movies={movies} />
         </div>
       </Router>
