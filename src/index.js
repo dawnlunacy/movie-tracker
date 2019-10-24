@@ -15,6 +15,7 @@ ReactDOM.render(
   <Router>
     <Provider store={store}>
       <App />
+      {/* <Route exact path="/" component={ App } /> */}
     </Provider>
   </Router>,
   document.getElementById('root')
