@@ -30,7 +30,6 @@ class App extends Component {
             <img src={logo} alt="Logo" className="nav-img"/>
           </header>
           <MoviesContainer movies={movies} />
-
         </div>
       </Router>
     );
