@@ -7,7 +7,7 @@ const Movie = ({ id, title, poster, rating, overview }) => {
     <section className="movie">
       <div className="movie-img">
       </div>
-      <h3>{title}</h3>
+      <h3 className="movie-h3">{title}</h3>
     </section>
   )
 }
