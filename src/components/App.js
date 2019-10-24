@@ -12,12 +12,6 @@ import './App.css';
 
 
 class App extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     movies: []
-  //   }
-  // }
 
   componentDidMount = async () =>  {
     const { getMovies } = this.props
@@ -25,12 +19,10 @@ class App extends Component {
     const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
     const cleanMovies = filteredMovieData(movies.results)
     getMovies(cleanMovies)
-    // this.setState({ movies: cleanMovies })
   }
 
   render() {
     const { movies } = this.props
-    console.log('in render---->', this.props)
     return (
       <Router>
         <div>
