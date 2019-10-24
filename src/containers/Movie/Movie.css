@@ -1,22 +1,39 @@
-.movie {
-  background: #DADADA;
+.grow {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  height: 500px;
-  margin: 20px;
-  width: 300px;
+  transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.1);
 }
 
 .movie-img {
+  align-items: center;
   background-color: #FFFFFF;
   height: 400px;
+  margin: 20px 20px 0 20px;
+  width: 300px;
+}
+
+.movie-text {
+  align-items: center;
+  background: #DADADA;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  margin: 0 20px 20px 20px;
+  width: 300px;
+}
+
+.movie-star {
+  position: absolute;
+  top: 402px;
+  width: 50px;
 }
 
 .movie-h3 {
   color: #000000;
   padding: 20px;
 }
-
-.grow { transition: all .2s ease-in-out; }
-
-.grow:hover { transform: scale(1.1); }
