@@ -18,7 +18,6 @@ const MoviesContainer = ({ movies, errorMessage }) => {
 
   return (
     <main>
-      {/* <p>{errorMessage}</p> */}
       {errorMessage && <p>{errorMessage}</p>}
       {moviesToDisplay}
     </main>
