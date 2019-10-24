@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import Nav from '../containers/Nav/Nav';
-import UserForm from '../containers/UserForm/UserForm';
+// import UserForm from '../containers/UserForm/UserForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovies, handleError, isLoading } from '../actions';
@@ -32,16 +32,17 @@ class App extends Component {
     const { movies, errorMessage } = this.props
 
     return (
-      <Router>
         <div className="App">
+        <Route path="/" render={ () => 
+          <>
           <header className="App-header">
             <Nav />
             <img src={logo} alt="Logo" className="App-img"/>
-          </header>
-        
-          <MoviesContainer errorMessage={errorMessage} movies={movies} />
+          </header> 
+            <MoviesContainer errorMessage={errorMessage} movies={movies} />
+        </>
+        } />
         </div>
-      </Router>
     );
   }
 }
