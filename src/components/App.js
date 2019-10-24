@@ -5,7 +5,7 @@ import Nav from '../containers/Nav/Nav';
 import UserForm from '../containers/UserForm/UserForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies } from '../actions';
+import { getMovies, handleError } from '../actions';
 import { fetchData } from '../utils/apiCall';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
@@ -13,15 +13,19 @@ import './App.css';
 
 class App extends Component {
 
-  componentDidMount = async () =>  {
-    const { getMovies } = this.props
-    const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
-    const cleanMovies = filteredMovieData(movies.results)
-    getMovies(cleanMovies)
+  async componentDidMount() {
+    const { getMovies, handleError } = this.props
+    try {
+      const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
+      const cleanMovies = filteredMovieData(movies.results)
+      getMovies(cleanMovies)
+    } catch {
+      handleError('There was an error getting your movies!')
+    }
   }
 
   render() {
-    const { movies } = this.props
+    const { movies, errorMessage } = this.props
     return (
       <Router>
         <div>
@@ -29,8 +33,8 @@ class App extends Component {
           <header>
             <Nav />
           </header>
-          <MoviesContainer movies={movies}/>
           <UserForm />
+          <MoviesContainer errorMessage={errorMessage} movies={movies} />
         </div>
       </Router>
     );
@@ -38,13 +42,15 @@ class App extends Component {
 }
 
 export const mapStateToProps = state => ({
-  movies: state.movies
+  movies: state.movies,
+  errorMessage: state.errorMessage
 });
 
 export const mapDispatchToProps = dispatch => (
   bindActionCreators(
     {
-      getMovies
+      getMovies,
+      handleError
     },
   dispatch)
 )

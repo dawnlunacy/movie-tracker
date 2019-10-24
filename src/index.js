@@ -10,8 +10,6 @@ import * as serviceWorker from './serviceWorker';
 
 const store = createStore(rootReducer, composeWithDevTools());
 
-
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
