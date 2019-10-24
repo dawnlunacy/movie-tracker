@@ -5,7 +5,7 @@ import Nav from '../containers/Nav/Nav';
 import UserForm from '../containers/UserForm/UserForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies } from '../actions';
+import { getMovies, handleError, isLoading } from '../actions';
 import { fetchData } from '../utils/apiCall';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
@@ -13,15 +13,24 @@ import logo from '../images/MovieTracker_font_wave.png';
 
 class App extends Component {
 
-  componentDidMount = async () =>  {
-    const { getMovies } = this.props
-    const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
-    const cleanMovies = filteredMovieData(movies.results)
-    getMovies(cleanMovies)
+  async componentDidMount() {
+    const { getMovies, handleError, isLoading } = this.props
+
+    try {
+      isLoading(true)
+      const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
+      const cleanMovies = filteredMovieData(movies.results)
+      isLoading(false)
+      getMovies(cleanMovies)
+    } catch {
+      isLoading(false)
+      handleError('There was an error getting your movies!')
+    }
   }
 
   render() {
-    const { movies } = this.props
+    const { movies, errorMessage } = this.props
+
     return (
       <Router>
         <div className="App">
@@ -29,7 +38,8 @@ class App extends Component {
             <Nav />
             <img src={logo} alt="Logo" className="App-img"/>
           </header>
-          <MoviesContainer movies={movies} />
+        
+          <MoviesContainer errorMessage={errorMessage} movies={movies} />
         </div>
       </Router>
     );
@@ -37,13 +47,17 @@ class App extends Component {
 }
 
 export const mapStateToProps = state => ({
-  movies: state.movies
+  movies: state.movies,
+  errorMessage: state.errorMessage,
+  loading: state.loading
 });
 
 export const mapDispatchToProps = dispatch => (
   bindActionCreators(
     {
-      getMovies
+      getMovies,
+      handleError,
+      isLoading
     },
   dispatch)
 )
