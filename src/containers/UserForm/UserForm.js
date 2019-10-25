@@ -6,23 +6,18 @@ class UserForm extends Component {
     constructor() {
         super()
         this.state = {
-            user: {
-                name: '',
                 email: '',
                 password: ''
-            }
         }
     }
 
     handleChange = (e) => {
-      let newUser = this.state.user;
-      newUser = {...newUser, [e.target.name]: e.target.value}
-        this.setState({user: newUser})
+        this.setState({[e.target.name]: e.target.value})
     }
 
     submitForm = async (e) => {
         e.preventDefault();
-        const attemptLogin = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
+        const userVerification = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
         // this.props.addUser(this.state.user)
         .catch(error => console.log(error.message))
         // console.log("ATTEMPTLOGIN", attemptLogin)
@@ -50,7 +45,7 @@ class UserForm extends Component {
                     type="text"
                     placeholder="Enter Email"
                     name="email"
-                    value={this.state.user.email}
+                    value={this.state.email}
                     onChange={this.handleChange}
                 />
                 <input
@@ -58,7 +53,7 @@ class UserForm extends Component {
                     type="text"
                     placeholder="Enter Password"
                     name="password"
-                    value={this.state.user.password}
+                    value={this.state.password}
                     onChange={this.handleChange}
                 />
                 <button onClick={(e) => this.submitForm(e)}> Create Profile </button>
