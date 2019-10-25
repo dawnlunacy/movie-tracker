@@ -1,3 +1,4 @@
+
 export const fetchData = async(url)  => {
   const response = await fetch(url)
   if(response.ok) {
@@ -8,7 +9,8 @@ export const fetchData = async(url)  => {
   }
 }
 
-export const loginUser = (userInfo, url) => {
+
+export const getUser = async (userInfo, url) => {
   const options = {
     method: 'POST',
     body: JSON.stringify(userInfo),
@@ -17,7 +19,12 @@ export const loginUser = (userInfo, url) => {
     }
   }
 
-  fetch(url, options)
-    .then(response => response.json())
-    .then(data => console.log(data))
+  const response = await fetch(url, options)
+    return response
 }
+
+//   fetch(url, options)
+//     .then(response => response.json())
+//     .then(data => console.log('in post fetch ---->>', data))
+// }
+
