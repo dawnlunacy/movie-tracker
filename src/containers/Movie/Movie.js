@@ -7,7 +7,7 @@ const Movie = ({ id, title, poster, rating, overview }) => {
   return (
     <section className="grow">
       <div className="movie-img">
-        {/* <img src = {`https://image.tmdb.org/t/p/original/${poster}`}/> */}
+        <img className="poster-img" src = {`https://image.tmdb.org/t/p/original/${poster}`}/>
       </div>
       <img src={star} alt="Logo" className="movie-star"/>
       <div className="movie-text">

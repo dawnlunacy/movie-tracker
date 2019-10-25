@@ -17,9 +17,13 @@
   width: 300px;
 }
 
+.poster-img {
+  width: 89%;
+}
+
 .movie-text {
   align-items: center;
-  background: #DADADA;
+  background: #FFFFFF;
   display: flex;
   flex-direction: column;
   height: 100px;
