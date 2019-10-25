@@ -26,7 +26,7 @@ class SignUpForm extends Component {
           if(!createUser.ok) {
             const error = await createUser.json()
             console.log("ERROR in signup", error.error.detail)
-            // this.setState({error: error.error})
+            this.setState({error: error.error.detail})
           } else {
             const newUser = await createUser.json()
             this.setState({newUser})
@@ -43,7 +43,6 @@ class SignUpForm extends Component {
     }
 
     render() {
-      console.log('state--->', this.state)
         return (
             <>
             <form>
