@@ -27,8 +27,10 @@ class SignUpForm extends Component {
             const error = await createUser.json()
             console.log("ERROR in signup", error.error.detail)
             this.setState({error: error.error.detail})
+            // .catch(error => console.log(error))
           } else {
             const newUser = await createUser.json()
+            console.log("new User", newUser)
             this.setState({newUser})
           }
         this.resetInputs()
