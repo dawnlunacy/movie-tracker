@@ -27,6 +27,7 @@ const MoviesContainer = ({ movies, errorMessage }) => {
 }
 
 const mapStateToProps = state => ({
+  movies: state.movies,
   errorMessage: state.errorMessage
 });
 

@@ -30,7 +30,7 @@ export class App extends Component {
   }
 
   render() {
-    const { movies, errorMessage } = this.props
+    const { movies } = this.props
 
     return (
         <div className="App">
@@ -42,7 +42,7 @@ export class App extends Component {
               <Nav />
               <img src={logo} alt="Logo" className="App-img"/>
             </header> 
-            <MoviesContainer errorMessage={errorMessage} movies={movies} />
+            <MoviesContainer />
           </>
         } />
         </div>
@@ -51,8 +51,6 @@ export class App extends Component {
 }
 
 export const mapStateToProps = state => ({
-  movies: state.movies,
-  errorMessage: state.errorMessage,
   loading: state.loading
 });
 
