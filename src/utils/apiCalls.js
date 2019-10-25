@@ -8,7 +8,7 @@ export const fetchData = async(url)  => {
   }
 }
 
-export const loginUser = (userInfo, url) => {
+export const getUser = (userInfo, url) => {
   const options = {
     method: 'POST',
     body: JSON.stringify(userInfo),
@@ -19,5 +19,5 @@ export const loginUser = (userInfo, url) => {
 
   fetch(url, options)
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => console.log('in post fetch ---->>', data))
 }

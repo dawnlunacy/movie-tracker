@@ -3,10 +3,11 @@ import { Route } from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import Nav from '../containers/Nav/Nav';
 import UserForm from '../containers/UserForm/UserForm';
+import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovies, handleError, isLoading } from '../actions';
-import { fetchData } from '../utils/apiCall';
+import { fetchData } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
@@ -34,15 +35,15 @@ class App extends Component {
     return (
         <div className="App">
         <Route exact path='/login' render={ () => <UserForm /> } />
-        
+        <Route exact path='/signup' render={ () => <SignUpForm />}/>
         <Route exact path='/' render={ () => 
           <>
-          <header className="App-header">
-            <Nav />
-            <img src={logo} alt="Logo" className="App-img"/>
-          </header> 
+            <header className="App-header">
+              <Nav />
+              <img src={logo} alt="Logo" className="App-img"/>
+            </header> 
             <MoviesContainer errorMessage={errorMessage} movies={movies} />
-        </>
+          </>
         } />
         </div>
     );
