@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav should match snapshot 1`] = `
+<nav
+  className="nav"
+>
+  <p
+    className="nav-p"
+  >
+    FAVORITES
+  </p>
+  <div
+    className="nav-user-options"
+  >
+    <Link
+      className="link"
+      to="/login"
+    >
+       
+      <p
+        className="nav-p"
+      >
+        LOGIN
+      </p>
+       
+    </Link>
+    <p
+      className="nav-p"
+    >
+      SIGN UP
+    </p>
+  </div>
+</nav>
+`;
