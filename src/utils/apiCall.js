@@ -7,3 +7,17 @@ export const fetchData = async(url)  => {
     throw Error(response.statusText)
   }
 }
+
+export const loginUser = (userInfo, url) => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(userInfo),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then(data => console.log(data))
+}
