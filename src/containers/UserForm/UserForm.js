@@ -24,26 +24,22 @@ class UserForm extends Component {
         e.preventDefault();
         loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
         // this.props.addUser(this.state.user)
-        this.setState({
-            user: {
-                name: '',
-                email: '',
-                password: ''
-            }
-        })
+        this.resetInputs()
+    }
+
+    resetInputs = () => {
+      this.setState({
+          user: {
+              name: '',
+              email: '',
+              password: ''
+          }
+      })
     }
 
     render() {
         return (
             <form>
-                <input
-                    className="name-input"
-                    type="text"
-                    placeholder="Enter Name"
-                    name="name"
-                    value={this.state.user.name}
-                    onChange={this.handleChange}
-                />
                 <input
                     className="email-input"
                     type="text"
@@ -67,3 +63,12 @@ class UserForm extends Component {
 }
 
 export default UserForm;
+
+// <input
+//     className="name-input"
+//     type="text"
+//     placeholder="Enter Name"
+//     name="name"
+//     value={this.state.user.name}
+//     onChange={this.handleChange}
+// />

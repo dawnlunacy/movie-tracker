@@ -19,4 +19,5 @@ export const loginUser = (userInfo, url) => {
 
   fetch(url, options)
     .then(response => response.json())
+    .then(data => console.log(data))
 }
