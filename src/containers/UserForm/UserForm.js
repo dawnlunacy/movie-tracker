@@ -54,6 +54,7 @@ class UserForm extends Component {
 
     render() {
         return (
+            <>
             <form>
                 <input
                     className="email-input"
@@ -73,6 +74,9 @@ class UserForm extends Component {
                 />
                 <button onClick={(e) => this.submitForm(e)}> Create Profile </button>
             </form>
+
+            <p> {this.state.error} </p>
+        </>
         )
     }
 }
