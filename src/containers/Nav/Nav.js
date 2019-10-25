@@ -9,7 +9,8 @@ const Nav = () => {
             <p className="nav-p">FAVORITES</p>
             <div className="nav-user-options">
               <Link className="link" to='/login'> <p className="nav-p">LOGIN</p> </Link>
-              <p className="nav-p">SIGN UP</p>
+              <Link className="link" to='/signup'> <p className="nav-p">SIGN UP</p> </Link>
+
             </div>
         </nav>
     )

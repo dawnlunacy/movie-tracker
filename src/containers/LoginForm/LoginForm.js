@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loginUser } from '../../utils/apiCall';
+import { getUser } from '../../utils/apiCalls';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -13,7 +13,8 @@ class LoginForm extends Component {
             error: '',
             currentUser: ''
         }
-    }
+      }
+  }
 
     handleChange = (e) => {
         let newUser = this.state.user;
@@ -21,10 +22,9 @@ class LoginForm extends Component {
         this.setState({user: newUser})
     }
     
-
     submitForm = async (e) => {
         e.preventDefault();
-        const userVerification = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
+        const userVerification = await getUser(this.state.user, 'http://localhost:3001/api/v1/login')
             if(!userVerification.ok) {
                 const error = await userVerification.json()
                 this.setState({error: error.error})
@@ -32,18 +32,17 @@ class LoginForm extends Component {
                 const user = await userVerification.json()
                 this.setState({currentUser: user.name})
             }
-
-
-
         this.resetInputs()
     }
 
     resetInputs = () => {
       this.setState({
+
           user: {
               email: '',
               password: ''
-          }
+          },
+          error: ''
       })
     }
 
@@ -78,15 +77,6 @@ class LoginForm extends Component {
         </>
         )
     }
-}
 
 export default LoginForm;
 
-// <input
-//     className="name-input"
-//     type="text"
-//     placeholder="Enter Name"
-//     name="name"
-//     value={this.state.user.name}
-//     onChange={this.handleChange}
-// />
