@@ -3,12 +3,12 @@ import { getUser } from '../../utils/apiCalls';
 
 class SignUpForm extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
           name: '',
           email: '',
           password: '',
-          id: Date.now()
+          id: Date.now(),
         }
     }
 
@@ -65,5 +65,3 @@ class SignUpForm extends Component {
 }
 
 export default SignUpForm;
-
-// this.props.addUser(this.state.user)
