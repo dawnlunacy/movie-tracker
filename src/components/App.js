@@ -12,7 +12,7 @@ import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
 
-class App extends Component {
+export class App extends Component {
 
   async componentDidMount() {
     const { getMovies, handleError, isLoading } = this.props
