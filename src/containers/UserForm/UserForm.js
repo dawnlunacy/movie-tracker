@@ -20,11 +20,12 @@ class UserForm extends Component {
         this.setState({user: newUser})
     }
 
-    submitForm = (e) => {
+    submitForm = async (e) => {
         e.preventDefault();
-        const attemptLogin = loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
+        const attemptLogin = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
         // this.props.addUser(this.state.user)
-        console.log("ATTEMPTLOGIN", attemptLogin)
+        .catch(error => console.log(error.message))
+        // console.log("ATTEMPTLOGIN", attemptLogin)
         this.resetInputs()
     }
 
