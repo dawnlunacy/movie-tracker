@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { loginUser } from '../../utils/apiCall';
 import './UserForm.css';
 
 class UserForm extends Component {
@@ -14,19 +15,22 @@ class UserForm extends Component {
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value})
+      let newUser = this.state.user;
+      newUser = {...newUser, [e.target.name]: e.target.value}
+        this.setState({user: newUser})
     }
 
     submitForm = (e) => {
         e.preventDefault();
+        loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
         // this.props.addUser(this.state.user)
-        // this.setState({
-        //     user: {
-        //         name: '',
-        //         email: '',
-        //         password: ''
-        //     }
-        // })
+        this.setState({
+            user: {
+                name: '',
+                email: '',
+                password: ''
+            }
+        })
     }
 
     render() {
@@ -38,7 +42,7 @@ class UserForm extends Component {
                     placeholder="Enter Name"
                     name="name"
                     value={this.state.user.name}
-                    onChange={(e) => this.handleChange(e)}
+                    onChange={this.handleChange}
                 />
                 <input
                     className="email-input"
@@ -46,7 +50,7 @@ class UserForm extends Component {
                     placeholder="Enter Email"
                     name="email"
                     value={this.state.user.email}
-                    onChange={(e) => this.handleChange(e)}
+                    onChange={this.handleChange}
                 />
                 <input
                     className="password-input"
@@ -54,14 +58,12 @@ class UserForm extends Component {
                     placeholder="Enter Password"
                     name="password"
                     value={this.state.user.password}
-                    onChange={(e) => this.handleChange(e)}
+                    onChange={this.handleChange}
                 />
                 <button onClick={(e) => this.submitForm(e)}> Create Profile </button>
             </form>
-            //note this submit style is different than the redux lesson
         )
     }
 }
 
 export default UserForm;
-
