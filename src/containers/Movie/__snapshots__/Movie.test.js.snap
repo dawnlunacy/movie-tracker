@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie should render the movie data in <section> tag correctly 1`] = `
+<section
+  className="grow"
+>
+  <div
+    className="movie-img"
+  />
+  <img
+    alt="Logo"
+    className="movie-star"
+    src="MovieTracker_star.svg"
+  />
+  <div
+    className="movie-text"
+  >
+    <h3
+      className="movie-h3"
+    >
+      Joker
+    </h3>
+  </div>
+</section>
+`;
