@@ -1,6 +1,6 @@
 import React from 'react';
 import './Movie.css';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import star from '../../images/MovieTracker_star.svg';
 
 const Movie = ({ id, title, poster, rating, overview }) => {
