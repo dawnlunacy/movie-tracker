@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loginUser } from '../../utils/apiCalls';
+import { getUser } from '../../utils/apiCalls';
 import './UserForm.css';
 
 class UserForm extends Component {
@@ -21,7 +21,7 @@ class UserForm extends Component {
 
     submitForm = (e) => {
         e.preventDefault();
-        loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
+        getUser(this.state.user, 'http://localhost:3001/api/v1/login')
         this.resetInputs()
     }
 

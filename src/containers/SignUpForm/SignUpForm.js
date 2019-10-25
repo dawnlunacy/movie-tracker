@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { signUpUser } from '../../utils/apiCalls';
+import { getUser } from '../../utils/apiCalls';
 
 class SignUpForm extends Component {
     constructor() {
@@ -18,7 +18,7 @@ class SignUpForm extends Component {
 
     submitForm = (e) => {
         e.preventDefault();
-        signUpUser(this.state, 'http://localhost:3001/api/v1/users')
+        getUser(this.state, 'http://localhost:3001/api/v1/users')
         this.resetInputs()
     }
 
