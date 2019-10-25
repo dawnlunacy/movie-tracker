@@ -22,8 +22,9 @@ class UserForm extends Component {
 
     submitForm = (e) => {
         e.preventDefault();
-        loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
+        const attemptLogin = loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
         // this.props.addUser(this.state.user)
+        console.log("ATTEMPTLOGIN", attemptLogin)
         this.resetInputs()
     }
 
@@ -36,6 +37,9 @@ class UserForm extends Component {
           }
       })
     }
+
+      
+    
 
     render() {
         return (

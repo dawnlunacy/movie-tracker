@@ -1,3 +1,5 @@
+import { validate } from "@babel/types";
+
 export const fetchData = async(url)  => {
   const response = await fetch(url)
   if(response.ok) {
@@ -8,7 +10,7 @@ export const fetchData = async(url)  => {
   }
 }
 
-export const loginUser = (userInfo, url) => {
+export const loginUser = async (userInfo, url) => {
   const options = {
     method: 'POST',
     body: JSON.stringify(userInfo),
@@ -17,7 +19,12 @@ export const loginUser = (userInfo, url) => {
     }
   }
 
-  fetch(url, options)
-    .then(response => response.json())
-    .then(data => console.log(data))
+  const response = await fetch(url, options)
+    if (!response.ok) {
+      throw Error(response.statusText)
+    } 
+    const validatedUser = await response.json()
+    console.log("VUSER", validatedUser)
+    return validatedUser
+    
 }
