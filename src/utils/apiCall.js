@@ -21,11 +21,13 @@ export const loginUser = async (userInfo, url) => {
 
   const response = await fetch(url, options)
     if (!response.ok) {
-      console.log("RESPONSE", response)
-      throw Error(response.statusText)
+      // console.log("RESPONSE", response)
+      // throw new Error(response.statusText)
+      const error = await response.json()
+      return error 
     } 
     const validatedUser = await response.json()
-    console.log("VUSER", validatedUser)
+    // console.log("VUSER", validatedUser)
     return validatedUser
     
 }

@@ -6,21 +6,27 @@ class UserForm extends Component {
     constructor() {
         super()
         this.state = {
+            user: {
                 email: '',
                 password: '',
-                error: ''
+            },
+            error: ''
+                
+                
         }
     }
 
     handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value})
+        let newUser = this.state.user;
+      newUser = {...newUser, [e.target.name]: e.target.value}
+        this.setState({user: newUser})
     }
+    
 
     submitForm = async (e) => {
         e.preventDefault();
         const userVerification = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
-        // this.props.setUser(this.state.user)
-        .catch(error => error)
+        .catch(error => console.log("error", error))
         console.log("ATTEMPTLOGIN", userVerification)
         this.resetInputs()
     }
@@ -28,7 +34,6 @@ class UserForm extends Component {
     resetInputs = () => {
       this.setState({
           user: {
-              name: '',
               email: '',
               password: ''
           }
