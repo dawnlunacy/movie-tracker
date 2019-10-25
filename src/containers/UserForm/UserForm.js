@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loginUser } from '../../utils/apiCall';
+import { loginUser } from '../../utils/apiCalls';
 import './UserForm.css';
 
 class UserForm extends Component {
@@ -7,7 +7,6 @@ class UserForm extends Component {
         super()
         this.state = {
             user: {
-                name: '',
                 email: '',
                 password: ''
             }
@@ -56,7 +55,7 @@ class UserForm extends Component {
                     value={this.state.user.password}
                     onChange={this.handleChange}
                 />
-                <button onClick={(e) => this.submitForm(e)}> Create Profile </button>
+                <button onClick={(e) => this.submitForm(e)}> LOGIN </button>
             </form>
         )
     }

@@ -6,7 +6,7 @@ import UserForm from '../containers/UserForm/UserForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovies, handleError, isLoading } from '../actions';
-import { fetchData } from '../utils/apiCall';
+import { fetchData } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
