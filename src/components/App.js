@@ -34,15 +34,14 @@ class App extends Component {
     return (
         <div className="App">
         <Route exact path='/login' render={ () => <UserForm /> } />
-        
         <Route exact path='/' render={ () => 
           <>
-          <header className="App-header">
-            <Nav />
-            <img src={logo} alt="Logo" className="App-img"/>
+            <header className="App-header">
+              <Nav />
+              <img src={logo} alt="Logo" className="App-img"/>
           </header> 
-            <MoviesContainer errorMessage={errorMessage} movies={movies} />
-        </>
+          <MoviesContainer errorMessage={errorMessage} movies={movies} />
+          </>
         } />
         </div>
     );
