@@ -14,7 +14,7 @@ class LoginForm extends Component {
             currentUser: ''
         }
       }
-  }
+  
 
     handleChange = (e) => {
         let newUser = this.state.user;
@@ -27,6 +27,7 @@ class LoginForm extends Component {
         const userVerification = await getUser(this.state.user, 'http://localhost:3001/api/v1/login')
             if(!userVerification.ok) {
                 const error = await userVerification.json()
+                console.log("Error", error)
                 this.setState({error: error.error})
             } else {
                 const user = await userVerification.json()
@@ -41,8 +42,7 @@ class LoginForm extends Component {
           user: {
               email: '',
               password: ''
-          },
-          error: ''
+          }
       })
     }
 
@@ -77,6 +77,8 @@ class LoginForm extends Component {
         </>
         )
     }
+}
+    
 
 export default LoginForm;
 

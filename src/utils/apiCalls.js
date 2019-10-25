@@ -10,7 +10,7 @@ export const fetchData = async(url)  => {
 }
 
 
-export const getUser = (userInfo, url) => {
+export const getUser = async (userInfo, url) => {
   const options = {
     method: 'POST',
     body: JSON.stringify(userInfo),
