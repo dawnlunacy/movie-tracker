@@ -9,7 +9,6 @@ class SignUpForm extends Component {
             name: '',
             email: '',
             password: '',
-            id: Date.now()
           },
           error: ''
         }
