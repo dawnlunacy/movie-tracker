@@ -5,20 +5,33 @@ class SignUpForm extends Component {
     constructor() {
         super();
         this.state = {
-          name: '',
-          email: '',
-          password: '',
-          id: Date.now(),
+          newUser: {
+            name: '',
+            email: '',
+            password: '',
+            id: Date.now()
+          },
+          error: ''
         }
     }
 
     handleChange = (e) => {
-      this.setState({ [e.target.name]: e.target.value})
+      let newUser = this.state.newUser;
+      newUser = {...newUser, [e.target.name]: e.target.value}
+        this.setState({newUser: newUser})
     }
 
-    submitForm = (e) => {
+    submitForm = async (e) => {
         e.preventDefault();
-        getUser(this.state, 'http://localhost:3001/api/v1/users')
+        const createUser = await getUser(this.state.newUser, 'http://localhost:3001/api/v1/users')
+          if(!createUser.ok) {
+            const error = await createUser.json()
+            console.log("ERROR in signup", error.error.detail)
+            // this.setState({error: error.error})
+          } else {
+            const newUser = await createUser.json()
+            this.setState({newUser})
+          }
         this.resetInputs()
     }
 
@@ -33,13 +46,14 @@ class SignUpForm extends Component {
     render() {
       console.log('state--->', this.state)
         return (
+            <>
             <form>
                 <input
                   className="name-input"
                   type="text"
                   placeholder="Enter Name"
                   name="name"
-                  value={this.state.name}
+                  value={this.state.newUser.name}
                   onChange={this.handleChange}
                 />
                 <input
@@ -47,7 +61,7 @@ class SignUpForm extends Component {
                   type="text"
                   placeholder="Enter Email"
                   name="email"
-                  value={this.state.email}
+                  value={this.state.newUser.email}
                   onChange={this.handleChange}
                 />
                 <input
@@ -55,11 +69,15 @@ class SignUpForm extends Component {
                   type="text"
                   placeholder="Enter Password"
                   name="password"
-                  value={this.state.password}
+                  value={this.state.newUser.password}
                   onChange={this.handleChange}
                 />
                 <button onClick={(e) => this.submitForm(e)}> SIGN UP </button>
             </form>
+              <p> {this.state.newUser.name} </p>
+              <p> {this.state.error}</p>
+            </>
+
         )
     }
 }
