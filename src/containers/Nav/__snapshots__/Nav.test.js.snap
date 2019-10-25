@@ -24,11 +24,18 @@ exports[`Nav should match snapshot 1`] = `
       </p>
        
     </Link>
-    <p
-      className="nav-p"
+    <Link
+      className="link"
+      to="/signup"
     >
-      SIGN UP
-    </p>
+       
+      <p
+        className="nav-p"
+      >
+        SIGN UP
+      </p>
+       
+    </Link>
   </div>
 </nav>
 `;
