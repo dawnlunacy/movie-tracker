@@ -10,9 +10,8 @@ class UserForm extends Component {
                 email: '',
                 password: '',
             },
-            error: ''
-                
-                
+            error: '',
+            currentUser: ''
         }
     }
 
@@ -33,6 +32,7 @@ class UserForm extends Component {
             } else {
                 const user = await userVerification.json()
                 console.log("UV", user)
+                this.setState({currentUser: user.name})
             }
 
 
@@ -76,6 +76,7 @@ class UserForm extends Component {
             </form>
 
             <p> {this.state.error} </p>
+            <p> {this.state.currentUser} </p>
         </>
         )
     }
