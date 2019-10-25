@@ -22,6 +22,7 @@ class App extends Component {
       const cleanMovies = filteredMovieData(movies.results)
       isLoading(false)
       getMovies(cleanMovies)
+      console.log(getMovies(cleanMovies))
     } catch {
       isLoading(false)
       handleError('There was an error getting your movies!')
@@ -34,13 +35,13 @@ class App extends Component {
     return (
         <div className="App">
         <Route exact path='/login' render={ () => <UserForm /> } />
-        
-        <Route exact path='/' render={ () => 
+
+        <Route exact path='/' render={ () =>
           <>
           <header className="App-header">
             <Nav />
             <img src={logo} alt="Logo" className="App-img"/>
-          </header> 
+          </header>
             <MoviesContainer errorMessage={errorMessage} movies={movies} />
         </>
         } />
