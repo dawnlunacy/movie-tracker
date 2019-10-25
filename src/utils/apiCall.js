@@ -1,4 +1,3 @@
-import { validate } from "@babel/types";
 
 export const fetchData = async(url)  => {
   const response = await fetch(url)
@@ -21,14 +20,4 @@ export const loginUser = async (userInfo, url) => {
 
   const response = await fetch(url, options)
     return response
-    // if (!response.ok) {
-    //   // console.log("RESPONSE", response)
-    //   // throw new Error(response.statusText)
-    //   const error = await response.json()
-    //   return error 
-    // } 
-    // const validatedUser = await response.json()
-    // // console.log("VUSER", validatedUser)
-    // return validatedUser
-    
 }

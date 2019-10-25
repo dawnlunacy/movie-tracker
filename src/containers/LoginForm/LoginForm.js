@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { loginUser } from '../../utils/apiCall';
-import './UserForm.css';
+import './LoginForm.css';
 
-class UserForm extends Component {
+class LoginForm extends Component {
     constructor() {
         super()
         this.state = {
@@ -27,11 +27,9 @@ class UserForm extends Component {
         const userVerification = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
             if(!userVerification.ok) {
                 const error = await userVerification.json()
-                console.log("ERROR", error)
                 this.setState({error: error.error})
             } else {
                 const user = await userVerification.json()
-                console.log("UV", user)
                 this.setState({currentUser: user.name})
             }
 
@@ -82,7 +80,7 @@ class UserForm extends Component {
     }
 }
 
-export default UserForm;
+export default LoginForm;
 
 // <input
 //     className="name-input"
