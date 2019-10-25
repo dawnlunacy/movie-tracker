@@ -20,8 +20,8 @@ class UserForm extends Component {
         e.preventDefault();
         const userVerification = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
         // this.props.setUser(this.state.user)
-        .catch(error => console.log(error))
-        // console.log("ATTEMPTLOGIN", attemptLogin)
+        .catch(error => error)
+        console.log("ATTEMPTLOGIN", userVerification)
         this.resetInputs()
     }
 
