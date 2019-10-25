@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { signUpUser } from '../../utils/apiCalls';
 
-
 class SignUpForm extends Component {
     constructor() {
         super()
