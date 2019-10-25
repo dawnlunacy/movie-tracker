@@ -22,7 +22,6 @@ class UserForm extends Component {
     submitForm = (e) => {
         e.preventDefault();
         loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
-        // this.props.addUser(this.state.user)
         this.resetInputs()
     }
 
@@ -62,12 +61,3 @@ class UserForm extends Component {
 }
 
 export default UserForm;
-
-// <input
-//     className="name-input"
-//     type="text"
-//     placeholder="Enter Name"
-//     name="name"
-//     value={this.state.user.name}
-//     onChange={this.handleChange}
-// />
