@@ -39,8 +39,8 @@ class App extends Component {
             <header className="App-header">
               <Nav />
               <img src={logo} alt="Logo" className="App-img"/>
-          </header> 
-          <MoviesContainer errorMessage={errorMessage} movies={movies} />
+            </header> 
+            <MoviesContainer errorMessage={errorMessage} movies={movies} />
           </>
         } />
         </div>
