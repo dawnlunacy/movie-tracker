@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loginUser } from '../../utils/apiCalls';
+import { signUpUser } from '../../utils/apiCalls';
 
 
 class SignUpForm extends Component {
@@ -8,7 +8,8 @@ class SignUpForm extends Component {
         this.state = {
           name: '',
           email: '',
-          password: '' 
+          password: '',
+          id: Date.now()
         }
     }
 
@@ -18,7 +19,7 @@ class SignUpForm extends Component {
 
     submitForm = (e) => {
         e.preventDefault();
-        //method for posting along with link
+        signUpUser(this.state, 'http://localhost:3001/api/v1/users')
         this.resetInputs()
     }
 
@@ -31,7 +32,7 @@ class SignUpForm extends Component {
     }
 
     render() {
-      console.log(this.state)
+      console.log('state--->', this.state)
         return (
             <form>
                 <input

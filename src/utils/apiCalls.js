@@ -21,3 +21,17 @@ export const loginUser = (userInfo, url) => {
     .then(response => response.json())
     .then(data => console.log(data))
 }
+
+export const signUpUser = (userInfo, url) => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(userInfo),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then(data => console.log('in FETCH--->', data))
+}
