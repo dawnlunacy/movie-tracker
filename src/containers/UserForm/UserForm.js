@@ -26,8 +26,17 @@ class UserForm extends Component {
     submitForm = async (e) => {
         e.preventDefault();
         const userVerification = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
-        .catch(error => console.log("error", error))
-        console.log("ATTEMPTLOGIN", userVerification)
+            if(!userVerification.ok) {
+                const error = await userVerification.json()
+                console.log("ERROR", error)
+                this.setState({error: error.error})
+            } else {
+                const user = await userVerification.json()
+                console.log("UV", user)
+            }
+
+
+
         this.resetInputs()
     }
 
