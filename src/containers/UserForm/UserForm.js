@@ -7,7 +7,8 @@ class UserForm extends Component {
         super()
         this.state = {
                 email: '',
-                password: ''
+                password: '',
+                error: ''
         }
     }
 
@@ -18,8 +19,8 @@ class UserForm extends Component {
     submitForm = async (e) => {
         e.preventDefault();
         const userVerification = await loginUser(this.state.user, 'http://localhost:3001/api/v1/login')
-        // this.props.addUser(this.state.user)
-        .catch(error => console.log(error.message))
+        // this.props.setUser(this.state.user)
+        .catch(error => console.log(error))
         // console.log("ATTEMPTLOGIN", attemptLogin)
         this.resetInputs()
     }

@@ -21,6 +21,7 @@ export const loginUser = async (userInfo, url) => {
 
   const response = await fetch(url, options)
     if (!response.ok) {
+      console.log("RESPONSE", response)
       throw Error(response.statusText)
     } 
     const validatedUser = await response.json()
