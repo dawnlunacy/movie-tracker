@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
+import { connect } from 'react-redux';
+import { saveUser } from '../../actions/index';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -93,4 +95,8 @@ class SignUpForm extends Component {
     }
 }
 
-export default SignUpForm;
+export const mapDispatchToProps = dispatch => ({
+  saveUser: currentUser => dispatch(saveUser(currentUser))
+})
+
+export default connect(null, mapDispatchToProps)(SignUpForm);
