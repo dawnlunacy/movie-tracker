@@ -3,7 +3,7 @@ import Movie from '../Movie/Movie';
 import { connect } from 'react-redux';
 import './MoviesContainer.css'
 
-const MoviesContainer = ({ movies, errorMessage }) => {
+export const MoviesContainer = ({ movies, errorMessage }) => {
   const moviesToDisplay = movies.map(movie => {
     const { id, title, poster, rating, overview } = movie
     return <Movie
@@ -26,7 +26,9 @@ const MoviesContainer = ({ movies, errorMessage }) => {
   )
 }
 
-const mapStateToProps = state => ({
+
+export const mapStateToProps = state => ({
+  movies: state.movies,
   errorMessage: state.errorMessage
 });
 
