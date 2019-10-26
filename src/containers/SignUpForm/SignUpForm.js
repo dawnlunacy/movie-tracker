@@ -42,7 +42,11 @@ class SignUpForm extends Component {
     }
 
     resetInputs = () => {
-      this.setState({...this.state.newUserInput})
+      this.setState({newUserInput: {
+        name: '',
+        email: '',
+        password: '',
+      }})
 
     }
 
