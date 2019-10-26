@@ -42,18 +42,11 @@ class SignUpForm extends Component {
     }
 
     resetInputs = () => {
-      // this.setState({
-      //         name: '',
-      //         email: '',
-      //         password: ''
-      // })
-      // this.setState({newUserInput: this.state.newUserInput(this.initialState)})
-      this.setState({newUserInput: this.initialState})
+      this.setState({...this.state.newUserInput})
 
     }
 
     render() {
-      console.log("state", this.state)
         return (
             <>
             <form>
@@ -83,9 +76,9 @@ class SignUpForm extends Component {
                   onChange={this.handleChange}
                 />
                 <button onClick={(e) => this.submitForm(e)}> SIGN UP </button>
-            </form>
               <p> {this.state.newUser.name} </p>
               <p> {this.state.error} </p>
+            </form>
             </>
 
         )
