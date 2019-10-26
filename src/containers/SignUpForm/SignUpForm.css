@@ -1,0 +1,35 @@
+form {
+    align-items: center;
+    background-color: #161616;
+    border: 5px solid white;
+    display: flex;
+    flex-direction: column;
+    height:700px;
+    padding: 30px;
+    width: 600px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+input, label {
+    color: white;
+    display: block;
+    text-align: center;
+    margin: 10px
+}
+
+input {
+    width: 250px;
+    height: 35px;
+}
+
+h2 {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+button {
+    margin: 10px;
+}
+
+
