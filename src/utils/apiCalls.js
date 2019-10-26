@@ -23,8 +23,4 @@ export const getUser = async (userInfo, url) => {
     return response
 }
 
-//   fetch(url, options)
-//     .then(response => response.json())
-//     .then(data => console.log('in post fetch ---->>', data))
-// }
 
