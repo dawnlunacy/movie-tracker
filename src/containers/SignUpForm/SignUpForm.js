@@ -29,10 +29,12 @@ class SignUpForm extends Component {
     submitForm = async (e) => {
         e.preventDefault();
         const createUser = await getUser(this.state.newUserInput, 'http://localhost:3001/api/v1/users')
-          if(!createUser.ok) {
+          if (!createUser.ok) {
             const error = await createUser.json()
             console.log("ERROR in signup", error.error.detail)
-            this.setState({error: error.error.detail || ''})
+            if (error.error.detail.includes('email')) {
+              this.setState({error: " That email is already taken "|| ''})
+            }
           } else {
             const newUser = await createUser.json()
             console.log("new User", newUser)
@@ -81,7 +83,7 @@ class SignUpForm extends Component {
                 />
                 <button onClick={(e) => this.submitForm(e)}> SIGN UP </button>
               <p> {this.state.newUser.name} </p>
-              <p> {this.state.error} </p>
+              <h3> {this.state.error} </h3>
             </form>
             </>
 
