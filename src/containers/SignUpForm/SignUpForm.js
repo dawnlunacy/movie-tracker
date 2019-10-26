@@ -31,6 +31,7 @@ class SignUpForm extends Component {
 
     submitForm = async (e) => {
         e.preventDefault();
+        const { saveUser } = this.props
         const createUser = await getUser(this.state.newUserInput, 'http://localhost:3001/api/v1/users')
           if (!createUser.ok) {
             const error = await createUser.json()
@@ -41,7 +42,8 @@ class SignUpForm extends Component {
           } else {
             const newUser = await createUser.json()
             console.log("new User", newUser)
-            this.setState({newUser:newUser || ''})
+            this.setState({newUser:newUser || ''});
+            saveUser(this.state.newUser);
           }
         this.resetInputs()
     }
