@@ -31,17 +31,18 @@ class SignUpForm extends Component {
 
     submitForm = async (e) => {
         e.preventDefault();
-        const { saveUser } = this.props
+        const { saveUser } = this.props;
         const createUser = await getUser(this.state.newUserInput, 'http://localhost:3001/api/v1/users')
           if (!createUser.ok) {
-            const error = await createUser.json()
-            console.log("ERROR in signup", error.error.detail)
-            if (error.error.detail.includes('email')) {
-              this.setState({error: " That email is already taken "|| ''})
+            if(createUser.status === 404) {
+              this.setState({error: "There was a problem with the server. Please try again"})
             }
+            const error = await createUser.json()
+             if (error.error.detail.includes('email')) {
+              this.setState({error: " That email is already taken " })
+            } 
           } else {
             const newUser = await createUser.json()
-            console.log("new User", newUser)
             this.setState({newUser:newUser || ''});
             saveUser(this.state.newUser);
           }
@@ -88,7 +89,6 @@ class SignUpForm extends Component {
                   onChange={this.handleChange}
                 />
                 <button onClick={(e) => this.submitForm(e)}> SIGN UP </button>
-                <p> {this.state.newUser.name} </p>
                 <h3> {this.state.error} </h3>
               </div>
             </form>
