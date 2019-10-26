@@ -12,3 +12,8 @@ export const isLoading = boolean => ({
   type: 'IS_LOADING',
   boolean
 });
+
+export const saveUser = user => ({
+  type: 'SAVE_USER',
+  user
+})
