@@ -20,7 +20,7 @@ exports[`LoginForm should match snapshot 1`] = `
     <button
       onClick={[Function]}
     >
-       Create Profile 
+       LOGIN 
     </button>
   </form>
   <p>
