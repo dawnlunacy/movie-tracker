@@ -53,49 +53,47 @@ describe('SignUpForm', () => {
     expect(wrapper.state('newUserInput').password).toEqual('shhh')
   });
 
-  it('should update newUser id in state when handleChange is called', () => {
-    const mockEvent = {
-      target: {
-        name: 'id',
-        value: 10
-      }
-    }
+  // it('should update newUser id in state when handleChange is called', () => {
+  //   const mockEvent = {
+  //     target: {
+  //       name: 'id',
+  //       value: 10
+  //     }
+  //   }
+  //
+  //   wrapper.instance().handleChange(mockEvent)
+  //
+  //   expect(wrapper.state('newUser').id).toEqual(10)
+  // });
 
-    wrapper.instance().handleChange(mockEvent)
-
-    expect(wrapper.state('newUser').id).toEqual(10)
-  });
-
-  it('should reset state when resetInputs is called', () => {
+  it('should reset newUserInput state when resetInputs is called', () => {
     const currentState = {
       name: 'Jeremiah',
       email: 'jerbear@gmail.com',
       password: 'secrets',
-      id: 1
     }
 
     const expected = {
       name: '',
       email: '',
       password: '',
-      id: 1
     }
 
     wrapper.instance().setState(currentState);
     wrapper.instance().resetInputs();
 
-    expect(wrapper.state()).toEqual(expected);
+    expect(wrapper.state('newUserInput')).toEqual(expected);
   });
 
-  it('should call getUser and resetInputs when submitForm is called', () => {
-    const mockGetUser = jest.fn();
-    const mockEvent = { preventDefault: jest.fn() };
-    wrapper.instance().resetInputs = jest.fn()
-
-    wrapper.instance().submitForm(mockEvent)
-
-    // expect(mockGetUser).toHaveBeenCalledWith('url');
-    expect(wrapper.instance().resetInputs).toHaveBeenCalled();
-  });
+  // it('should call getUser and resetInputs when submitForm is called', () => {
+  //   const mockGetUser = jest.fn();
+  //   const mockEvent = { preventDefault: jest.fn() };
+  //   wrapper.instance().resetInputs = jest.fn()
+  //
+  //   wrapper.instance().submitForm(mockEvent)
+  //
+  //   // expect(mockGetUser).toHaveBeenCalledWith('url');
+  //   expect(wrapper.instance().resetInputs).toHaveBeenCalled();
+  // });
 
 });
