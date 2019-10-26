@@ -31,7 +31,7 @@ class SignUpForm extends Component {
     }
 
     render() {
-      console.log('state--->', this.state)
+      // console.log('state--->', this.state)
         return (
             <form>
                 <input

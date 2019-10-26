@@ -31,8 +31,6 @@ export class App extends Component {
   }
 
   render() {
-    const { movies, errorMessage } = this.props
-
     return (
         <div className="App">
         <Route exact path='/login' render={ () => <LoginForm /> } />
@@ -42,8 +40,8 @@ export class App extends Component {
             <header className="App-header">
               <Nav />
               <img src={logo} alt="Logo" className="App-img"/>
-            </header>
-            <MoviesContainer errorMessage={errorMessage} movies={movies} />
+            </header> 
+            <MoviesContainer />
           </>
         } />
         </div>
@@ -52,8 +50,6 @@ export class App extends Component {
 }
 
 export const mapStateToProps = state => ({
-  movies: state.movies,
-  errorMessage: state.errorMessage,
   loading: state.loading
 });
 
