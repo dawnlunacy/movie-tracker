@@ -38,7 +38,6 @@ class LoginForm extends Component {
 
     resetInputs = () => {
       this.setState({
-
           user: {
               email: '',
               password: ''
