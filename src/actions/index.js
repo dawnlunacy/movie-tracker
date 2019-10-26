@@ -13,7 +13,7 @@ export const isLoading = boolean => ({
   boolean
 });
 
-export const saveUser = user => ({
+export const saveUser = currentUser => ({
   type: 'SAVE_USER',
-  user
+  currentUser
 })
