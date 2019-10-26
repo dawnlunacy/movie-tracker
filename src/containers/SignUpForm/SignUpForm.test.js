@@ -86,4 +86,15 @@ describe('SignUpForm', () => {
     expect(wrapper.state()).toEqual(expected);
   });
 
+  it('should call getUser and resetInputs when submitForm is called', () => {
+    const mockGetUser = jest.fn();
+    const mockEvent = { preventDefault: jest.fn() };
+    wrapper.instance().resetInputs = jest.fn()
+
+    wrapper.instance().submitForm(mockEvent)
+
+    // expect(mockGetUser).toHaveBeenCalledWith('url');
+    expect(wrapper.instance().resetInputs).toHaveBeenCalled();
+  });
+
 });
