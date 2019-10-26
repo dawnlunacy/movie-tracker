@@ -9,7 +9,7 @@ class SignUpForm extends Component {
           newUserInput: {
             name: '',
             email: '',
-            password: '',
+            password: ''
           },
           newUser: {
             name: '',

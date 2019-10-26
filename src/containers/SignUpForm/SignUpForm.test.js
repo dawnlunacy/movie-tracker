@@ -5,15 +5,15 @@ import { shallow } from 'enzyme';
 describe('SignUpForm', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<SignUpForm/>); 
+    wrapper = shallow(<SignUpForm />);
   });
 
   it('should match snapshot', () => {
-
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should update name in state when handleChange is called', () => {
+  it('should update newUserInput name in state when handleChange is called', () => {
+
     const mockEvent = {
       target: {
         name: 'name',
@@ -23,10 +23,11 @@ describe('SignUpForm', () => {
 
     wrapper.instance().handleChange(mockEvent)
 
-    expect(wrapper.state('name')).toEqual('Fernando')
+    expect(wrapper.state('newUserInput').name).toEqual('Fernando')
   });
 
-  it('should update name in state when handleChange is called', () => {
+
+  it('should update newUserInput email in state when handleChange is called', () => {
     const mockEvent = {
       target: {
         name: 'email',
@@ -36,10 +37,10 @@ describe('SignUpForm', () => {
 
     wrapper.instance().handleChange(mockEvent)
 
-    expect(wrapper.state('email')).toEqual('crazy_cats@hotmail.com')
+    expect(wrapper.state('newUserInput').email).toEqual('crazy_cats@hotmail.com')
   });
 
-  it('should update name in state when handleChange is called', () => {
+  it('should update newUserInput password in state when handleChange is called', () => {
     const mockEvent = {
       target: {
         name: 'password',
@@ -49,10 +50,10 @@ describe('SignUpForm', () => {
 
     wrapper.instance().handleChange(mockEvent)
 
-    expect(wrapper.state('password')).toEqual('shhh')
+    expect(wrapper.state('newUserInput').password).toEqual('shhh')
   });
 
-  it('should update name in state when handleChange is called', () => {
+  it('should update newUser id in state when handleChange is called', () => {
     const mockEvent = {
       target: {
         name: 'id',
@@ -62,7 +63,7 @@ describe('SignUpForm', () => {
 
     wrapper.instance().handleChange(mockEvent)
 
-    expect(wrapper.state('id')).toEqual(10)
+    expect(wrapper.state('newUser').id).toEqual(10)
   });
 
   it('should reset state when resetInputs is called', () => {
@@ -98,4 +99,3 @@ describe('SignUpForm', () => {
   });
 
 });
-
