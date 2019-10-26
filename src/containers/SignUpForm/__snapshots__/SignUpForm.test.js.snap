@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpForm should match snapshot 1`] = `
+<form>
+  <input
+    className="name-input"
+    name="name"
+    onChange={[Function]}
+    placeholder="Enter Name"
+    type="text"
+    value=""
+  />
+  <input
+    className="email-input"
+    name="email"
+    onChange={[Function]}
+    placeholder="Enter Email"
+    type="text"
+    value=""
+  />
+  <input
+    className="password-input"
+    name="password"
+    onChange={[Function]}
+    placeholder="Enter Password"
+    type="text"
+    value=""
+  />
+  <button
+    onClick={[Function]}
+  >
+     SIGN UP 
+  </button>
+</form>
+`;
