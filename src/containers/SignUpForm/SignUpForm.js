@@ -21,6 +21,7 @@ class SignUpForm extends Component {
     }
 
     handleChange = (e) => {
+      this.setState({error: ''})
       let newUserInfo = this.state.newUserInput;
       newUserInfo = {...newUserInfo, [e.target.name]: e.target.value}
         this.setState({newUserInput: newUserInfo})
