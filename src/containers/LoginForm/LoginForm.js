@@ -69,7 +69,7 @@ class LoginForm extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}
                 />
-                <button onClick={(e) => this.submitForm(e)}> Create Profile </button>
+                <button onClick={(e) => this.submitForm(e)}> LOGIN </button>
             </form>
 
             <p> {this.state.error} </p>
