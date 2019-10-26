@@ -65,4 +65,25 @@ describe('SignUpForm', () => {
     expect(wrapper.state('id')).toEqual(10)
   });
 
+  it('should reset state when resetInputs is called', () => {
+    const currentState = {
+      name: 'Jeremiah',
+      email: 'jerbear@gmail.com',
+      password: 'secrets',
+      id: 1
+    }
+
+    const expected = {
+      name: '',
+      email: '',
+      password: '',
+      id: 1
+    }
+
+    wrapper.instance().setState(currentState);
+    wrapper.instance().resetInputs();
+
+    expect(wrapper.state()).toEqual(expected);
+  });
+
 });
