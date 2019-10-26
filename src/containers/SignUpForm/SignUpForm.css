@@ -9,9 +9,14 @@ form {
     flex-direction: column;
     height:700px;
     padding: 30px;
-    width: 800px;
+    width: 700px;
     margin: auto;
     margin-top: 50px;
+}
+
+.sign-up-background {
+    background-color: rgba(0, 0, 0, 0.85);
+    margin-top: 20%;
 }
 
 input, label {

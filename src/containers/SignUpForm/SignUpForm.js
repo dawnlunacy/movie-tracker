@@ -56,6 +56,7 @@ class SignUpForm extends Component {
         return (
             <>
             <form>
+              <div className="sign-up-background">
                 <h2> Sign Up </h2>
                 <input
                   className="name-input"
@@ -82,11 +83,11 @@ class SignUpForm extends Component {
                   onChange={this.handleChange}
                 />
                 <button onClick={(e) => this.submitForm(e)}> SIGN UP </button>
-              <p> {this.state.newUser.name} </p>
-              <h3> {this.state.error} </h3>
+                <p> {this.state.newUser.name} </p>
+                <h3> {this.state.error} </h3>
+              </div>
             </form>
             </>
-
         )
     }
 }
