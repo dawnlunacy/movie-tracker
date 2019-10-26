@@ -17,9 +17,9 @@ class LoginForm extends Component {
   
 
     handleChange = (e) => {
-        let newUser = this.state.user;
-      newUser = {...newUser, [e.target.name]: e.target.value}
-        this.setState({user: newUser})
+        let user = this.state.user;
+      user = {...user, [e.target.name]: e.target.value}
+        this.setState({user: user})
     }
     
     submitForm = async (e) => {
