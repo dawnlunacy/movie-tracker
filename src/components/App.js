@@ -7,7 +7,7 @@ import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovies, handleError, isLoading, saveUser } from '../actions';
-import { fetchData } from '../utils/apiCalls';
+import { fetchData, getUser, postFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
@@ -35,10 +35,19 @@ export class App extends Component {
       return
     } else {
       const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${currentUser.id}/moviefavorites`)
-      console.log(favoriteMovies)
       return favoriteMovies
     }
-  } 
+  }
+
+  makeFavorite = async (movieInfo, id) => {
+    const { currentUser } = this.props
+    if(currentUser === null) {
+      return
+    } else {
+      const postedFavorite = await postFavorite(movieInfo, id)
+      return postedFavorite
+    }
+  }
 
   render() {
     return (
@@ -51,7 +60,7 @@ export class App extends Component {
               <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
-            <MoviesContainer />
+            <MoviesContainer makeFavorite={this.makeFavorite}/>
           </>
         } />
         </div>

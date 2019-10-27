@@ -4,7 +4,7 @@ export const filteredMovieData = movies => {
     title: movie.title,
     poster_path: movie.poster_path,
     release_date: movie.release_date,
-    vote_averge: movie.vote_average,
+    vote_average: movie.vote_average,
     overview: movie.overview
   }))
 }
