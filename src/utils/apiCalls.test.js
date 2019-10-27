@@ -60,15 +60,25 @@ describe('fetchData', () => {
       const mockUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56'
       fetchData(mockUrl);
 
-      expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+      expect(window.fetch).toHaveBeenCalledWith(mockUrl);
     });
 
-    it('should return an array of information that was asked of it', () => {
+    it('should return an array of moviesv(HAPPY)', () => {
+      const mockUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56'
+      fetchData(mockUrl)
+      .then(results => expect(results).toEqual(mockResponse));
 
     });
 
     it('should return an error (SAD)', () => {
-
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: "Invalid API key: You must be granted a valid key."
+        })
+      });
+      const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56YOLO'
+      expect(fetchData(url)).rejects.toEqual(Error("Invalid API key: You must be granted a valid key."))
     });
 });
 
