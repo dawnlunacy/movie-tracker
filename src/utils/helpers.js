@@ -1,9 +1,10 @@
 export const filteredMovieData = movies => {
   return movies.map(movie => ({
-    id: movie.id,
+    movie_id: movie.id,
     title: movie.title,
-    poster: movie.poster_path,
-    rating: movie.vote_average,
+    poster_path: movie.poster_path,
+    release_date: movie.release_date,
+    vote_averge: movie.vote_average,
     overview: movie.overview
   }))
 }
