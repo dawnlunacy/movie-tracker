@@ -28,17 +28,12 @@ class SignUpForm extends Component {
       
     }
 
-    checkInputsForValues() {
-      console.log("hiUNO")        
-      console.log("NAME", this.state.newUserInput.name !== '')
-      console.log("EMAIL", this.state.newUserInput.email !== '')
-      console.log("PASSWORD", this.state.newUserInput.password !== '')
+    async checkInputsForValues() {
       this.setState({formReady: false})
       if (this.state.newUserInput.name !== '' && 
         this.state.newUserInput.email !== '' && 
         this.state.newUserInput.password !== '') {
-        this.setState({formReady: true}, () =>
-        console.log("After", this.state.formReady))
+        this.setState({formReady: true})
       } 
     }
 
@@ -61,7 +56,7 @@ class SignUpForm extends Component {
           this.setState({error: "There was a problem with the server. Please try again"})
         }
         const error = await response.json()
-         if (error.error.detail.includes('email')) {
+        if (error.error.detail.includes('email')) {
           this.setState({error: " That email is already taken " });
           this.resetEmailInput();
         }
