@@ -9,7 +9,6 @@ export const fetchData = async(url)  => {
   }
 }
 
-
 export const getUser = async (userInfo, url) => {
   const options = {
     method: 'POST',
@@ -23,4 +22,15 @@ export const getUser = async (userInfo, url) => {
     return response
 }
 
+export const postFavorite = async (movieInfo, id, url) => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(movieInfo),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
 
+  const response = await fetch(url, options)
+    return response
+}
