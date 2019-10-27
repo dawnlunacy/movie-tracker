@@ -7,27 +7,28 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    margin: auto;
     padding: 30px;
     width: 100vw;
-    margin: auto;
 }
 
-.sign-up-background {
+.log-in-background {
     background-color: rgba(0, 0, 0, 0.55);
     border-radius: 15px;
-    margin-top: 15%;
+    height: 400px;
+    margin-top: 12%;
 }
 
 input, label {
     display: block;
+    margin: 20px;
     text-align: center;
-    margin: 20px
 }
 
 input {
-    width: 425px;
-    height: 35px;
     border-radius: 5px;
+    height: 35px;
+    width: 425px;
 }
 
 h2 {
@@ -39,6 +40,26 @@ h3 {
     color: #CC0000;
 }
 
-button {
+.form-button {
+    border-radius: 10px;
+    height: 25px;
     margin: 10px;
+    width: 100px;
+}
+
+.login-to-sign-up {
+    margin-top: 10%;
+}
+
+.login-btn {
+    border-radius: 10px;
+    height: 25px;
+    margin: 10px;
+    width: 100px;
+}
+
+.login-btn:hover {
+    background-color: #d3af37;
+    transform: scale(1.2);
+
 }

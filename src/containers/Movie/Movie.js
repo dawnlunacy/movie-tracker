@@ -7,7 +7,7 @@ const Movie = ({ id, title, poster, rating, overview }) => {
   return (
     <section className="grow">
       <div className="movie-img">
-        <img className="poster-img" src = {`https://image.tmdb.org/t/p/original/${poster}`}/>
+        <img className="poster-img" alt="Movie Poster" src = {`https://image.tmdb.org/t/p/original/${poster}`}/>
       </div>
       <img src={star} alt="Logo" className="movie-star"/>
       <div className="movie-text">
@@ -19,5 +19,3 @@ const Movie = ({ id, title, poster, rating, overview }) => {
 
 export default Movie;
 
-// <p>{rating}</p>
-// <p>{overview}</p>

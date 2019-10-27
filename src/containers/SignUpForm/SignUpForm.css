@@ -1,4 +1,4 @@
-form {
+.sign-up-form {
     align-items: center;
     background-color: #161616;
     background-image: url('../../images/background-curtain.jpg');
@@ -7,27 +7,28 @@ form {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    margin: auto;
     padding: 30px;
     width: 100vw;
-    margin: auto;
 }
 
 .sign-up-background {
     background-color: rgba(0, 0, 0, 0.55);
     border-radius: 15px;
-    margin-top: 15%;
+    height: 500px;    
+    margin-top: 13%;
 }
 
 input, label {
     display: block;
+    margin: 20px;
     text-align: center;
-    margin: 20px
 }
 
 input {
-    width: 425px;
-    height: 35px;
     border-radius: 5px;
+    height: 35px;
+    width: 425px;
 }
 
 h2 {
@@ -39,6 +40,30 @@ h3 {
     color: #CC0000;
 }
 
-button {
+.form-btn {
+    border-radius: 10px;
+    height: 25px;
     margin: 10px;
+    width: 100px;
+
+}
+
+.form-btn:hover {
+    background-color: #d3af37;
+    transform: scale(1.2);
+}
+
+.login-to-sign-up {
+    margin-top: 10%;
+}
+
+.sign-up-btn {
+    border-radius: 10px;
+    height: 25px;
+    width: 100px;
+}
+
+.sign-up-btn:hover {
+    background-color: #d3af37;
+    transform: scale(1.2);
 }

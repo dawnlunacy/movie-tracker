@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser } from '../../actions/index';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -14,21 +14,38 @@ class LoginForm extends Component {
                 password: '',
             },
             error: '',
+            formReady: false,
             isLoggedIn: false
+
         }
       }
 
     handleChange = (e) => {
-        let userInput = this.state.userInput;
+      this.setState({error: ''})
+      let userInput = this.state.userInput;
       userInput = {...userInput, [e.target.name]: e.target.value}
-        this.setState({userInput: userInput})
+      this.setState({userInput: userInput})
+    }
+
+    async checkInputsForValues() {
+      this.setState({error: ''})     
+      this.setState({formReady: false})
+      if (this.state.userInput.email !== '' &&
+        this.state.userInput.password !== '') {
+        this.setState({formReady: true})
+            }
     }
 
     submitForm = async (e) => {
         e.preventDefault();
-        const userVerification = await getUser(this.state.userInput, 'http://localhost:3001/api/v1/login');
-        this.validateResponse(userVerification)
-        this.resetInputs()
+        await this.checkInputsForValues();    
+        if (!this.state.formReady) {
+          this.setState({error: "Please fill out all inputs to log in."})
+        } else {
+          const userVerification = await getUser(this.state.userInput, 'http://localhost:3001/api/v1/login');
+          this.validateResponse(userVerification)
+        }
+        
     }
 
     validateResponse = async (response) => {
@@ -43,6 +60,7 @@ class LoginForm extends Component {
           const newUser = await response.json()
           saveUser(newUser);
           this.setState({isLoggedIn: true})
+          this.resetInputs()
         }
       }
 
@@ -63,7 +81,7 @@ class LoginForm extends Component {
         return (
             <>
             <form className="login-form">
-                <div className="sign-up-background">
+                <div className="log-in-background">
                 <h2> Login </h2>
                 <input
                     className="email-input"
@@ -81,9 +99,13 @@ class LoginForm extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}
                 />
-                <button onClick={(e) => this.submitForm(e)}> LOGIN </button>
+                <button className="form-btn" onClick={(e) => this.submitForm(e)}> LOGIN </button>
 
-                <p> {this.state.error} </p>
+                <h3> {this.state.error} </h3>
+                <div className="login-to-sign-up">
+                    <h4 className="prompt-to-sign-up"> Don't have an account? </h4>    
+                    <Link to ="/signup"> <button className="sign-up-btn"> SIGN UP</button> </Link>
+                </div>
                 </div>
             </form>
         </>
