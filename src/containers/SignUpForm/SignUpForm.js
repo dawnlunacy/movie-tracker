@@ -11,7 +11,7 @@ class SignUpForm extends Component {
           newUserInput: {
             name: '',
             email: '',
-            password: '',
+            password: ''
           },
           newUser: {
             name: '',
@@ -45,7 +45,7 @@ class SignUpForm extends Component {
         const error = await response.json()
          if (error.error.detail.includes('email')) {
           this.setState({error: " That email is already taken " })
-        } 
+        }
       } else {
         const newUser = await response.json()
         this.setState({newUser:newUser || ''});
