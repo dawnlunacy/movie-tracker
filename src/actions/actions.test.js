@@ -43,4 +43,17 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction);
   });
 
+  it('should have a type of HANDLE_ERROR', () => {
+    const errorMessage = 'Super duper error'
+
+    const expectedAction = {
+      type: 'HANDLE_ERROR',
+      errorMessage: 'Super duper error'
+    }
+
+    const result = actions.handleError(errorMessage)
+
+    expect(result).toEqual(expectedAction)
+  });
+
 });
