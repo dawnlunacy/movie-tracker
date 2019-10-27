@@ -7,7 +7,7 @@ import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovies, handleError, isLoading, saveUser } from '../actions';
-import { fetchData, getUser } from '../utils/apiCalls';
+import { fetchData, getUser, postFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
@@ -39,16 +39,15 @@ export class App extends Component {
     }
   }
 
-  // makeFavorite = async (movie) => {
-  //   const { currentUser } = this.props
-  //   if(currentUser === null) {
-  //     return
-  //   } else {
-  //     const postFavorite = await postFavorite(movieInfo, currentUser, `http://localhost:3001/api/v1/users/${currentUser.id}/moviefavorites`)
-  //     console.log('postfav', postFavorite)
-  //     return postFavorite
-  //   }
-  // }
+  makeFavorite = async (movieInfo, id) => {
+    const { currentUser } = this.props
+    if(currentUser === null) {
+      return
+    } else {
+      const postedFavorite = await postFavorite(movieInfo, id)
+      return postedFavorite
+    }
+  }
 
   render() {
     return (
