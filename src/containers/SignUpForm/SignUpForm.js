@@ -14,11 +14,6 @@ class SignUpForm extends Component {
             email: '',
             password: '',
           },
-          newUser: {
-            name: '',
-            email: '',
-            id: null
-          },
           error: '',
           isLogginIn: false
         }
@@ -50,8 +45,7 @@ class SignUpForm extends Component {
         } 
       } else {
         const newUser = await response.json()
-        this.setState({newUser:newUser || ''});
-        saveUser(this.state.newUser);
+        saveUser(newUser);
         this.setState({isLogginIn: true})
       }
     }
