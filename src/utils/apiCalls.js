@@ -34,5 +34,5 @@ export const postFavorite = async (movieInfo, id) => {
   const response = await fetch(`http://localhost:3001/api/v1/users/${id}/moviefavorites`, options)
   const data = await response.json();
   console.log('data', data)
-  return data
+    return data
 }

@@ -1,5 +1,4 @@
 export const filteredMovieData = movies => {
-  console.log('mv', movies)
   return movies.map(movie => ({
     movie_id: movie.id,
     title: movie.title,
