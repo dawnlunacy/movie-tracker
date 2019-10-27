@@ -15,8 +15,9 @@ class SignUpForm extends Component {
             password: ''
           },
           error: '',
-          isLogginIn: false
-        }
+          isLogginIn: false,
+          formReady: false
+        } 
     }
 
     handleChange = (e) => {
@@ -24,13 +25,33 @@ class SignUpForm extends Component {
       let newUserInfo = this.state.newUserInput;
       newUserInfo = {...newUserInfo, [e.target.name]: e.target.value}
         this.setState({newUserInput: newUserInfo})
+      
+    }
+
+    checkInputsForValues() {
+      console.log("hiUNO")        
+      console.log("NAME", this.state.newUserInput.name !== '')
+      console.log("EMAIL", this.state.newUserInput.email !== '')
+      console.log("PASSWORD", this.state.newUserInput.password !== '')
+      this.setState({formReady: false})
+      if (this.state.newUserInput.name !== '' && 
+        this.state.newUserInput.email !== '' && 
+        this.state.newUserInput.password !== '') {
+        this.setState({formReady: true}, () =>
+        console.log("After", this.state.formReady))
+      } 
     }
 
     submitForm = async (e) => {
         e.preventDefault();
-        const createUser = await getUser(this.state.newUserInput, 'http://localhost:3001/api/v1/users')
-        this.validateResponse(createUser)
-        this.resetInputs()
+        await this.checkInputsForValues();    
+        if (!this.state.formReady ) {
+          this.setState({error: "Please fill out all inputs to create an account."})
+        } else {
+          const createUser = await getUser(this.state.newUserInput, 'http://localhost:3001/api/v1/users')
+          this.validateResponse(createUser)
+        }
+        
     }
 
     validateResponse = async (response) => {
@@ -41,22 +62,31 @@ class SignUpForm extends Component {
         }
         const error = await response.json()
          if (error.error.detail.includes('email')) {
-          this.setState({error: " That email is already taken " })
+          this.setState({error: " That email is already taken " });
+          this.resetEmailInput();
         }
       } else {
         const newUser = await response.json()
         saveUser(newUser);
         this.setState({isLogginIn: true})
+        this.resetAllInputs()
       }
     }
 
-    resetInputs = () => {
+    resetAllInputs = () => {
       this.setState({newUserInput: {
         name: '',
         email: '',
         password: '',
       }})
+    }
 
+    resetEmailInput = () => {
+      this.setState({newUserInput: {
+        name: this.state.newUserInput.name,
+        email: '',
+        password: this.state.newUserInput.password,
+      }})
     }
 
     render() {
@@ -65,7 +95,7 @@ class SignUpForm extends Component {
       }
         return (
             <>
-            <form>
+            <form className="sign-up-form">
               <div className="sign-up-background">
                 <h2> Sign Up </h2>
                 <input
@@ -92,7 +122,8 @@ class SignUpForm extends Component {
                   value={this.state.newUserInput.password}
                   onChange={this.handleChange}
                 />
-                <button onClick={(e) => this.submitForm(e)}> SIGN UP </button>
+                <button className="form-button" onClick={(e) => this.submitForm(e)}> SIGN UP 
+                </button>
                 <h3> {this.state.error} </h3>
               </div>
             </form>
