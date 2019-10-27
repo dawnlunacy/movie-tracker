@@ -15,8 +15,8 @@ class SignUpForm extends Component {
             password: ''
           },
           error: '',
+          formReady: false,
           isLogginIn: false,
-          formReady: false
         } 
     }
 
@@ -24,7 +24,7 @@ class SignUpForm extends Component {
       this.setState({error: ''})
       let newUserInfo = this.state.newUserInput;
       newUserInfo = {...newUserInfo, [e.target.name]: e.target.value}
-        this.setState({newUserInput: newUserInfo})
+      this.setState({newUserInput: newUserInfo})
       
     }
 
