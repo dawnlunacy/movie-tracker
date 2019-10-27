@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser } from '../../actions/index';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -117,9 +117,13 @@ class SignUpForm extends Component {
                   value={this.state.newUserInput.password}
                   onChange={this.handleChange}
                 />
-                <button className="form-button" onClick={(e) => this.submitForm(e)}> SIGN UP 
+                <button className="form-btn" onClick={(e) => this.submitForm(e)}> SIGN UP 
                 </button>
                 <h3> {this.state.error} </h3>
+                <div className="login-to-sign-up">
+                    <h4 className="prompt-to-login"> Already have an account? </h4>    
+                    <Link to ="/login"> <button className="login-btn"> LOGIN </button> </Link>
+                </div>
               </div>
             </form>
             </>

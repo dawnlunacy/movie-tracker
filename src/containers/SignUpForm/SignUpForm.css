@@ -15,7 +15,8 @@
 .sign-up-background {
     background-color: rgba(0, 0, 0, 0.55);
     border-radius: 15px;
-    margin-top: 15%;
+    margin-top: 13%;
+    height: 500px;    
 }
 
 input, label {
@@ -39,8 +40,18 @@ h3 {
     color: #CC0000;
 }
 
-.form-button {
+.form-btn {
     margin: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 25px;
+}
+
+.login-to-sign-up {
+    margin-top: 10%;
+}
+
+.sign-up-btn {
     border-radius: 10px;
     width: 100px;
     height: 25px;
