@@ -41,7 +41,6 @@ export class App extends Component {
   } 
 
   render() {
-    console.log('getting favorites--->>>', this.getFavorites())
     return (
         <div className="App">
         <Route exact path='/login' render={ () => <LoginForm /> } />
@@ -49,7 +48,7 @@ export class App extends Component {
         <Route exact path='/' render={ () =>
           <>
             <header className="App-header">
-              <Nav />
+              <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
             <MoviesContainer />
