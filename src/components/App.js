@@ -6,7 +6,7 @@ import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies, handleError, isLoading } from '../actions';
+import { getMovies, handleError, isLoading, saveUser } from '../actions';
 import { fetchData } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
@@ -29,7 +29,19 @@ export class App extends Component {
     }
   }
 
+  getFavorites = async () => {
+    const { currentUser } = this.props
+    if(currentUser === null) {
+      return
+    } else {
+      const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${currentUser.id}/moviefavorites`)
+      console.log(favoriteMovies)
+      return favoriteMovies
+    }
+  } 
+
   render() {
+    console.log('getting favorites--->>>', this.getFavorites())
     return (
         <div className="App">
         <Route exact path='/login' render={ () => <LoginForm /> } />
@@ -49,6 +61,7 @@ export class App extends Component {
 }
 
 export const mapStateToProps = state => ({
+  currentUser: state.currentUser,
   loading: state.loading
 });
 
@@ -57,7 +70,8 @@ export const mapDispatchToProps = dispatch => (
     {
       getMovies,
       handleError,
-      isLoading
+      isLoading,
+      saveUser
     },
   dispatch)
 )
