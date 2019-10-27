@@ -9,7 +9,7 @@ const Movie = ({ id, title, poster_path, release_date, vote_average, overview })
       <div className="movie-img">
         <img className="poster-img" alt="Movie Poster" src = {`https://image.tmdb.org/t/p/original/${poster_path}`}/>
       </div>
-      <img src={star} alt="Logo" className="movie-star"/>
+      <img src={star} alt="Logo" className="movie-star" onClick={() => console.log('click')}/>
       <div className="movie-text">
         <h3 className="movie-h3">{title}</h3>
       </div>
@@ -18,4 +18,3 @@ const Movie = ({ id, title, poster_path, release_date, vote_average, overview })
 }
 
 export default Movie;
-
