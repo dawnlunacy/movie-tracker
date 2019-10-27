@@ -14,21 +14,43 @@ class LoginForm extends Component {
                 password: '',
             },
             error: '',
+            formReady: false,
             isLoggedIn: false
+
         }
       }
 
     handleChange = (e) => {
-        let userInput = this.state.userInput;
+      this.setState({error: ''})
+      let userInput = this.state.userInput;
       userInput = {...userInput, [e.target.name]: e.target.value}
-        this.setState({userInput: userInput})
+      this.setState({userInput: userInput})
+    }
+
+    async checkInputsForValues() {
+      this.setState({error: ''})     
+      this.setState({formReady: false})
+      if (this.state.userInput.email !== '' &&
+        this.state.userInput.password !== '') {
+        this.setState({formReady: true}, () => {
+            console.log("form REady", this.state.formReady)
+            console.log("email", this.state.userInput.email)
+            console.log("password", this.state.userInput.email)
+                })
+            }
     }
     
     submitForm = async (e) => {
         e.preventDefault();
-        const userVerification = await getUser(this.state.userInput, 'http://localhost:3001/api/v1/login');
-        this.validateResponse(userVerification)
-        this.resetInputs()
+        await this.checkInputsForValues();    
+        console.log("FORM READY STATUS", this.state.formReady)    
+        if (!this.state.formReady) {
+          this.setState({error: "Please fill out all inputs to log in."})
+        } else {
+          const userVerification = await getUser(this.state.userInput, 'http://localhost:3001/api/v1/login');
+          this.validateResponse(userVerification)
+        }
+        
     }
 
     validateResponse = async (response) => {
@@ -41,9 +63,9 @@ class LoginForm extends Component {
             this.setState({error: error.error})
           } else {
           const newUser = await response.json()
-          console.log("NEWUSER", newUser)
           saveUser(newUser);
           this.setState({isLoggedIn: true})
+          this.resetInputs()
         }
       }
 
