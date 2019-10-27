@@ -1,8 +1,11 @@
 import React from 'react';
 import { LoginForm } from './LoginForm';
 import { shallow } from 'enzyme';
+import { getUser } from '../../utils/apiCalls';
 // import { saveUser } from '../../actions/index';
+jest.mock('../../actions/index');
 
+console.log('getUser', getUser)
 
 describe('LoginFormContainer', () => {
   describe('AddTodoForm component', () => {
@@ -103,6 +106,17 @@ describe('LoginFormContainer', () => {
       wrapper.instance().resetInputs();
 
       expect(wrapper.state()).toEqual(expected);
+    })
+
+    it('should call checkInputsForValues when submitForm is called', () => {
+      const mockEvent = { preventDefault: jest.fn() };
+      console.log("Wrapper", wrapper.instance())
+      getUser.mockImplementation(() => {
+        return Promise.resolve([{id: 2, name:'Lacy', email:'rudd.lacy@gmail.com'}])
+      })
+      wrapper.instance().sumbitForm(mockEvent);
+
+      expect(wrapper.instance().checkInputsForValues).toHaveBeenCalled();
     })
   })
 })
