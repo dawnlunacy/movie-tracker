@@ -33,6 +33,7 @@
 
 .movie-star {
   position: absolute;
+  cursor: pointer;
   top: 400px;
   width: 50px;
 }
