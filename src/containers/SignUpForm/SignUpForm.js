@@ -5,7 +5,7 @@ import { saveUser } from '../../actions/index';
 import { Redirect, Link } from 'react-router-dom';
 import './SignUpForm.css';
 
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
     constructor() {
         super();
         this.state = {

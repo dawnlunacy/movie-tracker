@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpForm from './SignUpForm';
+import { SignUpForm, mapDispatchToProps } from './SignUpForm';
 import { shallow } from 'enzyme';
 
 describe('SignUpForm', () => {
@@ -7,6 +7,7 @@ describe('SignUpForm', () => {
   beforeEach(() => {
     wrapper = shallow(<SignUpForm />);
   });
+
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
@@ -53,19 +54,6 @@ describe('SignUpForm', () => {
     expect(wrapper.state('newUserInput').password).toEqual('shhh')
   });
 
-  // it('should update newUser id in state when handleChange is called', () => {
-  //   const mockEvent = {
-  //     target: {
-  //       name: 'id',
-  //       value: 10
-  //     }
-  //   }
-  //
-  //   wrapper.instance().handleChange(mockEvent)
-  //
-  //   expect(wrapper.state('newUser').id).toEqual(10)
-  // });
-
   it('should reset newUserInput state when resetInputs is called', () => {
     const currentState = {
       name: 'Jeremiah',
@@ -85,15 +73,15 @@ describe('SignUpForm', () => {
     expect(wrapper.state('newUserInput')).toEqual(expected);
   });
 
-  // it('should call getUser and resetInputs when submitForm is called', () => {
-  //   const mockGetUser = jest.fn();
-  //   const mockEvent = { preventDefault: jest.fn() };
-  //   wrapper.instance().resetInputs = jest.fn()
-  //
-  //   wrapper.instance().submitForm(mockEvent)
-  //
-  //   // expect(mockGetUser).toHaveBeenCalledWith('url');
-  //   expect(wrapper.instance().resetInputs).toHaveBeenCalled();
-  // });
+  it('should call getUser and resetInputs when submitForm is called', () => {
+    const mockGetUser = jest.fn();
+    const mockEvent = { preventDefault: jest.fn() };
+    wrapper.instance().resetInputs = jest.fn()
+  
+    wrapper.instance().submitForm(mockEvent)
+  
+    expect(wrapper.instance().validateRespose).toHaveBeenCalled();
+    expect(wrapper.instance().resetInputs).toHaveBeenCalled();
+  });
 
 });
