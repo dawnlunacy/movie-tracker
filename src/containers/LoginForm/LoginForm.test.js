@@ -77,5 +77,32 @@ describe('LoginFormContainer', () => {
 
       expect(wrapper.state()).toEqual(expected);
     })
+
+    it('should reset state of userInputs when resetInputs is called', () => {
+      const defaultState = {
+        userInput: {
+            email: 'mooses@forest.io',
+            password: 'MooseIsBetterThanPants',
+        },
+        error: '',
+        formReady: false,
+        isLoggedIn: false
+      }
+      const expected = {
+        userInput: {
+            email: '',
+            password: '',
+        },
+        error: '',
+        formReady: false,
+        isLoggedIn: false
+      }
+
+      wrapper.instance().setState(defaultState);
+
+      wrapper.instance().resetInputs();
+
+      expect(wrapper.state()).toEqual(expected);
+    })
   })
 })
