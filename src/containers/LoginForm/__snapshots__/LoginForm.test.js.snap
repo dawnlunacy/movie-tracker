@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginForm should match snapshot 1`] = `
+exports[`LoginFormContainer AddTodoForm component should match snapshot 1`] = `
 <Fragment>
   <form
     className="login-form"
