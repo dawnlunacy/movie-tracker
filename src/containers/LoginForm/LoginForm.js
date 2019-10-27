@@ -17,7 +17,6 @@ class LoginForm extends Component {
             isLoggedIn: false
         }
       }
-  
 
     handleChange = (e) => {
         let userInput = this.state.userInput;
@@ -88,8 +87,6 @@ class LoginForm extends Component {
                 <p> {this.state.error} </p>
                 </div>
             </form>
-
-          
         </>
         )
     }

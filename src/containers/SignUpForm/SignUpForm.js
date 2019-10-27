@@ -12,7 +12,7 @@ class SignUpForm extends Component {
           newUserInput: {
             name: '',
             email: '',
-            password: '',
+            password: ''
           },
           error: '',
           isLogginIn: false
@@ -42,7 +42,7 @@ class SignUpForm extends Component {
         const error = await response.json()
          if (error.error.detail.includes('email')) {
           this.setState({error: " That email is already taken " })
-        } 
+        }
       } else {
         const newUser = await response.json()
         saveUser(newUser);
