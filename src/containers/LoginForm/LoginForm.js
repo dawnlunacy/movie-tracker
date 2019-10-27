@@ -64,7 +64,9 @@ class LoginForm extends Component {
         }
         return (
             <>
-            <form>
+            <form className="login-form">
+                <div className="sign-up-background">
+                <h2> Login </h2>
                 <input
                     className="email-input"
                     type="text"
@@ -84,6 +86,7 @@ class LoginForm extends Component {
                 <button onClick={(e) => this.submitForm(e)}> LOGIN </button>
 
                 <p> {this.state.error} </p>
+                </div>
             </form>
 
           

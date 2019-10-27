@@ -1,0 +1,44 @@
+.login-form {
+    align-items: center;
+    background-color: #161616;
+    background-image: url('../../images/red-curtain-&-empty-theatre.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 30px;
+    width: 100vw;
+    margin: auto;
+}
+
+.sign-up-background {
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 15px;
+    margin-top: 15%;
+}
+
+input, label {
+    display: block;
+    text-align: center;
+    margin: 20px
+}
+
+input {
+    width: 425px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+h2 {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h3 {
+    color: #CC0000;
+}
+
+button {
+    margin: 10px;
+}
