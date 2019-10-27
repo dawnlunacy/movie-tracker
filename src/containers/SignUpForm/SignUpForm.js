@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser } from '../../actions/index';
+import { Redirect } from 'react-router-dom';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -13,12 +14,8 @@ class SignUpForm extends Component {
             email: '',
             password: ''
           },
-          newUser: {
-            name: '',
-            email: '',
-            id: null
-          },
-          error: ''
+          error: '',
+          isLogginIn: false
         }
     }
 
@@ -48,8 +45,8 @@ class SignUpForm extends Component {
         }
       } else {
         const newUser = await response.json()
-        this.setState({newUser:newUser || ''});
-        saveUser(this.state.newUser);
+        saveUser(newUser);
+        this.setState({isLogginIn: true})
       }
     }
 
@@ -63,6 +60,9 @@ class SignUpForm extends Component {
     }
 
     render() {
+      if (this.state.isLogginIn) {
+        return <Redirect to = '/' />
+      }
         return (
             <>
             <form>
