@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpForm from './SignUpForm';
+import { SignUpForm, mapDispatchToProps } from './SignUpForm';
 import { shallow } from 'enzyme';
 
 describe('SignUpForm', () => {
@@ -7,6 +7,7 @@ describe('SignUpForm', () => {
   beforeEach(() => {
     wrapper = shallow(<SignUpForm />);
   });
+
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
