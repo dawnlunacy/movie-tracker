@@ -18,10 +18,10 @@
 }
 
 .link {
-  color: green;
+  color: #1CBB9B;
   text-decoration: none;
 }
 
 .link:hover {
-  color: red;
+  color: #118971;
 }
