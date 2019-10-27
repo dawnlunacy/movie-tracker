@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
-// import { connect } from 'react-redux';
-// import { saveUser } from '../../actions/index';
+import { connect } from 'react-redux';
+import { saveUser } from '../../actions/index';
+import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -13,6 +14,7 @@ class LoginForm extends Component {
                 password: '',
             },
             error: '',
+            isLoggedIn: false
         }
       }
   
@@ -31,7 +33,7 @@ class LoginForm extends Component {
     }
 
     validateResponse = async (response) => {
-        // const { saveUser } = this.props;
+        const { saveUser } = this.props;
         if (!response.ok && response.status === 404) {
             this.setState({error: "There was a problem with the server. Please try again"})
           }
@@ -41,8 +43,8 @@ class LoginForm extends Component {
           } else {
           const newUser = await response.json()
           console.log("NEWUSER", newUser)
-        //   this.setState({currentUser: newUser });
-        //   saveUser(this.state.currentUser);
+          saveUser(newUser);
+          this.setState({isLoggedIn: true})
         }
       }
 
@@ -57,6 +59,9 @@ class LoginForm extends Component {
 
 
     render() {
+        if (this.state.isLoggedIn) {
+            return <Redirect to = '/' />
+        }
         return (
             <>
             <form>
@@ -79,7 +84,6 @@ class LoginForm extends Component {
                 <button onClick={(e) => this.submitForm(e)}> LOGIN </button>
 
                 <p> {this.state.error} </p>
-                <p> {this.state.currentUser} </p>
             </form>
 
           
@@ -88,11 +92,10 @@ class LoginForm extends Component {
     }
 }
     
-// export const mapDispatchToProps = dispatch => ({
-//     saveUser: currentUser => dispatch(saveUser(currentUser))
-// })
+export const mapDispatchToProps = dispatch => ({
+    saveUser: currentUser => dispatch(saveUser(currentUser))
+})
 
-// export default connect(null, mapDispatchToProps)(LoginForm)
+export default connect(null, mapDispatchToProps)(LoginForm)
 
-export default LoginForm;
 
