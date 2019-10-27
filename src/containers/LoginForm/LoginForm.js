@@ -5,7 +5,7 @@ import { saveUser } from '../../actions/index';
 import { Redirect, Link } from 'react-router-dom';
 import './LoginForm.css';
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
     constructor() {
         super()
         this.state = {
