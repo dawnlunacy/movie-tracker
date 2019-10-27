@@ -1,52 +1,60 @@
 import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
+// import { connect } from 'react-redux';
+// import { saveUser } from '../../actions/index';
 import './LoginForm.css';
 
 class LoginForm extends Component {
     constructor() {
         super()
         this.state = {
-            user: {
+            userInput: {
                 email: '',
                 password: '',
             },
             error: '',
-            currentUser: ''
         }
       }
   
 
     handleChange = (e) => {
-        let user = this.state.user;
-      user = {...user, [e.target.name]: e.target.value}
-        this.setState({user: user})
+        let userInput = this.state.userInput;
+      userInput = {...userInput, [e.target.name]: e.target.value}
+        this.setState({userInput: userInput})
     }
     
     submitForm = async (e) => {
         e.preventDefault();
-        const userVerification = await getUser(this.state.user, 'http://localhost:3001/api/v1/login')
-            if(!userVerification.ok) {
-                const error = await userVerification.json()
-                console.log("Error", error)
-                this.setState({error: error.error})
-            } else {
-                const user = await userVerification.json()
-                this.setState({currentUser: user.name})
-            }
+        const userVerification = await getUser(this.state.userInput, 'http://localhost:3001/api/v1/login');
+        this.validateResponse(userVerification)
         this.resetInputs()
     }
 
+    validateResponse = async (response) => {
+        // const { saveUser } = this.props;
+        if (!response.ok && response.status === 404) {
+            this.setState({error: "There was a problem with the server. Please try again"})
+          }
+        if (!response.ok) {
+            const error = await response.json()
+            this.setState({error: error.error})
+          } else {
+          const newUser = await response.json()
+          console.log("NEWUSER", newUser)
+        //   this.setState({currentUser: newUser });
+        //   saveUser(this.state.currentUser);
+        }
+      }
+
     resetInputs = () => {
       this.setState({
-          user: {
+          userInput: {
               email: '',
               password: ''
           }
       })
     }
 
-      
-    
 
     render() {
         return (
@@ -69,15 +77,22 @@ class LoginForm extends Component {
                     onChange={this.handleChange}
                 />
                 <button onClick={(e) => this.submitForm(e)}> LOGIN </button>
+
+                <p> {this.state.error} </p>
+                <p> {this.state.currentUser} </p>
             </form>
 
-            <p> {this.state.error} </p>
-            <p> {this.state.currentUser} </p>
+          
         </>
         )
     }
 }
     
+// export const mapDispatchToProps = dispatch => ({
+//     saveUser: currentUser => dispatch(saveUser(currentUser))
+// })
+
+// export default connect(null, mapDispatchToProps)(LoginForm)
 
 export default LoginForm;
 
