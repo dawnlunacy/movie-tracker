@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser } from '../../actions/index';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -32,18 +32,13 @@ class LoginForm extends Component {
       this.setState({formReady: false})
       if (this.state.userInput.email !== '' &&
         this.state.userInput.password !== '') {
-        this.setState({formReady: true}, () => {
-            console.log("form REady", this.state.formReady)
-            console.log("email", this.state.userInput.email)
-            console.log("password", this.state.userInput.email)
-                })
+        this.setState({formReady: true})
             }
     }
     
     submitForm = async (e) => {
         e.preventDefault();
         await this.checkInputsForValues();    
-        console.log("FORM READY STATUS", this.state.formReady)    
         if (!this.state.formReady) {
           this.setState({error: "Please fill out all inputs to log in."})
         } else {
@@ -86,7 +81,7 @@ class LoginForm extends Component {
         return (
             <>
             <form className="login-form">
-                <div className="sign-up-background">
+                <div className="log-in-background">
                 <h2> Login </h2>
                 <input
                     className="email-input"
@@ -104,9 +99,13 @@ class LoginForm extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}
                 />
-                <button onClick={(e) => this.submitForm(e)}> LOGIN </button>
+                <button className="form-btn" onClick={(e) => this.submitForm(e)}> LOGIN </button>
 
-                <p> {this.state.error} </p>
+                <h3> {this.state.error} </h3>
+                <div className="login-to-sign-up">
+                    <h4 className="prompt-to-sign-up"> Don't have an account? </h4>    
+                    <Link to ="/signup"> <button className="sign-up-btn"> SIGN UP</button> </Link>
+                </div>
                 </div>
             </form>
         </>
