@@ -56,4 +56,25 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction)
   });
 
+  it('should have a type of SAVE_USER', () => {
+    const currentUser = {
+      name: 'Jack Skelington',
+      email: 'jack.skelington@halloweentown.com',
+      id: 666
+    }
+
+    const expectedAction = {
+      type: 'SAVE_USER',
+      currentUser: {
+        name: 'Jack Skelington',
+        email: 'jack.skelington@halloweentown.com',
+        id: 666
+      }
+    }
+
+    const result = actions.saveUser(currentUser)
+
+    expect(result).toEqual(expectedAction)
+  });
+
 });
