@@ -35,7 +35,7 @@ class LoginForm extends Component {
         this.setState({formReady: true})
             }
     }
-    
+
     submitForm = async (e) => {
         e.preventDefault();
         await this.checkInputsForValues();    
@@ -112,11 +112,9 @@ class LoginForm extends Component {
         )
     }
 }
-    
+
 export const mapDispatchToProps = dispatch => ({
     saveUser: currentUser => dispatch(saveUser(currentUser))
 })
 
 export default connect(null, mapDispatchToProps)(LoginForm)
-
-
