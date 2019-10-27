@@ -16,3 +16,12 @@
 .nav-user-options {
   display: flex;
 }
+
+.link {
+  color: green;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: red;
+}
