@@ -23,7 +23,7 @@ class LoginForm extends Component {
       userInput = {...userInput, [e.target.name]: e.target.value}
         this.setState({userInput: userInput})
     }
-    
+
     submitForm = async (e) => {
         e.preventDefault();
         const userVerification = await getUser(this.state.userInput, 'http://localhost:3001/api/v1/login');
@@ -41,7 +41,6 @@ class LoginForm extends Component {
             this.setState({error: error.error})
           } else {
           const newUser = await response.json()
-          console.log("NEWUSER", newUser)
           saveUser(newUser);
           this.setState({isLoggedIn: true})
         }
@@ -91,11 +90,9 @@ class LoginForm extends Component {
         )
     }
 }
-    
+
 export const mapDispatchToProps = dispatch => ({
     saveUser: currentUser => dispatch(saveUser(currentUser))
 })
 
 export default connect(null, mapDispatchToProps)(LoginForm)
-
-
