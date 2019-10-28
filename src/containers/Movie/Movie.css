@@ -2,6 +2,9 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  margin-top: 260px;
   transition: all .2s ease-in-out;
 }
 
@@ -12,13 +15,9 @@
 .movie-img {
   align-items: center;
   background-color: #FFFFFF;
-  height: 400px;
-  margin: 20px 20px 0 20px;
-  width: 300px;
-}
-
-.poster-img {
-  width: 89%;
+  height: 375px;
+  margin: 40px 10px 0 10px;
+  width: 250px;
 }
 
 .movie-text {
@@ -27,14 +26,18 @@
   display: flex;
   flex-direction: column;
   height: 100px;
-  margin: 0 20px 20px 20px;
-  width: 300px;
+  margin: 0 10px 10px 10px;
+  width: 250px;
+}
+
+.poster-img {
+  width: 100%;
 }
 
 .movie-star {
-  position: absolute;
   cursor: pointer;
-  top: 400px;
+  position: absolute;
+  margin-top: 158px;
   width: 50px;
 }
 

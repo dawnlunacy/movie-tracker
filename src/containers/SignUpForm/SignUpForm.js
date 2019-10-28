@@ -17,7 +17,7 @@ export class SignUpForm extends Component {
           error: '',
           formReady: false,
           isLogginIn: false,
-        } 
+        }
     }
 
     handleChange = (e) => {
@@ -25,28 +25,27 @@ export class SignUpForm extends Component {
       let newUserInfo = this.state.newUserInput;
       newUserInfo = {...newUserInfo, [e.target.name]: e.target.value}
       this.setState({newUserInput: newUserInfo})
-      
+
     }
 
     async checkInputsForValues() {
       this.setState({formReady: false})
-      if (this.state.newUserInput.name !== '' && 
-        this.state.newUserInput.email !== '' && 
+      if (this.state.newUserInput.name !== '' &&
+        this.state.newUserInput.email !== '' &&
         this.state.newUserInput.password !== '') {
         this.setState({formReady: true})
-      } 
+      }
     }
 
     submitForm = async (e) => {
         e.preventDefault();
-        await this.checkInputsForValues();    
+        await this.checkInputsForValues();
         if (!this.state.formReady ) {
           this.setState({error: "Please fill out all inputs to create an account."})
         } else {
           const createUser = await getUser(this.state.newUserInput, 'http://localhost:3001/api/v1/users')
           this.validateResponse(createUser)
         }
-        
     }
 
     validateResponse = async (response) => {
@@ -117,11 +116,11 @@ export class SignUpForm extends Component {
                   value={this.state.newUserInput.password}
                   onChange={this.handleChange}
                 />
-                <button className="form-btn" onClick={(e) => this.submitForm(e)}> SIGN UP 
+                <button className="form-btn" onClick={(e) => this.submitForm(e)}> SIGN UP
                 </button>
                 <h3> {this.state.error} </h3>
                 <div className="login-to-sign-up">
-                    <h4 className="prompt-to-login"> Already have an account? </h4>    
+                    <h4 className="prompt-to-login"> Already have an account? </h4>
                     <Link to ="/login"> <button className="login-btn"> LOGIN </button> </Link>
                 </div>
               </div>
