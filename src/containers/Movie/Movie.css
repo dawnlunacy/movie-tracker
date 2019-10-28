@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  margin-top: 260px;
   transition: all .2s ease-in-out;
 }
 
@@ -34,9 +35,9 @@
 }
 
 .movie-star {
-  position: absolute;
   cursor: pointer;
-  top: 395px;
+  position: absolute;
+  margin-top: 158px;
   width: 50px;
 }
 
