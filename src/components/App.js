@@ -11,7 +11,6 @@ import { fetchData, postFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
-import { favorited } from '../reducers/favorited';
 
 export class App extends Component {
 
