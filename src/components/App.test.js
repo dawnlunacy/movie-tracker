@@ -22,7 +22,6 @@ describe('App', () => {
 
   beforeEach(() => {
     wrapper = shallow(<App 
-      //see what is defined inside of mapState and mapDispatch
       currentUser={ mockCurrentUser }
       loading = {false}
       getMovies = {mockGetMovies}

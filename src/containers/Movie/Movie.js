@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import star from '../../images/MovieTracker_star.svg';
 import starFav from '../../images/MovieTracker_star_fav.svg';
 
-const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overview, makeFavorite, currentUser, favorited, toggleStar }) => {
+const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overview, toggleFavorite, currentUser, favorited, toggleStar }) => {
 
   let isFavorite = favorited.find((favorite) => {
     return favorite.movie_id === movie_id
