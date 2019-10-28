@@ -46,7 +46,6 @@ export class SignUpForm extends Component {
           const createUser = await getUser(this.state.newUserInput, 'http://localhost:3001/api/v1/users')
           this.validateResponse(createUser)
         }
-
     }
 
     validateResponse = async (response) => {
