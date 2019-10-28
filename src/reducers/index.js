@@ -3,12 +3,12 @@ import { movies } from './movies';
 import { errorMessage } from './errorMessage';
 import { loading } from './loading';
 import { currentUser } from './currentUser';
-import { favoritedId } from './favoritedId';
+import { favorited } from './favorited';
 
 export const rootReducer = combineReducers({
   movies,
   errorMessage,
   loading,
   currentUser,
-  favoritedId
+  favorited
 });

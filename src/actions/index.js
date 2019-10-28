@@ -23,7 +23,7 @@ export const logoutUser = currentUser => ({
   currentUser
 });
 
-export const saveFavoritedId = favoritedId => ({
-  type: 'SAVE_FAVORITED_ID',
-  favoritedId
+export const saveFavorited = favorited => ({
+  type: 'SAVE_FAVORITED',
+  favorited
 });

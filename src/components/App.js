@@ -6,12 +6,12 @@ import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies, handleError, isLoading, saveUser, saveFavoritedId } from '../actions';
-import { fetchData, getUser, postFavorite } from '../utils/apiCalls';
+import { getMovies, handleError, isLoading, saveUser, saveFavorited } from '../actions';
+import { fetchData, postFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
-import { favoritedId } from '../reducers/favoritedId';
+import { favorited } from '../reducers/favorited';
 
 export class App extends Component {
 
@@ -36,17 +36,18 @@ export class App extends Component {
       return
     } else {
       const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${currentUser.id}/moviefavorites`)
+      console.log('in getFavorites--->>>', favoriteMovies)
       return favoriteMovies
     }
   }
 
   makeFavorite = async (movieInfo, id) => {
-    const { currentUser, saveFavoritedId } = this.props
+    const { currentUser, saveFavorited } = this.props
     if(currentUser === null) {
       return
     } else {
       const postedFavorite = await postFavorite(movieInfo, id)
-      saveFavoritedId(movieInfo.movie_id)
+      saveFavorited(movieInfo)
       return postedFavorite
     }
   }
@@ -73,7 +74,7 @@ export class App extends Component {
 export const mapStateToProps = state => ({
   currentUser: state.currentUser,
   loading: state.loading, 
-  favoritedId: state.favoritedId
+  favorited: state.favorited
 });
 
 export const mapDispatchToProps = dispatch => (
@@ -83,7 +84,7 @@ export const mapDispatchToProps = dispatch => (
       handleError,
       isLoading,
       saveUser,
-      saveFavoritedId
+      saveFavorited
     },
   dispatch)
 )
