@@ -6,8 +6,8 @@ import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies, handleError, isLoading, saveUser, saveFavorited } from '../actions';
-import { fetchData, postFavorite } from '../utils/apiCalls';
+import { getMovies, handleError, isLoading, saveUser, saveNewFavorite, deleteStoredFavorite } from '../actions';
+import { fetchData, postFavorite, deleteFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
@@ -16,7 +16,7 @@ export class App extends Component {
 
   async componentDidMount() {
     const { getMovies, handleError, isLoading } = this.props
-
+    
     try {
       isLoading(true)
       const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
@@ -29,25 +29,22 @@ export class App extends Component {
     }
   }
 
-  getFavorites = async () => {
-    const { currentUser } = this.props
-    if(currentUser === null) {
+  toggleFavorite = async (movieInfo, id) => {
+    const { currentUser, saveNewFavorite, deleteStoredFavorite, favorited } = this.props
+    if (currentUser === null) {
       return
     } else {
-      const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${currentUser.id}/moviefavorites`)
-      console.log('in getFavorites--->>>', favoriteMovies)
-      return favoriteMovies
-    }
-  }
-
-  makeFavorite = async (movieInfo, id) => {
-    const { currentUser, saveFavorited } = this.props
-    if(currentUser === null) {
-      return
-    } else {
-      const postedFavorite = await postFavorite(movieInfo, id)
-      saveFavorited(movieInfo)
-      return postedFavorite
+      if (favorited.find(favoriteMovie => {
+        return favoriteMovie.movie_id === movieInfo.movie_id
+      })) {
+        const deletedFavorite = await deleteFavorite(currentUser.id, movieInfo.movie_id)
+        deleteStoredFavorite(movieInfo.movie_id)
+        return deletedFavorite
+      } else {
+        const postedFavorite = await postFavorite(movieInfo, id)
+        saveNewFavorite(movieInfo)
+        return postedFavorite
+      }
     }
   }
 
@@ -62,7 +59,7 @@ export class App extends Component {
               <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
-            <MoviesContainer makeFavorite={this.makeFavorite}/>
+            <MoviesContainer toggleFavorite={this.toggleFavorite}/>
           </>
         } />
         </div>
@@ -83,7 +80,8 @@ export const mapDispatchToProps = dispatch => (
       handleError,
       isLoading,
       saveUser,
-      saveFavorited
+      saveNewFavorite,
+      deleteStoredFavorite
     },
   dispatch)
 )

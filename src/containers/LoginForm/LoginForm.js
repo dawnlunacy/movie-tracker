@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { getUser } from '../../utils/apiCalls';
+import { fetchData, getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
-import { saveUser } from '../../actions/index';
+import { saveUser, retrieveFavorited } from '../../actions/index';
 import { Redirect, Link } from 'react-router-dom';
 import './LoginForm.css';
 
@@ -46,22 +46,31 @@ export class LoginForm extends Component {
           this.validateResponse(userVerification)
         }
         
-    }
-
-    validateResponse = async (response) => {
-        const { saveUser } = this.props;
+      }
+      
+      validateResponse = async (response) => {
+        const { saveUser, retrieveFavorited } = this.props;
         if (!response.ok && response.status === 404) {
-            this.setState({error: "There was a problem with the server. Please try again"})
-          }
+          this.setState({error: "There was a problem with the server. Please try again"})
+        }
         if (!response.ok) {
-            const error = await response.json()
-            this.setState({error: error.error})
-          } else {
+          const error = await response.json()
+          this.setState({error: error.error})
+        } else {
           const newUser = await response.json()
           saveUser(newUser);
           this.setState({isLoggedIn: true})
+          const moviesToSave = await this.getFavorites(newUser.id)
+          console.log('movietosave===>>', moviesToSave.favorites)
+          retrieveFavorited(moviesToSave.favorites)
           this.resetInputs()
         }
+      }
+
+      getFavorites = async (id) => {
+          const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${id}/moviefavorites`)
+          console.log('in getFavorites--->>>', favoriteMovies)
+          return favoriteMovies
       }
 
     resetInputs = () => {
@@ -113,8 +122,13 @@ export class LoginForm extends Component {
     }
 }
 
+export const mapStateToProps = state => ({
+  currentUser: state.currentUser,
+});
+
 export const mapDispatchToProps = dispatch => ({
-    saveUser: currentUser => dispatch(saveUser(currentUser))
+  retrieveFavorited: favorited => dispatch(retrieveFavorited(favorited)),
+  saveUser: currentUser => dispatch(saveUser(currentUser))
 })
 
 export default connect(null, mapDispatchToProps)(LoginForm)
