@@ -6,11 +6,12 @@ import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies, handleError, isLoading, saveUser } from '../actions';
+import { getMovies, handleError, isLoading, saveUser, saveFavoritedId } from '../actions';
 import { fetchData, getUser, postFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
+import { favoritedId } from '../reducers/favoritedId';
 
 export class App extends Component {
 
@@ -40,11 +41,12 @@ export class App extends Component {
   }
 
   makeFavorite = async (movieInfo, id) => {
-    const { currentUser } = this.props
+    const { currentUser, saveFavoritedId } = this.props
     if(currentUser === null) {
       return
     } else {
       const postedFavorite = await postFavorite(movieInfo, id)
+      saveFavoritedId(movieInfo.movie_id)
       return postedFavorite
     }
   }
@@ -70,7 +72,8 @@ export class App extends Component {
 
 export const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  loading: state.loading
+  loading: state.loading, 
+  favoritedId: state.favoritedId
 });
 
 export const mapDispatchToProps = dispatch => (
@@ -79,7 +82,8 @@ export const mapDispatchToProps = dispatch => (
       getMovies,
       handleError,
       isLoading,
-      saveUser
+      saveUser,
+      saveFavoritedId
     },
   dispatch)
 )
