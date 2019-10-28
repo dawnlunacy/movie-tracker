@@ -42,7 +42,7 @@ export class App extends Component {
         deleteStoredFavorite(movieInfo)
         return deletedFavorite
       } else {
-        console.log('ughhh', favorited)
+        console.log('should post ===>>', favorited)
         const postedFavorite = await postFavorite(movieInfo, id)
         saveNewFavorite(movieInfo)
         return postedFavorite
