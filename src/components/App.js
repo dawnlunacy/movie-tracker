@@ -51,6 +51,16 @@ export class App extends Component {
     }
   }
 
+  toggleStar = movieId => {
+    const { favorited } = this.props
+    console.log('favorited', favorited)
+    return favorited.find((favorite) => {
+      console.log('fm', favorite.movie_id)
+      console.log('md', movieId)
+      return favorite.movie_id === movieId
+    })
+  }
+
   render() {
     return (
         <div className="App">
@@ -62,7 +72,7 @@ export class App extends Component {
               <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
-            <MoviesContainer makeFavorite={this.makeFavorite}/>
+            <MoviesContainer makeFavorite={this.makeFavorite} toggleStar={this.toggleStar}/>
           </>
         } />
         </div>
@@ -72,7 +82,7 @@ export class App extends Component {
 
 export const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  loading: state.loading, 
+  loading: state.loading,
   favorited: state.favorited
 });
 
