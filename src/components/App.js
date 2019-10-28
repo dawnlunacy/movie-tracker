@@ -7,7 +7,7 @@ import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovies, handleError, isLoading, saveUser, saveNewFavorite } from '../actions';
-import { fetchData, postFavorite } from '../utils/apiCalls';
+import { fetchData, postFavorite, deleteFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
@@ -29,14 +29,24 @@ export class App extends Component {
     }
   }
 
-  makeFavorite = async (movieInfo, id) => {
-    const { currentUser, saveNewFavorite } = this.props
+  toggleFavorite = async (movieInfo, id) => {
+    const { currentUser, saveNewFavorite, favorited } = this.props
     if(currentUser === null) {
       return
     } else {
-      const postedFavorite = await postFavorite(movieInfo, id)
-      saveNewFavorite(movieInfo)
-      return postedFavorite
+      if(favorited.find(favoriteMovie => {
+        return favoriteMovie.movie_id === movieInfo.movie_id
+      })) {
+        console.log('**movie ALREADY in store**')
+        const deletedFavorite = await deleteFavorite(movieInfo, id)
+        //will be method to delete from array in store
+        return deletedFavorite
+      } else {
+        console.log('ughhh', favorited)
+        const postedFavorite = await postFavorite(movieInfo, id)
+        saveNewFavorite(movieInfo)
+        return postedFavorite
+      }
     }
   }
 
@@ -51,7 +61,7 @@ export class App extends Component {
               <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
-            <MoviesContainer makeFavorite={this.makeFavorite}/>
+            <MoviesContainer toggleFavorite={this.toggleFavorite}/>
           </>
         } />
         </div>
