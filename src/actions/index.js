@@ -23,7 +23,12 @@ export const logoutUser = currentUser => ({
   currentUser
 });
 
-export const saveFavorited = favorited => ({
-  type: 'SAVE_FAVORITED',
+export const saveNewFavorite = favorited => ({
+  type: 'SAVE_NEW_FAVORITE',
+  favorited
+})
+
+export const retrieveFavorited = favorited => ({
+  type: 'RETRIEVE_FAVORITED',
   favorited
 });

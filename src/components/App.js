@@ -6,7 +6,7 @@ import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies, handleError, isLoading, saveUser, saveFavorited } from '../actions';
+import { getMovies, handleError, isLoading, saveUser, saveNewFavorite } from '../actions';
 import { fetchData, postFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
@@ -16,7 +16,7 @@ export class App extends Component {
 
   async componentDidMount() {
     const { getMovies, handleError, isLoading } = this.props
-
+    
     try {
       isLoading(true)
       const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
@@ -29,24 +29,24 @@ export class App extends Component {
     }
   }
 
-  getFavorites = async () => {
-    const { currentUser } = this.props
-    if(currentUser === null) {
-      return
-    } else {
-      const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${currentUser.id}/moviefavorites`)
-      console.log('in getFavorites--->>>', favoriteMovies)
-      return favoriteMovies
-    }
-  }
+  // getFavorites = async () => {
+  //   const { currentUser } = this.props
+  //   if(currentUser === null) {
+  //     return
+  //   } else {
+  //     const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${currentUser.id}/moviefavorites`)
+  //     console.log('in getFavorites--->>>', favoriteMovies)
+  //     return favoriteMovies
+  //   }
+  // }
 
   makeFavorite = async (movieInfo, id) => {
-    const { currentUser, saveFavorited } = this.props
+    const { currentUser, saveNewFavorite } = this.props
     if(currentUser === null) {
       return
     } else {
       const postedFavorite = await postFavorite(movieInfo, id)
-      saveFavorited(movieInfo)
+      saveNewFavorite(movieInfo)
       return postedFavorite
     }
   }
@@ -83,7 +83,7 @@ export const mapDispatchToProps = dispatch => (
       handleError,
       isLoading,
       saveUser,
-      saveFavorited
+      saveNewFavorite
     },
   dispatch)
 )
