@@ -1,11 +1,12 @@
 import React from 'react';
-import { LoginForm } from './LoginForm';
+import { LoginForm, mapDispatchToProps } from './LoginForm';
 import { shallow } from 'enzyme';
 import { getUser } from '../../utils/apiCalls';
-// import { saveUser } from '../../actions/index';
-jest.mock('../../actions/index');
+import { saveUser } from '../../actions/index';
+// jest.mock('../../actions/index');
 
 console.log('getUser', getUser)
+console.log('saveUser', saveUser)
 
 describe('LoginFormContainer', () => {
   describe('AddTodoForm component', () => {
@@ -118,5 +119,24 @@ describe('LoginFormContainer', () => {
 
       expect(wrapper.instance().checkInputsForValues).toHaveBeenCalled();
     })
+  })
+
+  describe('mapDispatchToProps', () => {
+    it('calls dispatch with an saveUser action when validateResponse is called with a successful response', () => {
+      const mockDispatch = jest.fn();
+      const mockResponse = {
+        "id": 3,
+        "name": "Lacy",
+        "email": "rudd.lacy@gmail.com"
+    }
+
+      const actionToDispatch = saveUser(mockResponse);
+
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.saveUser(mockResponse);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+
+    })  
   })
 })
