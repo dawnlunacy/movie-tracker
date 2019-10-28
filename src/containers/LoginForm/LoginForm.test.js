@@ -109,15 +109,18 @@ describe('LoginFormContainer', () => {
       expect(wrapper.state()).toEqual(expected);
     })
 
-    it('should call checkInputsForValues when submitForm is called', () => {
+    it('should call submitForm is when the login button is clicked', () => {
       const mockEvent = { preventDefault: jest.fn() };
-      // console.log("Wrapper", wrapper.instance())
-      getUser.mockImplementation(() => {
-        return Promise.resolve([{id: 2, name:'Lacy', email:'rudd.lacy@gmail.com'}])
-      })
-      wrapper.instance().sumbitForm(mockEvent);
+      wrapper.instance().submitForm = jest.fn();
+      wrapper.instance().forceUpdate();
 
-      expect(wrapper.instance().checkInputsForValues).toHaveBeenCalled();
+      wrapper.find('button').at(0).simulate('click', mockEvent);
+
+      expect(wrapper.instance().submitForm).toHaveBeenCalled();
+    });
+
+    it('should call validateResponse from submitForm', () => {
+      const mockEvent = { preventDefault: jest.fn() };
     })
   })
 
@@ -136,7 +139,6 @@ describe('LoginFormContainer', () => {
       mappedProps.saveUser(mockResponse);
 
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-
-    })  
-  })
-})
+    });
+  });
+});
