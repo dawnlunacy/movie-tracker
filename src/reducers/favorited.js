@@ -1,7 +1,7 @@
-export const favorited = (state = [], action) => {
+export const favorited = (state = null, action) => {
   switch (action.type) {
     case 'RETRIEVE_FAVORITED':
-      return [...state, action.favorited]
+      return action.favorited
     default:
       return state
   }

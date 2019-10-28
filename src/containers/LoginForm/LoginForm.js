@@ -62,7 +62,7 @@ export class LoginForm extends Component {
           this.setState({isLoggedIn: true})
           const moviesToSave = await this.getFavorites(newUser.id)
           console.log('movietosave===>>', moviesToSave.favorites)
-          retrieveFavorited(moviesToSave.favorites[0])
+          retrieveFavorited(moviesToSave.favorites)
           this.resetInputs()
         }
       }
