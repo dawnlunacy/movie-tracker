@@ -6,7 +6,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     position: absolute;
-    top: 15px;
+    top: -25px;
 }
 
 .movies-container {
