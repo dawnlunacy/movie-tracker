@@ -1,35 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginForm should match snapshot 1`] = `
+exports[`LoginFormContainer AddTodoForm component should match snapshot 1`] = `
 <Fragment>
-  <form>
-    <input
-      className="email-input"
-      name="email"
-      onChange={[Function]}
-      placeholder="Enter Email"
-      type="text"
-    />
-    <input
-      className="password-input"
-      name="password"
-      onChange={[Function]}
-      placeholder="Enter Password"
-      type="text"
-    />
-    <button
-      onClick={[Function]}
+  <form
+    className="login-form"
+  >
+    <div
+      className="log-in-background"
     >
-       LOGIN 
-    </button>
+      <h2>
+         Login 
+      </h2>
+      <input
+        className="email-input"
+        name="email"
+        onChange={[Function]}
+        placeholder="Enter Email"
+        type="text"
+      />
+      <input
+        className="password-input"
+        name="password"
+        onChange={[Function]}
+        placeholder="Enter Password"
+        type="text"
+      />
+      <button
+        className="form-btn"
+        onClick={[Function]}
+      >
+         LOGIN 
+      </button>
+      <h3>
+         
+         
+      </h3>
+      <div
+        className="login-to-sign-up"
+      >
+        <h4
+          className="prompt-to-sign-up"
+        >
+           Don't have an account? 
+        </h4>
+        <Link
+          to="/signup"
+        >
+           
+          <button
+            className="sign-up-btn"
+          >
+             SIGN UP
+          </button>
+           
+        </Link>
+      </div>
+    </div>
   </form>
-  <p>
-     
-     
-  </p>
-  <p>
-     
-     
-  </p>
 </Fragment>
 `;
