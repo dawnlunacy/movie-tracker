@@ -68,14 +68,9 @@ export class LoginForm extends Component {
       }
 
       getFavorites = async (id) => {
-        // const { currentUser } = this.props
-        // if(currentUser === null) {
-          // return
-        // } else {
           const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${id}/moviefavorites`)
           console.log('in getFavorites--->>>', favoriteMovies)
           return favoriteMovies
-        // }
       }
 
     resetInputs = () => {
