@@ -1,4 +1,3 @@
-
 export const fetchData = async(url)  => {
   const response = await fetch(url)
   if(response.ok) {
@@ -33,7 +32,6 @@ export const postFavorite = async (movieInfo, id) => {
 
   const response = await fetch(`http://localhost:3001/api/v1/users/${id}/moviefavorites`, options)
   const data = await response.json();
-  console.log('postFavorite data--->', data)
     return data
 }
 
@@ -46,5 +44,4 @@ export const deleteFavorite = async (userId, movieId) => {
   }
 
   const response = await fetch(`http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movieId}`, options);
-  console.log('delete response--->', response)
 }

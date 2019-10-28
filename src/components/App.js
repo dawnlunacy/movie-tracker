@@ -37,12 +37,10 @@ export class App extends Component {
       if(favorited.find(favoriteMovie => {
         return favoriteMovie.movie_id === movieInfo.movie_id
       })) {
-        console.log('**movie ALREADY in store**')
         const deletedFavorite = await deleteFavorite(currentUser.id, movieInfo.movie_id)
         deleteStoredFavorite(movieInfo.movie_id)
         return deletedFavorite
       } else {
-        console.log('should post ===>>', favorited)
         const postedFavorite = await postFavorite(movieInfo, id)
         saveNewFavorite(movieInfo)
         return postedFavorite
