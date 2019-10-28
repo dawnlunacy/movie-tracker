@@ -53,10 +53,7 @@ export class App extends Component {
 
   toggleStar = movieId => {
     const { favorited } = this.props
-    console.log('favorited', favorited)
     return favorited.find((favorite) => {
-      console.log('fm', favorite.movie_id)
-      console.log('md', movieId)
       return favorite.movie_id === movieId
     })
   }
