@@ -15,7 +15,7 @@
 .sign-up-background {
     background-color: rgba(0, 0, 0, 0.55);
     border-radius: 15px;
-    height: 500px;    
+    height: 500px;
     margin-top: 13%;
 }
 
@@ -60,6 +60,7 @@ h3 {
 .sign-up-btn {
     border-radius: 10px;
     height: 25px;
+    margin-bottom: 24px;
     width: 100px;
 }
 
