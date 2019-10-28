@@ -33,7 +33,7 @@ export const retrieveFavorited = favorited => ({
   favorited
 });
 
-export const deleteStoredFavorite = favorited => ({
+export const deleteStoredFavorite = id => ({
   type: 'DELETE_STORED_FAVORITE',
-  favorited
+  id
 });

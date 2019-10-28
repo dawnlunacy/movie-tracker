@@ -5,8 +5,7 @@ export const favorited = (state = [], action) => {
     case 'SAVE_NEW_FAVORITE':
       return [...state, action.favorited]
     case 'DELETE_STORED_FAVORITE':
-      console.log('in fav reducer--->', action.favorited)
-      state = state.filter(movie => movie !== action.favorited)
+      state = state.filter(movie => movie.movie_id !== action.id)
       return state
     default:
       return state

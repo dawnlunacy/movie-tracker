@@ -46,8 +46,5 @@ export const deleteFavorite = async (userId, movieId) => {
   }
 
   const response = await fetch(`http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movieId}`, options);
-  console.log('gimme dat 204--->', response)
-  // const data = await response.json();
-  // console.log('deleteFavorite data---->', data)
-  //   return data
+  console.log('delete response--->', response)
 }
