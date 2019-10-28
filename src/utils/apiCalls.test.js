@@ -62,7 +62,7 @@ describe('apiCalls', () => {
         expect(window.fetch).toHaveBeenCalledWith(mockUrl);
       });
   
-      it('should return an array of moviesv(HAPPY)', () => {
+      it('should return an array of movies (HAPPY)', () => {
         const mockUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56';
 
         fetchData(mockUrl)
