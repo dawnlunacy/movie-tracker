@@ -16,9 +16,14 @@ export const isLoading = boolean => ({
 export const saveUser = currentUser => ({
   type: 'SAVE_USER',
   currentUser
-})
+});
 
 export const logoutUser = currentUser => ({
   type: 'LOGOUT_USER',
   currentUser
-})
+});
+
+export const saveFavoritedId = favoritedId => ({
+  type: 'SAVE_FAVORITED_ID',
+  favoritedId
+});
