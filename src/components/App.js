@@ -38,7 +38,7 @@ export class App extends Component {
         return favoriteMovie.movie_id === movieInfo.movie_id
       })) {
         console.log('**movie ALREADY in store**')
-        const deletedFavorite = await deleteFavorite(movieInfo, id)
+        const deletedFavorite = await deleteFavorite(currentUser.id, movieInfo.movie_id)
         //will be method to delete from array in store
         return deletedFavorite
       } else {
