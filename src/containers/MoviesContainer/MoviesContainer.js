@@ -3,16 +3,18 @@ import Movie from '../Movie/Movie';
 import { connect } from 'react-redux';
 import './MoviesContainer.css'
 
-export const MoviesContainer = ({ movies, errorMessage }) => {
+export const MoviesContainer = ({ movies, errorMessage, makeFavorite }) => {
   const moviesToDisplay = movies.map(movie => {
-    const { id, title, poster, rating, overview } = movie
+    const { movie_id, title, poster_path, release_date, vote_average, overview } = movie
     return <Movie
-      key = {id}
-      id = {id}
+      key = {movie_id}
+      movie_id = {movie_id}
       title = {title}
-      poster = {poster}
-      rating = {rating}
+      poster_path = {poster_path}
+      release_date = {release_date}
+      vote_average = {vote_average}
       overview = {overview}
+      makeFavorite = {makeFavorite}
     />
   })
 
@@ -25,7 +27,6 @@ export const MoviesContainer = ({ movies, errorMessage }) => {
     </div>
   )
 }
-
 
 export const mapStateToProps = state => ({
   movies: state.movies,

@@ -110,7 +110,7 @@ describe('LoginFormContainer', () => {
 
     it('should call checkInputsForValues when submitForm is called', () => {
       const mockEvent = { preventDefault: jest.fn() };
-      console.log("Wrapper", wrapper.instance())
+      // console.log("Wrapper", wrapper.instance())
       getUser.mockImplementation(() => {
         return Promise.resolve([{id: 2, name:'Lacy', email:'rudd.lacy@gmail.com'}])
       })

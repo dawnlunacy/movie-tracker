@@ -1,3 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignUpForm should match snapshot 1`] = `undefined`;
+exports[`SignUpForm should match snapshot 1`] = `
+<Fragment>
+  <form
+    className="sign-up-form"
+  >
+    <div
+      className="sign-up-background"
+    >
+      <h2>
+         Sign Up 
+      </h2>
+      <input
+        className="name-input"
+        name="name"
+        onChange={[Function]}
+        placeholder="Enter Name"
+        type="text"
+        value=""
+      />
+      <input
+        className="email-input"
+        name="email"
+        onChange={[Function]}
+        placeholder="Enter Email"
+        type="text"
+        value=""
+      />
+      <input
+        className="password-input"
+        name="password"
+        onChange={[Function]}
+        placeholder="Enter Password"
+        type="text"
+        value=""
+      />
+      <button
+        className="form-btn"
+        onClick={[Function]}
+      >
+         SIGN UP
+      </button>
+      <h3>
+         
+         
+      </h3>
+      <div
+        className="login-to-sign-up"
+      >
+        <h4
+          className="prompt-to-login"
+        >
+           Already have an account? 
+        </h4>
+        <Link
+          to="/login"
+        >
+           
+          <button
+            className="login-btn"
+          >
+             LOGIN 
+          </button>
+           
+        </Link>
+      </div>
+    </div>
+  </form>
+</Fragment>
+`;

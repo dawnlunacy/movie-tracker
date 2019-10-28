@@ -6,8 +6,8 @@ import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies, handleError, isLoading } from '../actions';
-import { fetchData } from '../utils/apiCalls';
+import { getMovies, handleError, isLoading, saveUser } from '../actions';
+import { fetchData, getUser, postFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
@@ -29,6 +29,26 @@ export class App extends Component {
     }
   }
 
+  getFavorites = async () => {
+    const { currentUser } = this.props
+    if(currentUser === null) {
+      return
+    } else {
+      const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${currentUser.id}/moviefavorites`)
+      return favoriteMovies
+    }
+  }
+
+  makeFavorite = async (movieInfo, id) => {
+    const { currentUser } = this.props
+    if(currentUser === null) {
+      return
+    } else {
+      const postedFavorite = await postFavorite(movieInfo, id)
+      return postedFavorite
+    }
+  }
+
   render() {
     return (
         <div className="App">
@@ -37,10 +57,10 @@ export class App extends Component {
         <Route exact path='/' render={ () =>
           <>
             <header className="App-header">
-              <Nav />
+              <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
-            </header> 
-            <MoviesContainer />
+            </header>
+            <MoviesContainer makeFavorite={this.makeFavorite}/>
           </>
         } />
         </div>
@@ -49,6 +69,7 @@ export class App extends Component {
 }
 
 export const mapStateToProps = state => ({
+  currentUser: state.currentUser,
   loading: state.loading
 });
 
@@ -57,7 +78,8 @@ export const mapDispatchToProps = dispatch => (
     {
       getMovies,
       handleError,
-      isLoading
+      isLoading,
+      saveUser
     },
   dispatch)
 )
