@@ -23,7 +23,6 @@ export class App extends Component {
       const cleanMovies = filteredMovieData(movies.results)
       isLoading(false)
       getMovies(cleanMovies)
-      console.log(getMovies(cleanMovies))
     } catch {
       isLoading(false)
       handleError('There was an error getting your movies!')

@@ -82,6 +82,44 @@ describe('fetchData', () => {
     });
 });
 
+describe('getUser', () => {
+  let mockResponse = {
+    "id": 3,
+    "name": "Lacy",
+    "email": "rudd.lacy@gmail.com"
+  }
+
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+  });
+
+  it('should fetch with the correct arguments', () => {
+    const mockUrl = 'http://localhost:3001/api/v1/login'
+    const mockUserInput = {
+      email: 'rudd.lacy@gmail.com',
+      password: 'password',
+    }
+    const expected = ['http://localhost:3001/api/v1/login', {
+      method: 'POST',
+      body: JSON.stringify(mockUserInput),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }]
+
+    
+    getUser(mockUserInput, mockUrl)
+
+    expect(window.fetch).toHaveBeenCalledWith(...expected)
+  })
+
+})
+
 
 
 
