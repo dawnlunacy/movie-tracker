@@ -51,16 +51,3 @@ export const deleteFavorite = async (userId, movieId) => {
   console.log('deleteFavorite data---->', data)
     return data
 }
-
-// export const delete = parameter => {
-//   const options = {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   }
-
-//   return fetch(`http://localhost:3001/api/v1/ideas/${parameter}`, options)
-//   .then(() => fetch('http://localhost:3001/api/'))
-//   .then(response => response.json())
-// }

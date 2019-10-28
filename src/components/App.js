@@ -6,7 +6,7 @@ import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies, handleError, isLoading, saveUser, saveNewFavorite } from '../actions';
+import { getMovies, handleError, isLoading, saveUser, saveNewFavorite, deleteStoredFavorite } from '../actions';
 import { fetchData, postFavorite, deleteFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
@@ -30,7 +30,7 @@ export class App extends Component {
   }
 
   toggleFavorite = async (movieInfo, id) => {
-    const { currentUser, saveNewFavorite, favorited } = this.props
+    const { currentUser, saveNewFavorite, deleteStoredFavorite, favorited } = this.props
     if(currentUser === null) {
       return
     } else {
@@ -39,7 +39,7 @@ export class App extends Component {
       })) {
         console.log('**movie ALREADY in store**')
         const deletedFavorite = await deleteFavorite(currentUser.id, movieInfo.movie_id)
-        //will be method to delete from array in store
+        deleteStoredFavorite(movieInfo)
         return deletedFavorite
       } else {
         console.log('ughhh', favorited)
@@ -82,7 +82,8 @@ export const mapDispatchToProps = dispatch => (
       handleError,
       isLoading,
       saveUser,
-      saveNewFavorite
+      saveNewFavorite,
+      deleteStoredFavorite
     },
   dispatch)
 )

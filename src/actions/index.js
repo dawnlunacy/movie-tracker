@@ -32,3 +32,8 @@ export const retrieveFavorited = favorited => ({
   type: 'RETRIEVE_FAVORITED',
   favorited
 });
+
+export const deleteStoredFavorite = favorited => ({
+  type: 'DELETE_STORED_FAVORITE',
+  favorited
+});
