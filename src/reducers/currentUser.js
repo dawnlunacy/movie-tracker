@@ -1,5 +1,4 @@
 export const currentUser = (state = null, action) => {
-    console.log('action', action)
     switch (action.type) {
         case 'SAVE_USER':
             return action.currentUser
