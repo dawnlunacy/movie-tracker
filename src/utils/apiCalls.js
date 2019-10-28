@@ -44,4 +44,5 @@ export const deleteFavorite = async (userId, movieId) => {
   }
 
   const response = await fetch(`http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movieId}`, options);
+    return response
 }

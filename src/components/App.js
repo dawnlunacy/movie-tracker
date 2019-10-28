@@ -31,10 +31,10 @@ export class App extends Component {
 
   toggleFavorite = async (movieInfo, id) => {
     const { currentUser, saveNewFavorite, deleteStoredFavorite, favorited } = this.props
-    if(currentUser === null) {
+    if (currentUser === null) {
       return
     } else {
-      if(favorited.find(favoriteMovie => {
+      if (favorited.find(favoriteMovie => {
         return favoriteMovie.movie_id === movieInfo.movie_id
       })) {
         const deletedFavorite = await deleteFavorite(currentUser.id, movieInfo.movie_id)
