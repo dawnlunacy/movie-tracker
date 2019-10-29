@@ -49,7 +49,7 @@ export class LoginForm extends Component {
       }
       
       validateResponse = async (response) => {
-        const { saveUser, retrieveFavorited } = this.props;
+        const { saveUser, retrieveFavorited, getFavorites } = this.props;
         if (!response.ok && response.status === 404) {
           this.setState({error: "There was a problem with the server. Please try again"})
         }
@@ -60,17 +60,11 @@ export class LoginForm extends Component {
           const newUser = await response.json()
           saveUser(newUser);
           this.setState({isLoggedIn: true})
-          const moviesToSave = await this.getFavorites(newUser.id)
+          const moviesToSave = await getFavorites(newUser.id)
           console.log('movietosave===>>', moviesToSave.favorites)
           retrieveFavorited(moviesToSave.favorites)
           this.resetInputs()
         }
-      }
-
-      getFavorites = async (id) => {
-          const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${id}/moviefavorites`)
-          console.log('in getFavorites--->>>', favoriteMovies)
-          return favoriteMovies
       }
 
     resetInputs = () => {
