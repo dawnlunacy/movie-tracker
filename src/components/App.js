@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
-import Nav from '../containers/Nav/Nav';
+import { Header } from '../containers/Header/Header';
+import { Nav } from '../containers/Nav/Nav';
 import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
@@ -69,19 +70,13 @@ export class App extends Component {
         <Route exact path='/signup' render={ () => <SignUpForm />}/>
         <Route exact path='/' render={ () =>
           <>
-            <header className="App-header">
-              <Nav getFavorites={this.getFavorites}/>
-              <img src={logo} alt="Logo" className="App-img"/>
-            </header>
+            <Header getFavorites={this.getFavorites}/>
             <MoviesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
           </>
         } />
         <Route exact path='/favorites' render={ () =>
           <>
-            <header className="App-header">
-              <Nav getFavorites={this.getFavorites}/>
-              <img src={logo} alt="Logo" className="App-img"/>
-            </header>
+            <Header getFavorites={this.getFavorites}/>
             <FavoritesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
           </>
         } />

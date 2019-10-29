@@ -4,35 +4,38 @@ exports[`Nav should match snapshot 1`] = `
 <nav
   className="nav"
 >
-  <p
-    className="nav-p"
+  <Link
+    className="link"
+    to="/favorites"
   >
-    FAVORITES
-  </p>
+     
+    <p
+      className="nav-p"
+      onClick={[Function]}
+    >
+      FAVORITES
+    </p>
+     
+  </Link>
   <div
     className="nav-user-options"
   >
+    <p
+      className="nav-p"
+    >
+      Hello, 
+      Tyler
+    </p>
     <Link
       className="link"
-      to="/login"
+      to="/"
     >
        
       <p
         className="nav-p"
+        onClick={[Function]}
       >
-        LOGIN
-      </p>
-       
-    </Link>
-    <Link
-      className="link"
-      to="/signup"
-    >
-       
-      <p
-        className="nav-p"
-      >
-        SIGN UP
+        LOGOUT
       </p>
        
     </Link>
