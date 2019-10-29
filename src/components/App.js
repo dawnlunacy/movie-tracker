@@ -6,11 +6,12 @@ import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMovies, handleError, isLoading, saveUser, saveNewFavorite, deleteStoredFavorite } from '../actions';
+import { getMovies, handleError, isLoading, saveUser, saveNewFavorite, deleteStoredFavorite, retrieveFavorited } from '../actions';
 import { fetchData, postFavorite, deleteFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
+import FavoritesContainer from '../containers/FavoritesContainer/FavoritesContainer';
 
 export class App extends Component {
 
@@ -29,8 +30,14 @@ export class App extends Component {
     }
   }
 
+  getFavorites = async (id) => {
+    const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${id}/moviefavorites`)
+    console.log('in getFavorites--->>>', favoriteMovies)
+    return favoriteMovies
+}
+
   toggleFavorite = async (movieInfo, id) => {
-    const { currentUser, saveNewFavorite, deleteStoredFavorite, favorited } = this.props
+    const { currentUser, saveNewFavorite, deleteStoredFavorite, favorited } = this.props;
     if (currentUser === null) {
       return
     } else {
@@ -54,11 +61,11 @@ export class App extends Component {
       return favorite.movie_id === movieId
     })
   }
-
+  
   render() {
     return (
         <div className="App">
-        <Route exact path='/login' render={ () => <LoginForm /> } />
+        <Route exact path='/login' render={ () => <LoginForm getFavorites={this.getFavorites}/>}/> 
         <Route exact path='/signup' render={ () => <SignUpForm />}/>
         <Route exact path='/' render={ () =>
           <>
@@ -67,6 +74,15 @@ export class App extends Component {
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
             <MoviesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
+          </>
+        } />
+        <Route exact path='/favorites' render={ () =>
+          <>
+            <header className="App-header">
+              <Nav getFavorites={this.getFavorites}/>
+              <img src={logo} alt="Logo" className="App-img"/>
+            </header>
+            <FavoritesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
           </>
         } />
         </div>
@@ -88,7 +104,8 @@ export const mapDispatchToProps = dispatch => (
       isLoading,
       saveUser,
       saveNewFavorite,
-      deleteStoredFavorite
+      deleteStoredFavorite,
+      retrieveFavorited
     },
   dispatch)
 )
