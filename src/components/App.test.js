@@ -68,7 +68,7 @@ describe('App', () => {
         
         fetchData(mockUrl)
         .then(results => expect(results).toEqual(mockResponse.results))
-        .catch(error => console.log(error))
+        .catch(error => error)
       });
     });
 

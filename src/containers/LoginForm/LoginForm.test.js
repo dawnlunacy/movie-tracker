@@ -1,11 +1,7 @@
 import React from 'react';
 import { LoginForm, mapDispatchToProps } from './LoginForm';
 import { shallow } from 'enzyme';
-import { getUser } from '../../utils/apiCalls';
 import { saveUser } from '../../actions/index';
-
-console.log('getUser', getUser)
-console.log('saveUser', saveUser)
 
 describe('LoginFormContainer', () => {
   describe('AddTodoForm component', () => {
@@ -116,8 +112,26 @@ describe('LoginFormContainer', () => {
       expect(wrapper.instance().submitForm).toHaveBeenCalled();
     });
 
-    it('should call validateResponse from submitForm', () => {
+    it.skip('should call validateResponse from submitForm', () => {
       const mockEvent = { preventDefault: jest.fn() };
+      let mockResponse = {
+        "id": 3,
+        "name": "Lucy",
+        "email": "lawless@gmail.com"
+      };
+
+        window.fetch = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve(mockResponse)
+          });
+        });
+        
+        wrapper.instance().submitForm = jest.fn();
+
+        wrapper.find('button').at(0).simulate('click', mockEvent);
+        wrapper.instance().validateResponse = jest.fn()
+        expect(wrapper.instance().validateResponse).toHaveBeenCalledWith()
     })
   })
 
