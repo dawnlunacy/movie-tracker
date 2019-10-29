@@ -3,6 +3,7 @@ import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser, retrieveFavorited } from '../../actions/index';
 import { Redirect, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './LoginForm.css';
 
 export class LoginForm extends Component {
