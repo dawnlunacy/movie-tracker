@@ -1,11 +1,7 @@
 import React from 'react';
 import { LoginForm, mapDispatchToProps } from './LoginForm';
 import { shallow } from 'enzyme';
-import { getUser } from '../../utils/apiCalls';
 import { saveUser } from '../../actions/index';
-
-console.log('getUser', getUser)
-console.log('saveUser', saveUser)
 
 describe('LoginFormContainer', () => {
   describe('AddTodoForm component', () => {
@@ -118,6 +114,7 @@ describe('LoginFormContainer', () => {
 
     it('should call validateResponse from submitForm', () => {
       const mockEvent = { preventDefault: jest.fn() };
+      
     })
   })
 
