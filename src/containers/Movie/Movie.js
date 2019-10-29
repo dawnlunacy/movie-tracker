@@ -6,8 +6,7 @@ import { selectMovie } from '../../actions';
 import star from '../../images/MovieTracker_star.svg';
 import starFav from '../../images/MovieTracker_star_fav.svg';
 
-const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overview, toggleFavorite, currentUser, favorited, toggleStar, selectMovie }) => {
-
+export const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overview, toggleFavorite, currentUser, favorited, toggleStar, selectMovie }) => {
   let isFavorite = favorited.find((favorite) => {
     return favorite.movie_id === movie_id
   });
