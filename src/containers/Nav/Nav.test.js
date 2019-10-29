@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav } from './Nav';
+import { Nav, mapStateToProps, mapDispatchToProps } from './Nav';
 import { shallow } from 'enzyme';
 
 describe('Nav', () => {
@@ -17,22 +17,19 @@ describe('Nav', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  // describe('mapStateToProps', () => {
-  //   it('should return an object with the currentUser', () => {
+  it('should return an object with the currentUser', () => {
 
+    const mockState = { 
+      currentUser: [{currentUser: mockCurrentUser}],
+      filter: 'SAVE_USER'
+    };
+    const expected = {
+      currentUser: [{currentUser: mockCurrentUser}]
+    };
 
-  //     const mockState = {
-  //       selectedMovie: [{selectedMovie: mockSelectedMovie}],
-  //       filter: 'SELECT_MOVIE'
-  //     };
-  //     const expected = {
-  //       selectedMovie: [{selectedMovie: mockSelectedMovie}]
-  //     };
+    const mappedProps = mapStateToProps(mockState);
 
-  //     const mappedProps = mapStateToProps(mockState);
-
-  //     expect(mappedProps).toEqual(expected);
-  //   });
-  // });
+    expect(mappedProps).toEqual(expected);
+  });
 
 });
