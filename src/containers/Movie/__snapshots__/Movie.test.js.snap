@@ -10,13 +10,14 @@ exports[`Movie should render the movie data in <section> tag correctly 1`] = `
     <img
       alt="Movie Poster"
       className="poster-img"
-      src="https://image.tmdb.org/t/p/original//tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg"
+      src="https://image.tmdb.org/t/p/original/undefined"
     />
   </div>
   <img
     alt="Logo"
     className="movie-star"
-    src="MovieTracker_star.svg"
+    onClick={[Function]}
+    src="MovieTracker_star_fav.svg"
   />
   <div
     className="movie-text"
