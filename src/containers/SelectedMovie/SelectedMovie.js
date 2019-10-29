@@ -1,10 +1,11 @@
 import React from 'react';
+import './SelectedMovie.css';
 
 
-export const SelectedMovie = ({ title, overview, vote_average, release_date }) => {
+const SelectedMovie = ({ title, overview, vote_average, release_date }) => {
   return (
       <main>
-        <h1>in selectedmovie</h1>
+        <h1 className="selectedMovie">in selectedmovie</h1>
         {/* <img className="poster-img" alt="Movie Poster" src = {`https://image.tmdb.org/t/p/original/${poster_path}`}/>
         <section className="selected-movie-info">
           <h4>{title}</h4>
@@ -15,3 +16,5 @@ export const SelectedMovie = ({ title, overview, vote_average, release_date }) =
       </main>
   )
 }
+
+export default SelectedMovie;
