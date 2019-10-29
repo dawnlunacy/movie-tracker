@@ -110,7 +110,6 @@ describe('LoginFormContainer', () => {
     it('should call submitForm is when the login button is clicked', () => {
       const mockEvent = { preventDefault: jest.fn() };
       wrapper.instance().submitForm = jest.fn();
-      wrapper.instance().forceUpdate();
 
       wrapper.find('button').at(0).simulate('click', mockEvent);
 

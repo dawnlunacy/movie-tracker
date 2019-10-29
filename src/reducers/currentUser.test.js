@@ -24,4 +24,13 @@ describe('currentUser', () => {
 
     expect(result).toEqual(newState);
   });
+
+  it('should return state to default state when a user logouts', () => {
+    const mockCurrentUser = {id:9999, name: "Pumpkin", email:"Kitty@lovesHairTies.com"}
+    const initialState = mockCurrentUser;
+    const action = {
+      type: "LOGOUT_USER",
+      currentUser: mockCurrentUser
+    }
+  })
 });
