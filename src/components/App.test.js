@@ -7,14 +7,17 @@ jest.mock('../utils/apiCalls')
 
 describe('App', () => {
   let wrapper;
-
   const mockGetMovies = jest.fn();
   const mockhandleError = jest.fn();
   const mockIsLoading = jest.fn();
   const mockSaveUser = jest.fn();
   const mockCleanMovies = jest.fn();
 
-  const mockCurrentUser = {id: 3, email:'rudd.lacy@gmail.com', name: 'lacy'};
+  const mockCurrentUser = {
+    id: 3, 
+    email:'rudd.lacy@gmail.com', 
+    name: 'lacy'
+  };
   // const mockLoading = false;
     //can use this or can just set to false
 
@@ -36,22 +39,107 @@ describe('App', () => {
     expect(wrapper).toMatchSnapshot()
   });
 
-  it('should update loading, fetch movies, and getMovies after mounting', () => {
-    expect(mockIsLoading).toHaveBeenCalledWith(true)
-  })
+  
+  
+  describe('getFavorites', () => {
+    let mockResponse = {
+        "results": [
+          {
+            "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+            "id": 475557,
+            "original_title": "Joker",
+              "title": "Joker",
+              "vote_average": 8.6,
+              "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+              "release_date": "2019-10-04"
+            },
+          ]};
+          
+          beforeEach(() => {
+            window.fetch = jest.fn().mockImplementation(() => {
+              return Promise.resolve({
+                ok: true,
+                json: () => Promise.resolve(mockResponse)
+              });
+            });
+      });
+      
+      it ('should return array of favorited movies for currentUser', async () => {
+        const mockUrl = `http://localhost:3001/api/v1/users/${mockCurrentUser.id}/moviefavorites`;
+        
+        await wrapper.instance().getFavorites(mockCurrentUser.id);
+        
+        fetchData(mockUrl)
+        .then(results => expect(results).toEqual(mockResponse.results));
+        
+        
+      });
+      
+    });
 
-}); 
+  }); 
+  
+  
+  
+  
+  
+  
+  
+  
+  // describe('componentDidMount', () => {
+  //   it('should update loading, fetch movies, and getMovies after mounting', () => {
+
+  //     expect(mockIsLoading).toHaveBeenCalledWith(true)
+  //     expect(wrapper.instance().getMovies).toHaveBeenCalledWith(mockCleanMovies)
+  //   });
+
+  // });
 
 
-
-
-
-
-
-
-
-
-
+  // wrapper.instance().getMovies.mockImplementation(() => {
+  //   return Promise.resolve([
+  //       {
+  //           "popularity": 513.78,
+  //           "vote_count": 4120,
+  //           "video": false,
+  //           "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+  //           "id": 475557,
+  //           "adult": false,
+  //           "backdrop_path": "/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+  //           "original_language": "en",
+  //           "original_title": "Joker",
+  //           "genre_ids": [
+  //               80,
+  //               18,
+  //               53
+  //           ],
+  //           "title": "Joker",
+  //           "vote_average": 8.6,
+  //           "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+  //           "release_date": "2019-10-04"
+  //       },
+  //       {
+  //           "popularity": 257.685,
+  //           "vote_count": 394,
+  //           "video": false,
+  //           "poster_path": "/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg",
+  //           "id": 420809,
+  //           "adult": false,
+  //           "backdrop_path": "/skvI4rYFrKXS73BJxWGH54Omlvv.jpg",
+  //           "original_language": "en",
+  //           "original_title": "Maleficent: Mistress of Evil",
+  //           "genre_ids": [
+  //               12,
+  //               14,
+  //               10751
+  //           ],
+  //           "title": "Maleficent: Mistress of Evil",
+  //           "vote_average": 7.2,
+  //           "overview": "Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.",
+  //           "release_date": "2019-10-18"
+  //       }
+  //   ])
+  // })
 
 
 
