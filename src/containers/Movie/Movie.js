@@ -3,6 +3,7 @@ import './Movie.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectMovie } from '../../actions';
+import PropTypes from 'prop-types';
 import star from '../../images/MovieTracker_star.svg';
 import starFav from '../../images/MovieTracker_star_fav.svg';
 
@@ -57,3 +58,8 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movie);
+
+Movie.propTypes = {
+  favorited: PropTypes.array.isRequired,
+  selectMovie: PropTypes.func.isRequired
+}

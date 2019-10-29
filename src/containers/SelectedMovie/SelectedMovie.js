@@ -1,5 +1,6 @@
 import React from 'react';
 import './SelectedMovie.css';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 
@@ -33,3 +34,7 @@ export const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, null)(SelectedMovie);
+
+SelectedMovie.propTypes = {
+  selectedMovie: PropTypes.object.isRequired
+}
