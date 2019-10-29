@@ -6,7 +6,7 @@ import { selectMovie } from '../../actions';
 import star from '../../images/MovieTracker_star.svg';
 import starFav from '../../images/MovieTracker_star_fav.svg';
 
-const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overview, toggleFavorite, currentUser, favorited, toggleStar, selectedMovie }) => {
+const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overview, toggleFavorite, currentUser, favorited, toggleStar, selectMovie }) => {
   
   let isFavorite = favorited.find((favorite) => {
     return favorite.movie_id === movie_id
@@ -25,11 +25,6 @@ const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overv
     }, currentUser.id)
     toggleStar(movie_id)
   }
-
-  const chooseMovie = ({ selectedMovie }) => {
-    selectMovie({selectedMovie})
-  }
-  
   
   return (
     <section className="grow">
@@ -38,13 +33,15 @@ const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overv
       </div>
       <img src={starImg} alt="Logo" className="movie-star" onClick={() => handleClick()}/>
       {/* <Link to={`movies/${movie_id}`}> */}
-        <div className="movie-text" onClick={() => chooseMovie()}>
+        <div className="movie-text" onClick={() => selectMovie({movie_id})}>
           <h3 className="movie-h3">{title}</h3>
         </div>
       {/* </Link> */}
     </section>
   )
 }
+
+// selectMovie({movie_id, title, poster_path, release_date, vote_average, overview})
 
 export const mapStateToProps = state => ({
   currentUser: state.currentUser,
