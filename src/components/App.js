@@ -4,6 +4,7 @@ import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import { Header } from '../containers/Header/Header';
 import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
+import SelectedMovie from '../containers/SelectedMovie/SelectedMovie';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovies, handleError, isLoading, saveUser, saveNewFavorite, deleteStoredFavorite, retrieveFavorited } from '../actions';
@@ -70,6 +71,12 @@ export class App extends Component {
           <>
             <Header getFavorites={this.getFavorites}/>
             <MoviesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
+          </>
+        } />
+        <Route exact path='/movies/:id' render={ () =>
+          <>
+            <Header getFavorites={this.getFavorites}/>
+            <SelectedMovie />
           </>
         } />
         <Route exact path='/favorites' render={ () =>

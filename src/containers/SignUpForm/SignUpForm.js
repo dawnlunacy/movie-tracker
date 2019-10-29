@@ -121,7 +121,7 @@ export class SignUpForm extends Component {
                 <h3> {this.state.error} </h3>
                 <div className="login-to-sign-up">
                     <h4 className="prompt-to-login"> Already have an account? </h4>
-                    <Link to ="/login"> <button className="login-btn"> LOGIN </button> </Link>
+                    <Link to="/login"> <button className="login-btn"> LOGIN </button> </Link>
                 </div>
               </div>
             </form>
