@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
+import { Header } from '../containers/Header/Header'
 import Nav from '../containers/Nav/Nav';
 import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
@@ -73,15 +74,17 @@ export class App extends Component {
               <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
+            {/* <Header getFavorites={this.getFavorites}/> */}
             <MoviesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
           </>
         } />
         <Route exact path='/favorites' render={ () =>
           <>
-            <header className="App-header">
+            {/* <header className="App-header">
               <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
-            </header>
+            </header> */}
+            <Header getFavorites={this.getFavorites}/>
             <FavoritesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
           </>
         } />
