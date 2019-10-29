@@ -5,7 +5,7 @@ import './MoviesContainer.css'
 
 export const MoviesContainer = ({ movies, errorMessage, toggleFavorite, toggleStar }) => {
   const moviesToDisplay = movies.map(movie => {
-    const { movie_id, title, poster_path, release_date, vote_average, overview } = movie
+    const { movie_id, title, poster_path, release_date, vote_average, overview } = movie;
     return <Movie
       key = {movie_id}
       movie_id = {movie_id}

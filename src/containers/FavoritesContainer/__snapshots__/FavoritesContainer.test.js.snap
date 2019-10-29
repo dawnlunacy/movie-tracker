@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavoritesContainer should match snapshot 1`] = `
+<div
+  className="scroll-wrapper"
+>
+  <main
+    className="movies-container"
+  >
+    <Connect(Movie)
+      key="Joker"
+      overview="During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure."
+      title="Joker"
+    />
+    <Connect(Movie)
+      key="Maleficent: Mistress of Evil"
+      overview="Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play."
+      title="Maleficent: Mistress of Evil"
+    />
+  </main>
+</div>
+`;

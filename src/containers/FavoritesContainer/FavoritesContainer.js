@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import './FavoritesContainer.css'
 
 export const FavoritesContainer = ({ favorites, errorMessage, toggleFavorite, toggleStar }) => {
-  console.log("FAVORITES", favorites)
   const moviesToDisplay = favorites.map(movie => {
-    const { movie_id, title, poster_path, release_date, vote_average, overview } = movie
+    const { movie_id, title, poster_path, release_date, vote_average, overview } = movie;
     return <Movie
-      key = {movie_id}
+      key = {title}
       movie_id = {movie_id}
       title = {title}
       poster_path = {poster_path}

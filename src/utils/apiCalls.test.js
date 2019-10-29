@@ -86,8 +86,8 @@ describe('apiCalls', () => {
   describe('getUser', () => {
     let mockResponse = {
       "id": 3,
-      "name": "Lacy",
-      "email": "rudd.lacy@gmail.com"
+      "name": "Lucy",
+      "email": "lawless@gmail.com"
     };
   
     beforeEach(() => {
