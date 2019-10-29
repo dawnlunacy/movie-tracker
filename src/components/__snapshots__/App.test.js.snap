@@ -21,6 +21,11 @@ exports[`App should match snapshot 1`] = `
   />
   <Route
     exact={true}
+    path="/movies/:id"
+    render={[Function]}
+  />
+  <Route
+    exact={true}
     path="/favorites"
     render={[Function]}
   />
