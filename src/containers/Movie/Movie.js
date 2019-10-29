@@ -12,7 +12,7 @@ const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overv
   let starImg = isFavorite ? starFav : star;
 
   const handleClick = async () => {
-    await makeFavorite({
+    await toggleFavorite({
        movie_id: movie_id,
        title: title,
        poster_path: poster_path,
