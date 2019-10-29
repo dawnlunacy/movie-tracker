@@ -95,7 +95,7 @@ export class LoginForm extends Component {
                 />
                 <input
                     className="password-input"
-                    type="text"
+                    type="password"
                     placeholder="Enter Password"
                     name="password"
                     value={this.state.password}
