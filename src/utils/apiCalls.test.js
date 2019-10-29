@@ -129,13 +129,13 @@ describe('apiCalls', () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           ok: false,
-          statusText: "??."
+          statusText: "There was a problem with the server. Please try again."
         })
       });
 
       const url = 'http://localhost:3001/api/v1/YOLO';
 
-      expect(fetchData(url)).rejects.toEqual(Error("??."));
+      expect(fetchData(url)).rejects.toEqual(Error("There was a problem with the server. Please try again."));
     })
 
   });
@@ -197,14 +197,14 @@ describe('apiCalls', () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           ok: false,
-          statusText: "??."
+          statusText: "There was a problem with the server. Please try again."
         })
       });
-      
+
       const id = 3;
       const url = `http://localhost:3001/api/v1/users/${id}/movieYOLO`;
 
-      expect(fetchData(url)).rejects.toEqual(Error("??."));
+      expect(fetchData(url)).rejects.toEqual(Error("There was a problem with the server. Please try again."));
     })
 
   });
