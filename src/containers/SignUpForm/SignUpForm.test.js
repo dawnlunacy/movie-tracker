@@ -80,7 +80,7 @@ describe('SignUpForm', () => {
   
     wrapper.instance().submitForm(mockEvent)
   
-    expect(wrapper.instance().validateRespose).toHaveBeenCalled();
+    expect(wrapper.instance().validateResponse).toHaveBeenCalled();
     expect(wrapper.instance().resetInputs).toHaveBeenCalled();
   });
 
