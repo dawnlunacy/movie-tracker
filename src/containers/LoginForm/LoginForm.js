@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchData, getUser } from '../../utils/apiCalls';
+import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser, retrieveFavorited } from '../../actions/index';
 import { Redirect, Link } from 'react-router-dom';
@@ -61,7 +61,6 @@ export class LoginForm extends Component {
           saveUser(newUser);
           this.setState({isLoggedIn: true})
           const moviesToSave = await getFavorites(newUser.id)
-          console.log('movietosave===>>', moviesToSave.favorites)
           retrieveFavorited(moviesToSave.favorites)
           this.resetInputs()
         }

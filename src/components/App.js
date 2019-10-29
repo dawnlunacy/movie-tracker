@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import { Header } from '../containers/Header/Header';
-import { Nav } from '../containers/Nav/Nav';
 import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
 import { connect } from 'react-redux';
@@ -11,7 +10,6 @@ import { getMovies, handleError, isLoading, saveUser, saveNewFavorite, deleteSto
 import { fetchData, postFavorite, deleteFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
-import logo from '../images/MovieTracker_font_wave.png';
 import FavoritesContainer from '../containers/FavoritesContainer/FavoritesContainer';
 
 export class App extends Component {
