@@ -54,7 +54,7 @@ describe('SignUpForm', () => {
     expect(wrapper.state('newUserInput').password).toEqual('shhh')
   });
 
-  it('should reset newUserInput state when resetInputs is called', () => {
+  it('should reset newUserInput state when resetAllInputs is called', () => {
     const currentState = {
       name: 'Jeremiah',
       email: 'jerbear@gmail.com',
@@ -68,20 +68,45 @@ describe('SignUpForm', () => {
     }
 
     wrapper.instance().setState(currentState);
-    wrapper.instance().resetInputs();
+    wrapper.instance().resetAllInputs();
 
     expect(wrapper.state('newUserInput')).toEqual(expected);
   });
 
-  it('should call getUser and resetInputs when submitForm is called', () => {
-    const mockGetUser = jest.fn();
+  it('should call checkInputsForValues when submitForm is called', () => {
     const mockEvent = { preventDefault: jest.fn() };
-    wrapper.instance().resetInputs = jest.fn()
-  
-    wrapper.instance().submitForm(mockEvent)
-  
-    expect(wrapper.instance().validateRespose).toHaveBeenCalled();
-    expect(wrapper.instance().resetInputs).toHaveBeenCalled();
+    wrapper.instance().checkInputsForValues = jest.fn();
+
+    wrapper.instance().submitForm(mockEvent);
+
+    expect(wrapper.instance().checkInputsForValues).toHaveBeenCalled();
   });
+
+// not working, must make checkInputsForValues false
+  it('should set state when submitForm is called and form is NOT ready', () => {
+    const mockEvent = { preventDefault: jest.fn() };
+    wrapper.instance().checkInputsForValues = jest.fn();
+    const expected = {error: "Please fill out all inputs to create an account."}
+
+    wrapper.instance().submitForm(mockEvent);
+
+    expect(wrapper.state('error')).toEqual(expected);
+  });
+
+// not working, must make checkInputsForValues true
+  it('should call getUser and validateRespose when submitForm is called and form is ready', () => {
+    const mockEvent = { preventDefault: jest.fn() };
+    wrapper.instance().getUser = jest.fn();
+    wrapper.instance().validateRespose = jest.fn();
+
+    wrapper.instance().submitForm(mockEvent);
+
+    expect(wrapper.instance().getUser).toHaveBeenCalled();
+    expect(wrapper.instance().validateRespose).toHaveBeenCalled();
+  });
+
+
+// test things are called when validateRespose is called
+
 
 });
