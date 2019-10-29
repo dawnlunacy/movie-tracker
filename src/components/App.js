@@ -30,7 +30,7 @@ export class App extends Component {
   }
 
   toggleFavorite = async (movieInfo, id) => {
-    const { currentUser, saveNewFavorite, deleteStoredFavorite, favorited } = this.props
+    const { currentUser, saveNewFavorite, deleteStoredFavorite, favorited } = this.props;
     if (currentUser === null) {
       return
     } else {
