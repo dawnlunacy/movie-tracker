@@ -12,16 +12,21 @@ const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overv
   let starImg = isFavorite ? starFav : star;
 
   const handleClick = async () => {
-    await toggleFavorite({
-       movie_id: movie_id,
-       title: title,
-       poster_path: poster_path,
-       release_date:release_date,
-       vote_average: vote_average,
-       overview:overview
-     }, currentUser.id)
-    toggleStar(movie_id)
+    if(currentUser === null) {
+      alert("Please Login or Sign Up to add to your favorites")
+    } else {
+      await toggleFavorite({
+        movie_id: movie_id,
+        title: title,
+        poster_path: poster_path,
+        release_date:release_date,
+        vote_average: vote_average,
+        overview:overview
+      }, currentUser.id)
+     toggleStar(movie_id)
+   }
   }
+    
 
   return (
     <section className="grow">
