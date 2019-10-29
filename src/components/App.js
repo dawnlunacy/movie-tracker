@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
 import { Header } from '../containers/Header/Header';
 import LoginForm from '../containers/LoginForm/LoginForm';
@@ -110,3 +111,8 @@ export const mapDispatchToProps = dispatch => (
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  favorited: PropTypes.array.isRequired,
+}
