@@ -126,3 +126,7 @@ export const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(LoginForm)
+
+LoginForm.propTypes = {
+  currentUser:PropTypes.object.isRequired
+}
