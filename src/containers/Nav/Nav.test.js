@@ -5,9 +5,10 @@ import { shallow } from 'enzyme';
 describe('Nav', () => {
 
   it('should match snapshot', () => {
-    const wrapper = shallow(<Nav />)
+    const getFavorites = jest.fn()
+    const mockCurrentUser = {id:3, name: "Tyler", email:"awesome@gmail.com"}
+    const wrapper = shallow(<Nav getFavorites={getFavorites} currentUser={mockCurrentUser}/>)
 
     expect(wrapper).toMatchSnapshot();
-  })
-
-})
+  });
+});

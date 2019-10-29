@@ -1,13 +1,13 @@
 import React from 'react';
 import Movie from '../Movie/Movie';
 import { connect } from 'react-redux';
-import './MoviesContainer.css'
+import './FavoritesContainer.css'
 
-export const MoviesContainer = ({ movies, errorMessage, toggleFavorite, toggleStar }) => {
-  const moviesToDisplay = movies.map(movie => {
+export const FavoritesContainer = ({ favorites, errorMessage, toggleFavorite, toggleStar }) => {
+  const moviesToDisplay = favorites.map(movie => {
     const { movie_id, title, poster_path, release_date, vote_average, overview } = movie;
     return <Movie
-      key = {movie_id}
+      key = {title}
       movie_id = {movie_id}
       title = {title}
       poster_path = {poster_path}
@@ -30,8 +30,8 @@ export const MoviesContainer = ({ movies, errorMessage, toggleFavorite, toggleSt
 }
 
 export const mapStateToProps = state => ({
-  movies: state.movies,
+  favorites: state.favorited,
   errorMessage: state.errorMessage
 });
 
-export default connect(mapStateToProps, null)(MoviesContainer);
+export default connect(mapStateToProps, null)(FavoritesContainer);
