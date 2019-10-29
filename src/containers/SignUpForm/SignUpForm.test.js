@@ -56,7 +56,7 @@ describe('SignUpForm', () => {
     expect(wrapper.state('newUserInput').password).toEqual('shhh')
   });
 
-  it('should reset newUserInput state when resetInputs is called', () => {
+  it('should reset newUserInput state when resetAllInputs is called', () => {
     const currentState = {
       name: 'Jeremiah',
       email: 'jerbear@gmail.com',
@@ -82,7 +82,7 @@ describe('SignUpForm', () => {
     //   "name": "Lucy",
     //   "email": "lawless@turing.io"
     // };
-  
+
     // beforeEach(() => {
     //   window.fetch = jest.fn().mockImplementation(() => {
     //     return Promise.resolve({
@@ -95,9 +95,9 @@ describe('SignUpForm', () => {
     wrapper.instance().resetAllInputs = jest.fn()
     wrapper.instance().submitForm = jest.fn();
     wrapper.instance().forceUpdate();
-  
+
     wrapper.instance().submitForm(mockEvent)
-  
+
     expect(wrapper.instance().validateResponse()).toHaveBeenCalled();
     expect(wrapper.instance().resetAllInputs).toHaveBeenCalled();
     wrapper.find('button').at(0).simulate('click', mockEvent);
@@ -122,6 +122,38 @@ describe('SignUpForm', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
   });
+
+  // quinne
+  it('should call checkInputsForValues when submitForm is called', () => {
+    const mockEvent = { preventDefault: jest.fn() };
+    wrapper.instance().checkInputsForValues = jest.fn();
+
+    wrapper.instance().submitForm(mockEvent);
+
+    expect(wrapper.instance().checkInputsForValues).toHaveBeenCalled();
+  });
+
+// not working, must make checkInputsForValues false
+  it.skip('should set state when submitForm is called and form is NOT ready', () => {
+    const mockEvent = { preventDefault: jest.fn() };
+    wrapper.instance().checkInputsForValues = jest.fn();
+    const expected = {error: "Please fill out all inputs to create an account."}
+
+    wrapper.instance().submitForm(mockEvent);
+
+    expect(wrapper.state('error')).toEqual(expected);
+  });
+
+// not working, must make checkInputsForValues true
+  it.skip('should call getUser and validateRespose when submitForm is called and form is ready', () => {
+    const mockEvent = { preventDefault: jest.fn() };
+    wrapper.instance().getUser = jest.fn();
+    wrapper.instance().validateRespose = jest.fn();
+
+    wrapper.instance().submitForm(mockEvent);
+
+    expect(wrapper.instance().getUser).toHaveBeenCalled();
+    expect(wrapper.instance().validateRespose).toHaveBeenCalled();
+  });
+
 });
-
-

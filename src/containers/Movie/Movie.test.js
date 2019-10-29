@@ -20,7 +20,7 @@ describe('Movie', () => {
           } ];
 
 
-        const wrapper = shallow(<Movie 
+        const wrapper = shallow(<Movie
             key = {420809}
             id = {420809}
             title = {"Joker"}
@@ -30,6 +30,6 @@ describe('Movie', () => {
             favorited = {favorited}
         />);
 
-        expect(wrapper).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
     });
 });
