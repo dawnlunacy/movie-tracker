@@ -46,7 +46,7 @@ describe('actions', () => {
     });
   });
   
-  describe('hanleError', () => {
+  describe('handleError', () => {
     it('should have a type of HANDLE_ERROR', () => {
       const errorMessage = 'Super duper error'
   
