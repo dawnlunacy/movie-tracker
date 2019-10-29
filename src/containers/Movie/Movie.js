@@ -3,6 +3,7 @@ import './Movie.css';
 import { connect } from 'react-redux';
 import star from '../../images/MovieTracker_star.svg';
 import starFav from '../../images/MovieTracker_star_fav.svg';
+import { Link } from 'react-router-dom';
 
 const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overview, toggleFavorite, currentUser, favorited, toggleStar }) => {
 
@@ -24,6 +25,7 @@ const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overv
   }
 
   return (
+    <Link to={`movies/${movie_id}`}>
     <section className="grow">
       <div className="movie-img">
         <img className="poster-img" alt="Movie Poster" src = {`https://image.tmdb.org/t/p/original/${poster_path}`}/>
@@ -33,6 +35,7 @@ const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overv
         <h3 className="movie-h3">{title}</h3>
       </div>
     </section>
+    </Link>
   )
 }
 

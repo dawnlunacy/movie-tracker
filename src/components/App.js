@@ -11,6 +11,7 @@ import { fetchData, postFavorite, deleteFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
+import { SelectedMovie } from '../containers/SelectedMovie';
 
 export class App extends Component {
 
@@ -67,6 +68,7 @@ export class App extends Component {
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
             <MoviesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
+            <Route exact path='./movies/:id' render={() => <SelectedMovie />} />
           </>
         } />
         </div>
