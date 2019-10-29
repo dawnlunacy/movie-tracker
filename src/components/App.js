@@ -32,7 +32,6 @@ export class App extends Component {
 
   getFavorites = async (id) => {
     const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${id}/moviefavorites`)
-    console.log('in getFavorites--->>>', favoriteMovies)
     return favoriteMovies
 }
 
