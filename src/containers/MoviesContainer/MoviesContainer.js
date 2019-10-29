@@ -1,6 +1,7 @@
 import React from 'react';
 import Movie from '../Movie/Movie';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './MoviesContainer.css'
 
 export const MoviesContainer = ({ movies, errorMessage, toggleFavorite, toggleStar }) => {
@@ -35,3 +36,9 @@ export const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, null)(MoviesContainer);
+
+MoviesContainer.propTypes = {
+  movies: PropTypes.array.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  toggleFavorite: PropTypes.func.isRequired
+}

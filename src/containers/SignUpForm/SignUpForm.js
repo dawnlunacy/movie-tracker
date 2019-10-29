@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser } from '../../actions/index';
+import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import './SignUpForm.css';
 
@@ -135,3 +136,7 @@ export const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(SignUpForm);
+
+SignUpForm.propTypes = {
+  currentUser: PropTypes.object.isRequired
+}
