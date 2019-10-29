@@ -105,8 +105,10 @@ describe('SignUpForm', () => {
     expect(wrapper.instance().validateRespose).toHaveBeenCalled();
   });
 
-
 // test things are called when validateRespose is called
 
+  // describe('mapDispatchToProps', () => {
+  //   it('calls dispatch with saveUser action when ')
+  // })
 
 });
