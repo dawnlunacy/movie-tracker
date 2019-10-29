@@ -29,7 +29,7 @@ export class LoginForm extends Component {
     }
 
     async checkInputsForValues() {
-      this.setState({error: ''})     
+      this.setState({error: ''})
       this.setState({formReady: false})
       if (this.state.userInput.email !== '' &&
         this.state.userInput.password !== '') {
@@ -39,16 +39,16 @@ export class LoginForm extends Component {
 
     submitForm = async (e) => {
         e.preventDefault();
-        await this.checkInputsForValues();    
+        await this.checkInputsForValues();
         if (!this.state.formReady) {
           this.setState({error: "Please fill out all inputs to log in."})
         } else {
           const userVerification = await getUser(this.state.userInput, 'http://localhost:3001/api/v1/login');
           this.validateResponse(userVerification)
         }
-        
+
       }
-      
+
       validateResponse = async (response) => {
         const { saveUser, retrieveFavorited, getFavorites } = this.props;
         if (!response.ok && response.status === 404) {
@@ -106,7 +106,7 @@ export class LoginForm extends Component {
 
                 <h3> {this.state.error} </h3>
                 <div className="login-to-sign-up">
-                    <h4 className="prompt-to-sign-up"> Don't have an account? </h4>    
+                    <h4 className="prompt-to-sign-up"> Don't have an account? </h4>
                     <Link to ="/signup"> <button className="sign-up-btn"> SIGN UP</button> </Link>
                 </div>
                 </div>

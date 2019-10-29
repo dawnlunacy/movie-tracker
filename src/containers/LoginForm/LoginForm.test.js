@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm, mapDispatchToProps } from './LoginForm';
+import { LoginForm, mapDispatchToProps, mapStateToProps } from './LoginForm';
 import { shallow } from 'enzyme';
 import { getUser } from '../../utils/apiCalls';
 import { saveUser } from '../../actions/index';
@@ -138,4 +138,22 @@ describe('LoginFormContainer', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
   });
+
+  describe('mapStateToProps', () => {
+    it('should return an object with the currentUser', () => {
+      const mockCurrentUser = {id:9999, name: "Pumpkin", email:"Kitty@lovesHairTies.com"}
+
+      const mockState = {
+        currentUser: {id:9999, name: "Pumpkin", email:"Kitty@lovesHairTies.com"}
+      };
+      const expected = {
+        currentUser: mockCurrentUser
+      };
+
+      const mappedProps = mapStateToProps(mockState);
+
+      expect(mappedProps).toEqual(expected);
+    });
+  });
+
 });
