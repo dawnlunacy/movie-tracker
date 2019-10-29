@@ -1,4 +1,4 @@
-import { fetchData, getUser, postFavorite } from './apiCalls';
+import { fetchData, getUser, postFavorite, deleteFavorite } from './apiCalls';
 
 describe('apiCalls', () => {
   describe('fetchData', () => {
@@ -45,7 +45,7 @@ describe('apiCalls', () => {
               "release_date": "2019-10-18"
           }
       ]};
-  
+
       beforeEach(() => {
         window.fetch = jest.fn().mockImplementation(() => {
           return Promise.resolve({
@@ -54,21 +54,21 @@ describe('apiCalls', () => {
           });
         });
       });
-  
+
       it('should fetch with the correct url', () => {
         const mockUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56'
         fetchData(mockUrl);
-  
+
         expect(window.fetch).toHaveBeenCalledWith(mockUrl);
       });
-  
+
       it('should return an array of movies (HAPPY)', () => {
         const mockUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56';
 
         fetchData(mockUrl)
         .then(results => expect(results).toEqual(mockResponse));
       });
-  
+
       it('should return an error (SAD)', () => {
         window.fetch = jest.fn().mockImplementation(() => {
           return Promise.resolve({
@@ -82,14 +82,14 @@ describe('apiCalls', () => {
         expect(fetchData(url)).rejects.toEqual(Error("Invalid API key: You must be granted a valid key."));
       });
   });
-  
+
   describe('getUser', () => {
     let mockResponse = {
       "id": 3,
       "name": "Lucy",
       "email": "lawless@gmail.com"
     };
-  
+
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
@@ -98,7 +98,7 @@ describe('apiCalls', () => {
         });
       });
     });
-  
+
     it('should fetch with the correct arguments', () => {
       const mockUrl = 'http://localhost:3001/api/v1/login'
       const mockUserInput = {
@@ -112,13 +112,34 @@ describe('apiCalls', () => {
           'Content-Type': 'application/json'
         }
       }]
-  
+
       getUser(mockUserInput, mockUrl);
-  
+
       expect(window.fetch).toHaveBeenCalledWith(...expected);
     });
+
+    it('should return a user (HAPPY)', () => {
+      const mockUrl = 'http://localhost:3001/api/v1/login';
+
+      fetchData(mockUrl)
+      .then(results => expect(results).toEqual(mockResponse));
+    })
+
+    it('should return an error (SAD)', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: "There was a problem with the server. Please try again."
+        })
+      });
+
+      const url = 'http://localhost:3001/api/v1/YOLO';
+
+      expect(fetchData(url)).rejects.toEqual(Error("There was a problem with the server. Please try again."));
+    })
+
   });
-  
+
   describe('postFavorite', () => {
     let mockResponse = {
       "id": 1,
@@ -130,7 +151,7 @@ describe('apiCalls', () => {
       "vote_average": "8.6",
       "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure."
   };
-  
+
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
@@ -151,57 +172,86 @@ describe('apiCalls', () => {
         "vote_average": "8.6",
         "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure."
         };
-        const expected = [ mockUrl, {
-          method: 'POST',
-          body: JSON.stringify(mockMovieInfo),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }];
+      const expected = [ mockUrl, {
+        method: 'POST',
+        body: JSON.stringify(mockMovieInfo),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }];
 
         postFavorite(mockMovieInfo, id);
 
         expect(window.fetch).toHaveBeenCalledWith(...expected);
     });
+
+    it('should post a favorite (HAPPY)', () => {
+      const id = 3;
+      const mockUrl = `http://localhost:3001/api/v1/users/${id}/moviefavorites`;
+
+      fetchData(mockUrl)
+      .then(results => expect(results).toEqual(mockResponse));
+    })
+
+    it('should return an error (SAD)', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: "There was a problem with the server. Please try again."
+        })
+      });
+
+      const id = 3;
+      const url = `http://localhost:3001/api/v1/users/${id}/movieYOLO`;
+
+      expect(fetchData(url)).rejects.toEqual(Error("There was a problem with the server. Please try again."));
+    })
+
   });
+
+  describe('deleteFavorite', () => {
+    let mockResponse = {
+      "id": 1,
+      "movie_id": 475557,
+      "user_id": 3,
+      "title": "Joker",
+      "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+      "release_date": "2019-10-04",
+      "vote_average": "8.6",
+      "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure."
+  };
+
+    beforeEach(() => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true
+        });
+      });
+    });
+
+    it('should be called with the correct arguments', () => {
+      const expected = ['http://localhost:3001/api/v1/users/11/moviefavorites/475557', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+          }
+        }]
+        deleteFavorite(11, 475557);
+        expect(window.fetch).toHaveBeenCalledWith(...expected)
+      });
+
+    it('should return an error (SAD)', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: "Failed to load resource: the server responded with a status of 500 (Internal Server Error)."
+        })
+      });
+
+      const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56YOLO';
+
+      expect(fetchData(url)).rejects.toEqual(Error("Failed to load resource: the server responded with a status of 500 (Internal Server Error)."));
+      });
+    })
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
