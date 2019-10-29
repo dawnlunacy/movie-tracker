@@ -7,7 +7,7 @@ import './Nav.css'
 export const Nav = ({ currentUser, logoutUser, getFavorites }) => {
     return(
         <nav className="nav">
-            {currentUser !== null && <Link className="link" to='/favorites'> <p className="nav-p" onClick={() => getFavorites()}>FAVORITES</p> </Link>}
+            {currentUser !== null && <Link className="link" to='/favorites'> <p className="nav-p" onClick={() => getFavorites(currentUser.id)}>FAVORITES</p> </Link>}
             {currentUser === null && <Link className="link" to='/login'> <p className="nav-p">LOGIN TO VIEW FAVORITES</p> </Link> }
             <div className="nav-user-options">
             {currentUser !== null && <p className="nav-p">Hello, {currentUser.name}</p>}

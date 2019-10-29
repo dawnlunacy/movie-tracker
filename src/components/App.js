@@ -11,6 +11,7 @@ import { fetchData, postFavorite, deleteFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
 import logo from '../images/MovieTracker_font_wave.png';
+import FavoritesContainer from '../containers/FavoritesContainer/FavoritesContainer';
 
 export class App extends Component {
 
@@ -81,7 +82,7 @@ export class App extends Component {
               <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
-            <MoviesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
+            <FavoritesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
           </>
         } />
         </div>
