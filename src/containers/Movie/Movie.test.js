@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Movie from './Movie';
+import { Movie } from './Movie';
 
 describe('Movie', () => {
     it('should render the movie data in <section> tag correctly', () => {
