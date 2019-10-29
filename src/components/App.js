@@ -16,7 +16,7 @@ export class App extends Component {
 
   async componentDidMount() {
     const { getMovies, handleError, isLoading } = this.props
-    
+
     try {
       isLoading(true)
       const movies = await fetchData('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
@@ -48,6 +48,13 @@ export class App extends Component {
     }
   }
 
+  toggleStar = movieId => {
+    const { favorited } = this.props
+    return favorited.find((favorite) => {
+      return favorite.movie_id === movieId
+    })
+  }
+
   render() {
     return (
         <div className="App">
@@ -59,7 +66,7 @@ export class App extends Component {
               <Nav getFavorites={this.getFavorites}/>
               <img src={logo} alt="Logo" className="App-img"/>
             </header>
-            <MoviesContainer toggleFavorite={this.toggleFavorite}/>
+            <MoviesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
           </>
         } />
         </div>
@@ -69,7 +76,7 @@ export class App extends Component {
 
 export const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  loading: state.loading, 
+  loading: state.loading,
   favorited: state.favorited
 });
 

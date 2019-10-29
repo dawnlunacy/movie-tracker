@@ -7,6 +7,9 @@ export const favorited = (state = [], action) => {
     case 'DELETE_STORED_FAVORITE':
       state = state.filter(movie => movie.movie_id !== action.id)
       return state
+    case 'LOGOUT_USER':
+      state = []
+      return state
     default:
       return state
   }

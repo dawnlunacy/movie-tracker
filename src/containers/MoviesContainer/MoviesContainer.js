@@ -3,7 +3,7 @@ import Movie from '../Movie/Movie';
 import { connect } from 'react-redux';
 import './MoviesContainer.css'
 
-export const MoviesContainer = ({ movies, errorMessage, toggleFavorite }) => {
+export const MoviesContainer = ({ movies, errorMessage, toggleFavorite, toggleStar }) => {
   const moviesToDisplay = movies.map(movie => {
     const { movie_id, title, poster_path, release_date, vote_average, overview } = movie
     return <Movie
@@ -15,6 +15,7 @@ export const MoviesContainer = ({ movies, errorMessage, toggleFavorite }) => {
       vote_average = {vote_average}
       overview = {overview}
       toggleFavorite = {toggleFavorite}
+      toggleStar = {toggleStar}
     />
   })
 
