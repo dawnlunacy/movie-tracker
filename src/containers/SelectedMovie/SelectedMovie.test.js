@@ -31,7 +31,6 @@ describe('SelectedMovie', () => {
         release_date: 19-20-10,
       }
 
-      // Setup
       const mockState = {
         selectedMovie: [{selectedMovie: mockSelectedMovie}],
         filter: 'SELECT_MOVIE'
@@ -40,10 +39,8 @@ describe('SelectedMovie', () => {
         selectedMovie: [{selectedMovie: mockSelectedMovie}]
       };
 
-      // Execution
       const mappedProps = mapStateToProps(mockState);
 
-      // Expectation
       expect(mappedProps).toEqual(expected);
     });
   });
