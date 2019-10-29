@@ -3,7 +3,6 @@ import { LoginForm, mapDispatchToProps } from './LoginForm';
 import { shallow } from 'enzyme';
 import { getUser } from '../../utils/apiCalls';
 import { saveUser } from '../../actions/index';
-// jest.mock('../../actions/index');
 
 console.log('getUser', getUser)
 console.log('saveUser', saveUser)
@@ -11,7 +10,6 @@ console.log('saveUser', saveUser)
 describe('LoginFormContainer', () => {
   describe('AddTodoForm component', () => {
     let wrapper;
-    // mockSaveUser = jest.fn();
 
     beforeEach(() => {
       wrapper = shallow(<LoginForm />)
@@ -20,7 +18,7 @@ describe('LoginFormContainer', () => {
     it('should match snapshot', () => {
       expect(wrapper).toMatchSnapshot();
     })
-    
+
     it('should set state of UserInput email when handleChange is called with an event', () => {
       const emailEvent = {
         target: {
@@ -28,7 +26,7 @@ describe('LoginFormContainer', () => {
           value: "rudd.lacy@gmail.com"
         }
       }
-     
+
       wrapper.instance().handleChange(emailEvent);
 
       expect(wrapper.state('userInput').email).toEqual(emailEvent.target.value);
