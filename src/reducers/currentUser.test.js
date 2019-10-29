@@ -32,5 +32,11 @@ describe('currentUser', () => {
       type: "LOGOUT_USER",
       currentUser: mockCurrentUser
     }
-  })
+
+    const newState = null;
+
+    const result = currentUser(initialState, action);
+
+    expect(result).toEqual(newState);
+  });
 });
