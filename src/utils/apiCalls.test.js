@@ -117,6 +117,27 @@ describe('apiCalls', () => {
 
       expect(window.fetch).toHaveBeenCalledWith(...expected);
     });
+
+    it('should return a user (HAPPY)', () => {
+      const mockUrl = 'http://localhost:3001/api/v1/login';
+
+      fetchData(mockUrl)
+      .then(results => expect(results).toEqual(mockResponse));
+    })
+
+    it('should return an error (SAD)', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: "??."
+        })
+      });
+
+      const url = 'http://localhost:3001/api/v1/YOLO';
+
+      expect(fetchData(url)).rejects.toEqual(Error("??."));
+    })
+
   });
 
   describe('postFavorite', () => {
@@ -163,6 +184,29 @@ describe('apiCalls', () => {
 
         expect(window.fetch).toHaveBeenCalledWith(...expected);
     });
+
+    it('should post a favorite (HAPPY)', () => {
+      const id = 3;
+      const mockUrl = `http://localhost:3001/api/v1/users/${id}/moviefavorites`;
+
+      fetchData(mockUrl)
+      .then(results => expect(results).toEqual(mockResponse));
+    })
+
+    it('should return an error (SAD)', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: "??."
+        })
+      });
+      
+      const id = 3;
+      const url = `http://localhost:3001/api/v1/users/${id}/movieYOLO`;
+
+      expect(fetchData(url)).rejects.toEqual(Error("??."));
+    })
+
   });
 
   describe('deleteFavorite', () => {
