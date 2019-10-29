@@ -18,8 +18,7 @@ describe('App', () => {
     email:'rudd.lacy@gmail.com', 
     name: 'lacy'
   };
-  // const mockLoading = false;
-    //can use this or can just set to false
+  const mockLoading = false;
 
   fetchData.mockImplementation(() => Promise.resolve(mockCurrentUser))
 
@@ -38,7 +37,6 @@ describe('App', () => {
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   });
-
   
   
   describe('getFavorites', () => {
@@ -70,13 +68,74 @@ describe('App', () => {
         await wrapper.instance().getFavorites(mockCurrentUser.id);
         
         fetchData(mockUrl)
-        .then(results => expect(results).toEqual(mockResponse.results));
-        
-        
+        .then(results => expect(results).toEqual(mockResponse.results))
+        .catch(error => console.log(error))
       });
-      
     });
 
+    describe('mapStateToProps', () => {
+      
+      let mockCurrentUser;
+      beforeEach(() => {
+        mockCurrentUser = {
+          id: 3, 
+          email:'rudd.lacy@gmail.com', 
+          name: 'lacy'
+        };
+
+      })
+      it('should return an object with the currentUser, isLoading, and favorited', () => {
+        const mockState = { 
+          currentUser: {currentUser: mockCurrentUser},
+          loading: false,
+          favorited: [           
+            {
+              "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+              "id": 475557,
+              "original_title": "Joker",
+              "title": "Joker",
+              "vote_average": 8.6,
+              "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+              "release_date": "2019-10-04"
+            }]
+        };
+        const expected = {
+          currentUser: {currentUser: mockCurrentUser},
+          loading: false,
+          favorited: mockState.favorited
+        };
+    
+        const mappedProps = mapStateToProps(mockState);
+    
+        expect(mappedProps).toEqual(expected);
+      });
+
+    });
+
+    describe('mapDispatchToProps', () => {
+      it('calls dispatch with a getUser action is called', () => {
+        const mockDispatch = jest.fn();
+        const movies =           
+        {
+          "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+          "id": 475557,
+          "original_title": "Joker",
+          "title": "Joker",
+          "vote_average": 8.6,
+          "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+          "release_date": "2019-10-04"
+          }
+  
+        const actionToDispatch = wrapper.instance().getMovies(movies);
+  
+        const mappedProps = mapDispatchToProps(mockDispatch);
+        mappedProps.wrapper,instance().getMovies(movies);
+  
+        expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+      });
+
+    });
+    
   }); 
   
   
