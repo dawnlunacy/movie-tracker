@@ -19,14 +19,19 @@ exports[`Movie should render the movie data in <section> tag correctly 1`] = `
     onClick={[Function]}
     src="MovieTracker_star_fav.svg"
   />
-  <div
-    className="movie-text"
+  <Link
+    to="movies/undefined"
   >
-    <h3
-      className="movie-h3"
+    <div
+      className="movie-text"
+      onClick={[Function]}
     >
-      Joker
-    </h3>
-  </div>
+      <h3
+        className="movie-h3"
+      >
+        Joker
+      </h3>
+    </div>
+  </Link>
 </section>
 `;
