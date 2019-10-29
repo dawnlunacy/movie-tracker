@@ -5,3 +5,30 @@
 .movie-text {
   cursor: pointer;
 }
+
+.selected-movie-container {
+  display: flex;
+  padding: 0 68px 68px 60px;
+  position: absolute;
+  top: 260px;
+}
+
+.selected-title {
+  font-size: 50px;
+}
+
+.selected-img {
+  width: 100%;
+}
+
+.selected-movie-info {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  padding-left: 25px;
+}
+
+.selected-synopsis {
+  margin: auto;
+  width: 50%;
+}
