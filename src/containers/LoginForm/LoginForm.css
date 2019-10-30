@@ -60,5 +60,8 @@ h3 {
 .login-btn:hover {
     background-color: #d3af37;
     transform: scale(1.2);
+}
 
+.App-img-form {
+    margin: 15px;
 }

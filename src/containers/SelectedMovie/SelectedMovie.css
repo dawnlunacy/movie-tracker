@@ -1,0 +1,38 @@
+.selectedMovie {
+  color:white;
+}
+
+.movie-text {
+  cursor: pointer;
+}
+
+.selected-movie-container {
+  display: flex;
+  padding: 0 68px 68px 60px;
+  position: absolute;
+  top: 260px;
+}
+
+.selected-title {
+  font-size: 50px;
+}
+
+.selected-img {
+  height: 600px;
+  margin-top: 50px;
+  width: 500px;
+}
+
+.selected-movie-info {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  padding-left: 25px;
+}
+
+.selected-synopsis {
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  margin: auto;
+  width: 50%;
+}

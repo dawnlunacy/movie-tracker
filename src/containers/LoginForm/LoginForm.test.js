@@ -1,17 +1,11 @@
 import React from 'react';
-import { LoginForm, mapDispatchToProps } from './LoginForm';
+import { LoginForm, mapDispatchToProps, mapStateToProps } from './LoginForm';
 import { shallow } from 'enzyme';
-import { getUser } from '../../utils/apiCalls';
 import { saveUser } from '../../actions/index';
-// jest.mock('../../actions/index');
-
-console.log('getUser', getUser)
-console.log('saveUser', saveUser)
 
 describe('LoginFormContainer', () => {
   describe('AddTodoForm component', () => {
     let wrapper;
-    // mockSaveUser = jest.fn();
 
     beforeEach(() => {
       wrapper = shallow(<LoginForm />)
@@ -20,7 +14,7 @@ describe('LoginFormContainer', () => {
     it('should match snapshot', () => {
       expect(wrapper).toMatchSnapshot();
     })
-    
+
     it('should set state of UserInput email when handleChange is called with an event', () => {
       const emailEvent = {
         target: {
@@ -28,7 +22,7 @@ describe('LoginFormContainer', () => {
           value: "rudd.lacy@gmail.com"
         }
       }
-     
+
       wrapper.instance().handleChange(emailEvent);
 
       expect(wrapper.state('userInput').email).toEqual(emailEvent.target.value);
@@ -112,15 +106,32 @@ describe('LoginFormContainer', () => {
     it('should call submitForm is when the login button is clicked', () => {
       const mockEvent = { preventDefault: jest.fn() };
       wrapper.instance().submitForm = jest.fn();
-      wrapper.instance().forceUpdate();
 
       wrapper.find('button').at(0).simulate('click', mockEvent);
 
       expect(wrapper.instance().submitForm).toHaveBeenCalled();
     });
 
-    it('should call validateResponse from submitForm', () => {
+    it.skip('should call validateResponse from submitForm', () => {
       const mockEvent = { preventDefault: jest.fn() };
+      let mockResponse = {
+        "id": 3,
+        "name": "Lucy",
+        "email": "lawless@gmail.com"
+      };
+
+        window.fetch = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve(mockResponse)
+          });
+        });
+        
+        wrapper.instance().submitForm = jest.fn();
+
+        wrapper.find('button').at(0).simulate('click', mockEvent);
+        wrapper.instance().validateResponse = jest.fn()
+        expect(wrapper.instance().validateResponse).toHaveBeenCalledWith()
     })
   })
 
@@ -141,4 +152,22 @@ describe('LoginFormContainer', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
   });
+
+  describe('mapStateToProps', () => {
+    it('should return an object with the currentUser', () => {
+      const mockCurrentUser = {id:9999, name: "Pumpkin", email:"Kitty@lovesHairTies.com"}
+
+      const mockState = {
+        currentUser: {id:9999, name: "Pumpkin", email:"Kitty@lovesHairTies.com"}
+      };
+      const expected = {
+        currentUser: mockCurrentUser
+      };
+
+      const mappedProps = mapStateToProps(mockState);
+
+      expect(mappedProps).toEqual(expected);
+    });
+  });
+
 });
