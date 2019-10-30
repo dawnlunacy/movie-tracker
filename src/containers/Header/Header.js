@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import logo from '../../images/MovieTracker_font_wave.png';
 import Nav from '../Nav/Nav';
 
@@ -16,16 +15,9 @@ export const Header = ({ getFavorites }) => {
       </Link>
     </header>
   )
+}
 
-  }
-//       <Nav getFavorites= { getFavorites }/>
-//       <img src={logo} alt="Logo" className="App-img"/>
-//     </header>
-//   )
-// }
 
 Nav.propTypes = {
   getFavorites: PropTypes.func.isRequired
 }
-
-// onClick={browserHistory.goBack}

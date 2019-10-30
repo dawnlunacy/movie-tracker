@@ -6,7 +6,7 @@ describe('Header', () => {
   it('should match snapshot', () => {
     const getFavorites = jest.fn()
     const wrapper = shallow(<Header getFavorites={getFavorites}/>);
-
+    
     expect(wrapper).toMatchSnapshot();
   });
 });

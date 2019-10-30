@@ -8,6 +8,16 @@ exports[`LoginFormContainer AddTodoForm component should match snapshot 1`] = `
     <div
       className="log-in-background"
     >
+      <Link
+        className="App-img-form"
+        to="/"
+      >
+        <img
+          alt="Logo"
+          className="App-img-form"
+          src="MovieTracker_font_wave.png"
+        />
+      </Link>
       <h2>
          Login 
       </h2>
