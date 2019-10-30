@@ -7,16 +7,17 @@ jest.mock('../utils/apiCalls')
 
 describe('App', () => {
   let wrapper;
-
   const mockGetMovies = jest.fn();
   const mockhandleError = jest.fn();
   const mockIsLoading = jest.fn();
   const mockSaveUser = jest.fn();
   const mockCleanMovies = jest.fn();
 
-  const mockCurrentUser = {id: 3, email:'rudd.lacy@gmail.com', name: 'lacy'};
-  // const mockLoading = false;
-    //can use this or can just set to false
+  const mockCurrentUser = {
+    id: 3, 
+    email:'rudd.lacy@gmail.com', 
+    name: 'lacy'
+  };
 
   fetchData.mockImplementation(() => Promise.resolve(mockCurrentUser))
 
@@ -33,52 +34,105 @@ describe('App', () => {
   });
 
   it('should match snapshot', () => {
-    // const wrapper = shallow (<App />)
     expect(wrapper).toMatchSnapshot()
   });
+  
+  
+  describe('getFavorites', () => {
+    let mockResponse = {
+        "results": [
+          {
+            "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+            "id": 475557,
+            "original_title": "Joker",
+              "title": "Joker",
+              "vote_average": 8.6,
+              "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+              "release_date": "2019-10-04"
+            },
+          ]};
+          
+          beforeEach(() => {
+            window.fetch = jest.fn().mockImplementation(() => {
+              return Promise.resolve({
+                ok: true,
+                json: () => Promise.resolve(mockResponse)
+              });
+            });
+      });
+      
+      it ('should return array of favorited movies for currentUser', async () => {
+        const mockUrl = `http://localhost:3001/api/v1/users/${mockCurrentUser.id}/moviefavorites`;
+        
+        await wrapper.instance().getFavorites(mockCurrentUser.id);
+        
+        fetchData(mockUrl)
+        .then(results => expect(results).toEqual(mockResponse.results))
+        .catch(error => error)
+      });
+    });
 
-  it('should update loading, fetch movies, and getMovies after mounting', () => {
-    expect(mockIsLoading).toHaveBeenCalledWith(true)
-  })
+    describe('mapStateToProps', () => {
+      
+      let mockCurrentUser;
+      beforeEach(() => {
+        mockCurrentUser = {
+          id: 3, 
+          email:'rudd.lacy@gmail.com', 
+          name: 'lacy'
+        };
 
-}); 
+      })
+      it('should return an object with the currentUser, isLoading, and favorited', () => {
+        const mockState = { 
+          currentUser: {currentUser: mockCurrentUser},
+          loading: false,
+          favorited: [           
+            {
+              "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+              "id": 475557,
+              "original_title": "Joker",
+              "title": "Joker",
+              "vote_average": 8.6,
+              "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+              "release_date": "2019-10-04"
+            }]
+        };
+        const expected = {
+          currentUser: {currentUser: mockCurrentUser},
+          loading: false,
+          favorited: mockState.favorited
+        };
+    
+        const mappedProps = mapStateToProps(mockState);
+    
+        expect(mappedProps).toEqual(expected);
+      });
 
+    });
 
+    describe.skip('mapDispatchToProps', () => {
+      it('calls dispatch with a getUser action is called', () => {
+        const mockDispatch = jest.fn();
+        const movies =           
+        {
+          "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+          "id": 475557,
+          "original_title": "Joker",
+          "title": "Joker",
+          "vote_average": 8.6,
+          "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+          "release_date": "2019-10-04"
+          }
+  
+        const actionToDispatch = wrapper.instance().getMovies(movies);
+  
+        const mappedProps = mapDispatchToProps(mockDispatch);
+        mappedProps.wrapper.instance().getMovies(movies);
+  
+        expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+      });
 
-
-
-
-
-
-
-
-
-
-
-
-///****** THIS CODE BELOW WAS CUT OUT OF APICALLS.TEST.JS  -----> NOT SURE WHY IT WAS THERE BUT I LEFT IT FOR NOW */
-// describe('App', () => {
-//   const mockResponse = [
-//     {
-//       id: 4444,
-//       overview: 'puppies puppies puppies',
-//       poster: 'poster path goes here',
-//       rating: 9.9,
-//       title: 'Best in show' 
-//     }
-//   ]
-
-//   beforeEach(() => {
-//     window.fetch = jest.fn().mockImplementation(() => {
-//       return Promise.resolve({
-//         ok: true,
-//         json: () => Promise.resolve(mockResponse)
-//       });
-//     });
-
-//   it('should call fetch with the correct url', () => {
-//     fetchData(mockResponse);
-//     expect(window.fetch).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/now_playing?api_key=cd7eb6a4cff8273d777385057dcf9b56')
-//   })
-// })
-// })
+    });
+    
+  }); 

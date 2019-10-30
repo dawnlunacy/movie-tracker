@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import MoviesContainer from '../containers/MoviesContainer/MoviesContainer';
-import { Header } from '../containers/Header/Header'
-import Nav from '../containers/Nav/Nav';
+import { Header } from '../containers/Header/Header';
 import LoginForm from '../containers/LoginForm/LoginForm';
 import SignUpForm from '../containers/SignUpForm/SignUpForm';
+import SelectedMovie from '../containers/SelectedMovie/SelectedMovie';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovies, handleError, isLoading, saveUser, saveNewFavorite, deleteStoredFavorite, retrieveFavorited } from '../actions';
 import { fetchData, postFavorite, deleteFavorite } from '../utils/apiCalls';
 import { filteredMovieData } from '../utils/helpers';
 import './App.css';
-import logo from '../images/MovieTracker_font_wave.png';
 import FavoritesContainer from '../containers/FavoritesContainer/FavoritesContainer';
 
 export class App extends Component {
@@ -33,7 +33,6 @@ export class App extends Component {
 
   getFavorites = async (id) => {
     const favoriteMovies = await fetchData(`http://localhost:3001/api/v1/users/${id}/moviefavorites`)
-    console.log('in getFavorites--->>>', favoriteMovies)
     return favoriteMovies
 }
 
@@ -70,20 +69,18 @@ export class App extends Component {
         <Route exact path='/signup' render={ () => <SignUpForm />}/>
         <Route exact path='/' render={ () =>
           <>
-            <header className="App-header">
-              <Nav getFavorites={this.getFavorites}/>
-              <img src={logo} alt="Logo" className="App-img"/>
-            </header>
-            {/* <Header getFavorites={this.getFavorites}/> */}
+            <Header getFavorites={this.getFavorites}/>
             <MoviesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
+          </>
+        } />
+        <Route exact path='/movies/:id' render={ () =>
+          <>
+            <Header getFavorites={this.getFavorites}/>
+            <SelectedMovie />
           </>
         } />
         <Route exact path='/favorites' render={ () =>
           <>
-            {/* <header className="App-header">
-              <Nav getFavorites={this.getFavorites}/>
-              <img src={logo} alt="Logo" className="App-img"/>
-            </header> */}
             <Header getFavorites={this.getFavorites}/>
             <FavoritesContainer toggleFavorite={this.toggleFavorite} toggleStar={this.toggleStar}/>
           </>
@@ -114,3 +111,8 @@ export const mapDispatchToProps = dispatch => (
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  favorited: PropTypes.array.isRequired,
+}

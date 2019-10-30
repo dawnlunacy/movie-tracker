@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectedMovie should match snapshot 1`] = `
+<main
+  className="selected-movie-container"
+>
+  <div
+    className="selected-img-container"
+  >
+    <img
+      alt="Movie Poster"
+      className="selected-img"
+      src="https://image.tmdb.org/t/p/original//udDclJoHjfjb8Ekgsd4FDteOkCU.jpg"
+    />
+  </div>
+  <section
+    className="selected-movie-info"
+  >
+    <h2
+      className="selected-title"
+    >
+      Joker
+    </h2>
+    <div
+      className="selected-synopsis"
+    >
+      <h2>
+        Synopsis
+      </h2>
+      <p>
+        During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.
+      </p>
+    </div>
+    <div>
+      <h2>
+        Rating
+      </h2>
+      <p>
+        8.6
+        /10
+      </p>
+    </div>
+    <div>
+      <h2>
+        Release Date
+      </h2>
+      <p>
+        -11
+      </p>
+    </div>
+  </section>
+</main>
+`;

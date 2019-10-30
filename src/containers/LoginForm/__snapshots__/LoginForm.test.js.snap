@@ -23,7 +23,7 @@ exports[`LoginFormContainer AddTodoForm component should match snapshot 1`] = `
         name="password"
         onChange={[Function]}
         placeholder="Enter Password"
-        type="text"
+        type="password"
       />
       <button
         className="form-btn"

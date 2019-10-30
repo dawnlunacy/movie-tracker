@@ -37,3 +37,8 @@ export const deleteStoredFavorite = id => ({
   type: 'DELETE_STORED_FAVORITE',
   id
 });
+
+export const selectMovie = movieInfo => ({
+  type: 'SELECT_MOVIE',
+  movieInfo
+})

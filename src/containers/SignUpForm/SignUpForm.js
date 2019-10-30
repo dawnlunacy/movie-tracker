@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser } from '../../actions/index';
+import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import './SignUpForm.css';
 
@@ -121,7 +122,7 @@ export class SignUpForm extends Component {
                 <h3> {this.state.error} </h3>
                 <div className="login-to-sign-up">
                     <h4 className="prompt-to-login"> Already have an account? </h4>
-                    <Link to ="/login"> <button className="login-btn"> LOGIN </button> </Link>
+                    <Link to="/login"> <button className="login-btn"> LOGIN </button> </Link>
                 </div>
               </div>
             </form>
@@ -135,3 +136,7 @@ export const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(SignUpForm);
+
+SignUpForm.propTypes = {
+  currentUser: PropTypes.object.isRequired
+}

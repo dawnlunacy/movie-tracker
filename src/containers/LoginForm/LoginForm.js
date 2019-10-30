@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { fetchData, getUser } from '../../utils/apiCalls';
+import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser, retrieveFavorited } from '../../actions/index';
 import { Redirect, Link } from 'react-router-dom';
+import logo from '../../images/MovieTracker_font_wave.png';
+import PropTypes from 'prop-types';
 import './LoginForm.css';
 
 export class LoginForm extends Component {
@@ -28,7 +30,7 @@ export class LoginForm extends Component {
     }
 
     async checkInputsForValues() {
-      this.setState({error: ''})     
+      this.setState({error: ''})
       this.setState({formReady: false})
       if (this.state.userInput.email !== '' &&
         this.state.userInput.password !== '') {
@@ -38,16 +40,16 @@ export class LoginForm extends Component {
 
     submitForm = async (e) => {
         e.preventDefault();
-        await this.checkInputsForValues();    
+        await this.checkInputsForValues();
         if (!this.state.formReady) {
           this.setState({error: "Please fill out all inputs to log in."})
         } else {
           const userVerification = await getUser(this.state.userInput, 'http://localhost:3001/api/v1/login');
           this.validateResponse(userVerification)
         }
-        
+
       }
-      
+
       validateResponse = async (response) => {
         const { saveUser, retrieveFavorited, getFavorites } = this.props;
         if (!response.ok && response.status === 404) {
@@ -61,7 +63,6 @@ export class LoginForm extends Component {
           saveUser(newUser);
           this.setState({isLoggedIn: true})
           const moviesToSave = await getFavorites(newUser.id)
-          console.log('movietosave===>>', moviesToSave.favorites)
           retrieveFavorited(moviesToSave.favorites)
           this.resetInputs()
         }
@@ -84,7 +85,10 @@ export class LoginForm extends Component {
         return (
             <>
             <form className="login-form">
-                <div className="log-in-background">
+              <div className="log-in-background">
+                <Link className="App-img-form" to='/'>
+                  <img src={logo} alt="Logo" className="App-img-form"/>
+                </Link>
                 <h2> Login </h2>
                 <input
                     className="email-input"
@@ -96,7 +100,7 @@ export class LoginForm extends Component {
                 />
                 <input
                     className="password-input"
-                    type="text"
+                    type="password"
                     placeholder="Enter Password"
                     name="password"
                     value={this.state.password}
@@ -106,7 +110,7 @@ export class LoginForm extends Component {
 
                 <h3> {this.state.error} </h3>
                 <div className="login-to-sign-up">
-                    <h4 className="prompt-to-sign-up"> Don't have an account? </h4>    
+                    <h4 className="prompt-to-sign-up"> Don't have an account? </h4>
                     <Link to ="/signup"> <button className="sign-up-btn"> SIGN UP</button> </Link>
                 </div>
                 </div>
@@ -126,3 +130,7 @@ export const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(LoginForm)
+
+LoginForm.propTypes = {
+  currentUser:PropTypes.object.isRequired
+}
