@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { saveUser } from '../../actions/index';
 import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
+import logo from '../../images/MovieTracker_font_wave.png';
 import './SignUpForm.css';
 
 export class SignUpForm extends Component {
@@ -92,6 +93,9 @@ export class SignUpForm extends Component {
             <>
             <form className="sign-up-form">
               <div className="sign-up-background">
+                <Link className="App-img-form" to='/'>
+                  <img src={logo} alt="Logo" className="App-img-form"/>
+                </Link>
                 <h2> Sign Up </h2>
                 <input
                   className="name-input"
