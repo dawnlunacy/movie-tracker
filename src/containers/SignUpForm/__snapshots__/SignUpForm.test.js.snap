@@ -8,6 +8,16 @@ exports[`SignUpForm should match snapshot 1`] = `
     <div
       className="sign-up-background"
     >
+      <Link
+        className="App-img-form"
+        to="/"
+      >
+        <img
+          alt="Logo"
+          className="App-img-form"
+          src="MovieTracker_font_wave.png"
+        />
+      </Link>
       <h2>
          Sign Up 
       </h2>

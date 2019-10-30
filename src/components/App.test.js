@@ -128,7 +128,7 @@ describe('App', () => {
         const actionToDispatch = wrapper.instance().getMovies(movies);
   
         const mappedProps = mapDispatchToProps(mockDispatch);
-        mappedProps.wrapper,instance().getMovies(movies);
+        mappedProps.wrapper.instance().getMovies(movies);
   
         expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
       });

@@ -7,10 +7,14 @@ exports[`Header should match snapshot 1`] = `
   <Connect(Nav)
     getFavorites={[MockFunction]}
   />
-  <img
-    alt="Logo"
+  <Link
     className="App-img"
-    src="MovieTracker_font_wave.png"
-  />
+    to="/"
+  >
+    <img
+      alt="Logo"
+      src="MovieTracker_font_wave.png"
+    />
+  </Link>
 </header>
 `;

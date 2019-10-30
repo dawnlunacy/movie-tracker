@@ -3,6 +3,7 @@ import { getUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { saveUser, retrieveFavorited } from '../../actions/index';
 import { Redirect, Link } from 'react-router-dom';
+import logo from '../../images/MovieTracker_font_wave.png';
 import PropTypes from 'prop-types';
 import './LoginForm.css';
 
@@ -84,7 +85,10 @@ export class LoginForm extends Component {
         return (
             <>
             <form className="login-form">
-                <div className="log-in-background">
+              <div className="log-in-background">
+                <Link className="App-img-form" to='/'>
+                  <img src={logo} alt="Logo" className="App-img-form"/>
+                </Link>
                 <h2> Login </h2>
                 <input
                     className="email-input"
