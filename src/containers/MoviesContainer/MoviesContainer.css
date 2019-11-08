@@ -1,5 +1,4 @@
 .scroll-wrapper {
-    width: 579px;
     height: 100vw;
     transform: rotate(-90deg) translateX(-100vh);
     transform-origin: top left;

@@ -6,6 +6,7 @@ import { selectMovie } from '../../actions';
 import PropTypes from 'prop-types';
 import star from '../../images/MovieTracker_star.svg';
 import starFav from '../../images/MovieTracker_star_fav.svg';
+import infoIcon from '../../utils/images/info-icon.png';
 
 export const Movie = ({ movie_id, title, poster_path, release_date, vote_average, overview, toggleFavorite, currentUser, favorited, toggleStar, selectMovie }) => {
   let isFavorite = favorited.find((favorite) => {
@@ -37,10 +38,11 @@ export const Movie = ({ movie_id, title, poster_path, release_date, vote_average
         <img className="poster-img" alt="Movie Poster" src = {`https://image.tmdb.org/t/p/original/${poster_path}`}/>
       </div>
       <img src={starImg} alt="Logo" className="movie-star" onClick={() => handleClick()}/>
-      <Link to={`movies/${movie_id}`}>
+      <Link to={`movies/${movie_id}`} className="movie-card-link">
         <div className="movie-text" onClick={() => selectMovie({
           movie_id, title: title, poster_path, release_date, vote_average, overview})}>
           <h3 className="movie-h3">{title}</h3>
+          <img className="info-icon" src={infoIcon} />
         </div>
       </Link>
     </section>
@@ -60,6 +62,6 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Movie);
 
 Movie.propTypes = {
-  favorited: PropTypes.array.isRequired,
-  selectMovie: PropTypes.func.isRequired
+  favorited: PropTypes.array,
+  selectMovie: PropTypes.func
 }

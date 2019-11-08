@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  margin-top: 210px;
+  margin-top: 286px;
   transition: all .2s ease-in-out;
 }
 
@@ -25,7 +25,8 @@
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
-  height: 100px;
+  justify-content: space-between;
+  height: 120px;
   margin: 0 10px 10px 10px;
   width: 250px;
 }
@@ -37,11 +38,21 @@
 .movie-star {
   cursor: pointer;
   position: absolute;
-  margin-top: 158px;
+  margin-top: 148px;
   width: 50px;
 }
 
 .movie-h3 {
   color: #000000;
-  padding: 20px;
+  margin-bottom: 5px;
+  padding: 20px 10px 0 10px;
+}
+
+.info-icon {
+  padding-bottom: 5px;
+  width: 20px;
+}
+
+.movie-card-link {
+  text-decoration: none;
 }
