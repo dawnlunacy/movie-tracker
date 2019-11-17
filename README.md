@@ -87,7 +87,7 @@ Favorite Page
 
 Clone repo.
 ```
-git clone https://github.com/dawnlunacy/movie-tracker.git
+git clone https://github.com/qfarenwald/movie-tracker
 ```
 Install dependencies.
 ```
